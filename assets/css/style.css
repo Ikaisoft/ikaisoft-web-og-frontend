@@ -4631,7 +4631,40 @@ project-slider .swiper-slide {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1); }
+.success-message{
+    display:none;
+    margin-top:25px;
+    padding:25px;
+    border-radius:12px;
+    background:#e8fff1;
+    border:1px solid #16a34a;
+    text-align:center;
+}
 
+.success-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.success-message h3{
+    color:#16a34a;
+    margin-bottom:10px;
+}
+
+.success-message p{
+    color:#444;
+}
+
+.error-message{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:10px;
+    background:#ffe9e9;
+    border:1px solid #dc3545;
+    color:#dc3545;
+    text-align:center;
+}
 .icon-project-link svg {
   --size: 52px;
   width: var(--size);
