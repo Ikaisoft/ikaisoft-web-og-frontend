@@ -7163,6 +7163,38 @@ blockquote:before {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
+  .led-btn{
+    background: rgb(2,108,2);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-right:5px;
+    animation: ledBlink 1.5s infinite;
+}
+
+@keyframes ledBlink{
+    0%{
+        background: rgb(2,108,2);
+        color: #fff;
+        box-shadow: 0 0 5px rgb(2,108,2);
+    }
+
+    50%{
+        background: #fff;
+        color: rgb(2,108,2);
+        box-shadow: 0 0 20px rgb(2,108,2);
+    }
+
+    100%{
+        background: rgb(2,108,2);
+        color: #fff;
+        box-shadow: 0 0 5px rgb(2,108,2);
+    }
+}
+
 @media (max-width: 1199px) {
   .team-details .content-info {
     -webkit-padding-start: 60px;
