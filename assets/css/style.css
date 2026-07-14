@@ -7174,6 +7174,22 @@ blockquote:before {
     margin-right:5px;
     animation: ledBlink 1.5s infinite;
 }
+.service-select {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font-family:"Inter", sans-serif;
+  color: #1e1f21a6; /* Gray placeholder */
+}
+
+.service-select option {
+  color: #1c2539; /* Normal option color */
+}
+.link-active{
+  color:rgb(2,108,2)
+}
 
 @keyframes ledBlink{
     0%{
