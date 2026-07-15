@@ -157,6 +157,386 @@
             }
         }
     </style>
+    <style>
+        /* High-quality modern highlight cards */
+        .career-highlight-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(28, 37, 57, 0.06);
+            box-shadow: 0 12px 40px rgba(28, 37, 57, 0.04);
+            padding: 36px 30px;
+            min-height: 100%;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .career-highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .career-highlight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(28, 37, 57, 0.08);
+            border-color: rgba(34, 153, 32, 0.2);
+        }
+
+        .career-highlight-card:hover::before {
+            background: #229920;
+        }
+        
+        .highlight-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .career-highlight-card:hover .highlight-icon-wrapper {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .career-highlight-card h3 {
+            margin-top: 0px;
+            margin-bottom: 12px;
+            color: #1c2539;
+        }
+
+        .career-highlight-card p {
+            color: rgba(28, 37, 57, 0.7);
+            line-height: 1.7;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .career-highlight-card .job-badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* Badge Custom colors */
+        .badge-culture {
+            background: rgba(34, 153, 32, 0.08);
+            color: #229920;
+        }
+        .badge-team {
+            background: rgba(59, 130, 246, 0.08);
+            color: #3b82f6;
+        }
+        .badge-benefits {
+            background: rgba(236, 72, 153, 0.08);
+            color: #ec4899;
+        }
+
+        /* Improved Career Cards */
+        .career-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(28, 37, 57, 0.06);
+            box-shadow: 0 12px 40px rgba(28, 37, 57, 0.04);
+            padding: 36px 30px;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .career-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(28, 37, 57, 0.08);
+            border-color: rgba(34, 153, 32, 0.2);
+        }
+
+        .career-card h3 {
+            margin-top: 16px;
+            margin-bottom: 12px;
+            color: #1c2539;
+            transition: color 0.3s ease;
+        }
+
+        .career-card:hover h3 {
+            color: #229920;
+        }
+
+        .career-card .job-badge {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 30px;
+            background: rgba(34, 153, 32, 0.08);
+            color: #229920;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .career-card .job-summary {
+            color: rgba(28, 37, 57, 0.75);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .career-card .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .career-card .job-tags span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            border-radius: 10px;
+            background: #f4f8f3;
+            color: #2c5e2d;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(34, 153, 32, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .career-card:hover .job-tags span {
+            background: rgba(34, 153, 32, 0.08);
+            border-color: rgba(34, 153, 32, 0.15);
+        }
+
+        .career-card .job-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+            color: #5d666f;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(28, 37, 57, 0.06);
+            padding-top: 16px;
+        }
+
+        .career-card .job-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .career-card .job-meta svg {
+            color: #229920;
+        }
+
+        .career-card .button--secondary {
+            width: 100%;
+            justify-content: center;
+            border-color: rgba(28, 37, 57, 0.15);
+            background: transparent;
+            color: #1c2539;
+            transition: all 0.3s ease;
+        }
+
+        .career-card:hover .button--secondary {
+            background: #229920;
+            color: #ffffff;
+            border-color: #229920;
+        }
+
+        /* Premium Filter Console */
+        .job-filters-wrapper {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid rgba(28, 37, 57, 0.06);
+            box-shadow: 0 10px 30px rgba(28, 37, 57, 0.03);
+            padding: 24px 30px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .job-filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .job-filters-header-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1c2539;
+        }
+
+        .clear-filters-btn {
+            background: none;
+            border: none;
+            color: #229920;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.2s ease;
+            display: none;
+        }
+
+        .clear-filters-btn:hover {
+            color: rgb(2, 108, 2);
+            text-decoration: underline;
+        }
+
+        .job-filters .form-label {
+            margin-bottom: 8px;
+            display: block;
+            color: #5d666f;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input-wrapper .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8a94a0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-wrapper .form-control {
+            padding-left: 44px;
+        }
+
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #5d666f;
+            border-bottom: 2px solid #5d666f;
+            transform: translateY(-70%) rotate(45deg);
+            pointer-events: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .select-wrapper:hover::after {
+            border-color: #229920;
+        }
+
+        .job-filters .form-control {
+            width: 100%;
+            border: 1px solid rgba(28, 37, 57, 0.1);
+            background: #ffffff;
+            padding: 12px 16px;
+            border-radius: 12px;
+            min-height: 48px;
+            color: #1c2539;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .job-filters .form-control:focus {
+            outline: none;
+            border-color: #229920;
+            box-shadow: 0 0 0 4px rgba(34, 153, 32, 0.1);
+        }
+
+        /* Fade-in Animation */
+        .job-item.fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Empty state styling */
+        .no-results-illustration {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(34, 153, 32, 0.04);
+            color: rgba(34, 153, 32, 0.4);
+            margin-bottom: 20px;
+        }
+
+        /* CTA styling */
+        .career-cta {
+            background: linear-gradient(135deg, rgba(2, 108, 2, 0.12), rgba(84, 164, 93, 0.08));
+            border-radius: 30px;
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .career-cta .heading {
+            margin-bottom: 16px;
+        }
+
+        .career-cta .text {
+            max-width: 760px;
+            margin: 0 auto 30px;
+            color: rgba(28, 37, 57, 0.8);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 991px) {
+            .career-card,
+            .career-highlight-card {
+                padding: 24px;
+            }
+            .career-cta {
+                padding: 40px 20px;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -258,9 +638,9 @@
         <!-- Page Banner -->
         <div class="page-banner overlay" style="height: 355px;">
             <picture class="media media-bg">
-                <source media="(max-width: 575px)" srcset="assets/img/ikaisoft-images/ikaisoft-research-banner.jpg" />
-                <source media="(max-width: 991px)" srcset="assets/img/ikaisoft-images/ikaisoft-research-banner.jpg" />
-                <img src="assets/img/ikaisoft-images/ikaisoft-research-banner.jpg" width="1920" height="520"
+                <source media="(max-width: 575px)" srcset="assets/img/ikaisoft-images/ikaisoft-career-banner-2.jpg" />
+                <source media="(max-width: 991px)" srcset="assets/img/ikaisoft-images/ikaisoft-career-banner-2.jpg" />
+                <img src="assets/img/ikaisoft-images/ikaisoft-career-banner-2.jpg" width="1920" height="520"
                     loading="eager" alt="Page Banner Image" />
             </picture>
             <div class="page-banner-content" style="height: 436px;">
@@ -289,9 +669,183 @@
                 </div>
             </div>
         </div>
-<div>
-    <h2 class="text text-36 fw-700 text-center mt-5">404</h2>
-</div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-headings section-headings-horizontal align-items-center">
+                <div class="headings-width">
+                    <span class="subheading subheading-bg">Build your future</span>
+                    <h2 class="heading text-48 fw-700">Careers at Ikaisoft</h2>
+                    <p class="text text-18">Join a fast-growing team where learning, innovation, and client success come together. We hire curious problem solvers across technology, consulting, and digital transformation.</p>
+                </div>
+                <a href="#open-roles" class="button button--primary">Explore open roles</a>
+            </div>
+
+            <div class="row g-4 mt-5">
+                <div class="col-12 col-md-4">
+                    <article class="career-highlight-card">
+                        <span class="job-badge badge-culture">Open culture</span>
+                        <div class="highlight-icon-wrapper" style="background: rgba(34, 153, 32, 0.08); color: #229920;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20V10"/>
+                                <path d="M18 20V4"/>
+                                <path d="M6 20v-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="heading text-24 fw-700">Flexible work and growth</h3>
+                        <p class="text">Collaborate across products and receive mentoring, certification support, and clear career paths designed for personal and technical growth.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-4">
+                    <article class="career-highlight-card">
+                        <span class="job-badge badge-team">Inclusive team</span>
+                        <div class="highlight-icon-wrapper" style="background: rgba(59, 130, 246, 0.08); color: #3b82f6;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="heading text-24 fw-700">Work with purpose</h3>
+                        <p class="text">Join a team that builds solutions for education, IT transformation, and research-driven innovation with people-first values.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-4">
+                    <article class="career-highlight-card">
+                        <span class="job-badge badge-benefits">Competitive benefits</span>
+                        <div class="highlight-icon-wrapper" style="background: rgba(236, 72, 153, 0.08); color: #ec4899;">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <h3 class="heading text-24 fw-700">Support and wellbeing</h3>
+                        <p class="text">Enjoy health support, flexible hours, remote-friendly roles, and a culture that balances performance with wellness.</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #f8fcf6;">
+        <div class="container">
+            <div class="section-headings section-headings-horizontal align-items-center">
+                <div class="headings-width">
+                    <span class="subheading subheading-bg">Open roles</span>
+                    <h2 class="heading text-48 fw-700">Available positions</h2>
+                    <p class="text text-18">We are hiring for the following roles. Select the position that matches your experience and apply with your resume today.</p>
+                </div>
+                <a href="contact.html" class="button button--secondary">Submit your resume</a>
+            </div>
+
+            <div class="job-filters-wrapper">
+                <div class="job-filters-header">
+                    <span class="job-filters-header-title">Filter Positions</span>
+                    <button id="clear-filters-btn" class="clear-filters-btn">Clear all filters</button>
+                </div>
+                <div class="row gy-4 job-filters">
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="career-search">Search roles</label>
+                        <div class="search-input-wrapper">
+                            <span class="search-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </span>
+                            <input id="career-search" type="text" class="form-control" placeholder="e.g. Frontend Developer" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="career-team">Team</label>
+                        <div class="select-wrapper">
+                            <select id="career-team" class="form-control">
+                                <option value="All teams">All teams</option>
+                                <option value="Development">Development</option>
+                                <option value="Consulting">Consulting</option>
+                                <option value="Design">Design</option>
+                                <option value="Operations">Operations</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="career-location">Location</label>
+                        <div class="select-wrapper">
+                            <select id="career-location" class="form-control">
+                                <option value="All locations">All locations</option>
+                                <option value="Remote">Remote</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="open-roles" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mt-3">
+                <!-- Loaded dynamically from database -->
+            </div>
+
+            <!-- No Roles Found State -->
+            <div id="no-roles-found" class="text-center py-5" style="display: none; margin-top: 40px; margin-bottom: 20px;">
+                <div class="no-results-illustration">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                    </svg>
+                </div>
+                <h3 class="heading text-28 fw-600 mb-2">No open positions found</h3>
+                <p class="text text-16 mb-4" style="color: rgba(28, 37, 57, 0.6); max-width: 500px; margin: 0 auto 24px;">We couldn't find any roles matching your search criteria. Try clearing some filters or searching for something else.</p>
+                <button id="reset-filters-btn-empty" class="button button--primary" style="background-color: #229920; border-color: #229920;">Reset all filters</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-headings section-headings-horizontal align-items-center">
+                <div class="headings-width">
+                    <span class="subheading subheading-bg">Our culture</span>
+                    <h2 class="heading text-48 fw-700">What it feels like to work here</h2>
+                    <p class="text text-18">We focus on collaboration, personal development, and solving real problems for learners and businesses. Every role contributes to meaningful outcomes.</p>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <div class="col-12 col-md-4">
+                    <article class="career-card">
+                        <h3 class="heading text-22 fw-700">Learning first</h3>
+                        <p class="text">Regular skill sessions, peer reviews, and mentorship ensure you stay ahead while contributing to ambitious projects.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-4">
+                    <article class="career-card">
+                        <h3 class="heading text-22 fw-700">Trusted teams</h3>
+                        <p class="text">Small, empowered teams work with autonomy and clarity, so you can move fast and make a visible impact.</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-4">
+                    <article class="career-card">
+                        <h3 class="heading text-22 fw-700">Healthy balance</h3>
+                        <p class="text">Flexible schedules, remote options, and thoughtful collaboration create a workplace where results and wellbeing both matter.</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding career-cta">
+        <div class="container">
+            <span class="subheading subheading-bg">Let's build together</span>
+            <h2 class="heading text-48 fw-700">Ready to grow your career with Ikaisoft?</h2>
+            <p class="text">If you’re excited about shaping digital solutions, supporting learners, and working with a collaborative team, we’d love to hear from you. Share your resume and we’ll connect with next steps.</p>
+            <div class="buttons d-flex flex-wrap justify-content-center gap-3">
+                <a href="contact.html" class="button button--primary">Contact us</a>
+                <a href="mailto:contact@ikaisoft.com" class="button button--secondary">Email contact@ikaisoft.com</a>
+            </div>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
@@ -515,6 +1069,155 @@
     <script src="assets/js/main.js" defer></script>
     <script src="api/contactApi.js"></script>
     <script src="assets/js/contact.js"></script>
+    <script src="assets/js/admin-modal.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.port !== ""
+              ? "http://localhost:5000/api"
+              : "https://ikaisoft-website-backend.onrender.com/api";
+
+            const searchInput = document.getElementById('career-search');
+            const teamSelect = document.getElementById('career-team');
+            const locationSelect = document.getElementById('career-location');
+            const noRolesFound = document.getElementById('no-roles-found');
+            const resetBtnEmpty = document.getElementById('reset-filters-btn-empty');
+            const clearFiltersBtn = document.getElementById('clear-filters-btn');
+
+            function filterJobs() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const selectedTeam = teamSelect.value;
+                const selectedLocation = locationSelect.value;
+                const jobItems = document.querySelectorAll('.job-item');
+
+                let visibleCount = 0;
+                let filtersActive = (searchTerm !== '') || (selectedTeam !== 'All teams') || (selectedLocation !== 'All locations');
+
+                if (clearFiltersBtn) {
+                    clearFiltersBtn.style.display = filtersActive ? 'inline-block' : 'none';
+                }
+
+                jobItems.forEach(item => {
+                    const team = item.getAttribute('data-team');
+                    const location = item.getAttribute('data-location');
+                    const title = item.getAttribute('data-title').toLowerCase();
+                    const tags = item.getAttribute('data-tags').toLowerCase();
+                    const summary = item.getAttribute('data-summary').toLowerCase();
+
+                    // Match Team
+                    const matchesTeam = (selectedTeam === 'All teams') || (team === selectedTeam);
+                    
+                    // Match Location
+                    const matchesLocation = (selectedLocation === 'All locations') || (location === selectedLocation);
+
+                    // Match Search Text
+                    const matchesSearch = (searchTerm === '') || 
+                                          title.includes(searchTerm) || 
+                                          tags.includes(searchTerm) || 
+                                          summary.includes(searchTerm);
+
+                    if (matchesTeam && matchesLocation && matchesSearch) {
+                        item.style.display = 'block';
+                        item.classList.add('fade-in');
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('fade-in');
+                    }
+                });
+
+                if (visibleCount === 0 && jobItems.length > 0) {
+                    noRolesFound.style.display = 'block';
+                    noRolesFound.classList.add('fade-in');
+                } else {
+                    noRolesFound.style.display = 'none';
+                    noRolesFound.classList.remove('fade-in');
+                }
+            }
+
+            function resetFilters() {
+                searchInput.value = '';
+                teamSelect.value = 'All teams';
+                locationSelect.value = 'All locations';
+                filterJobs();
+            }
+
+            if (searchInput) searchInput.addEventListener('input', filterJobs);
+            if (teamSelect) teamSelect.addEventListener('change', filterJobs);
+            if (locationSelect) locationSelect.addEventListener('change', filterJobs);
+            
+            if (resetBtnEmpty) {
+                resetBtnEmpty.addEventListener('click', resetFilters);
+            }
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', resetFilters);
+            }
+
+            async function loadJobs() {
+                const container = document.getElementById('open-roles');
+                try {
+                    const res = await fetch(`${BASE_URL}/jobs`);
+                    const data = await res.json();
+                    if (data.success && data.data) {
+                        container.innerHTML = '';
+                        if (data.data.length === 0) {
+                            container.innerHTML = `<div class="col-12 text-center py-4"><p class="text text-18" style="color: rgba(28, 37, 57, 0.6);">No current vacancies. Check back later!</p></div>`;
+                            return;
+                        }
+                        data.data.forEach(job => {
+                            const tagSpans = (job.tags || []).map(tag => `<span>${tag}</span>`).join('\n');
+                            const col = document.createElement('div');
+                            col.className = 'col job-item';
+                            col.setAttribute('data-team', job.team);
+                            col.setAttribute('data-location', job.location);
+                            col.setAttribute('data-title', job.title);
+                            col.setAttribute('data-tags', (job.tags || []).join(','));
+                            col.setAttribute('data-summary', job.summary);
+
+                            col.innerHTML = `
+                                <article class="career-card">
+                                    <div>
+                                        <span class="job-badge">${job.type}</span>
+                                        <h3 class="heading text-24 fw-700">${job.title}</h3>
+                                        <p class="job-summary">${job.summary}</p>
+                                        <div class="job-tags">
+                                            ${tagSpans}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="job-meta">
+                                            <span>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                                    <circle cx="12" cy="10" r="3"></circle>
+                                                </svg>
+                                                ${job.location}
+                                            </span>
+                                            <span>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                                </svg>
+                                                ${job.team}
+                                            </span>
+                                        </div>
+                                        <a href="contact.html" class="button button--secondary w-full justify-center">Apply now</a>
+                                    </div>
+                                </article>
+                            `;
+                            container.appendChild(col);
+                        });
+                        filterJobs();
+                    }
+                } catch (err) {
+                    console.error("Failed to load jobs:", err);
+                    container.innerHTML = `<div class="col-12 text-center py-4"><p class="text text-18" style="color: #ef4444;">Failed to load job vacancies. Please try refreshing.</p></div>`;
+                }
+            }
+
+            // Run initial load
+            loadJobs();
+        });
+    </script>
 </body>
 
 </html>

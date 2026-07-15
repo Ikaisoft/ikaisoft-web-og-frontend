@@ -1,0 +1,1619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Admin Dashboard | Ikaisoft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="assets/img/ikaisoft-favicon.png" type="image/x-icon" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --bg-sidebar: #0b0f19;
+      --color-primary: #229920;
+      --color-primary-hover: #1b801a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --font-body: 'Inter', sans-serif;
+      --font-heading: 'Poppins', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Auth Page Overlay */
+    #auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    /* Sidebar */
+    aside {
+      width: 260px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .logo-area img {
+      max-height: 36px;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-grow: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: var(--text-main);
+      background-color: var(--bg-card);
+    }
+
+    .nav-item.active i {
+      color: var(--color-primary);
+    }
+
+    .logout-btn {
+      margin-top: auto;
+      color: #ef4444;
+    }
+
+    .logout-btn:hover {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+
+    /* Main Content */
+    main {
+      flex-grow: 1;
+      padding: 40px;
+      max-width: 100%;
+      overflow-y: auto;
+      height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    /* Tab Contents */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dashboard Stats Card Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-info h3 {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-info p {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .stat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .stat-icon.blue { background-color: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+    .stat-icon.green { background-color: rgba(34, 153, 32, 0.15); color: var(--color-primary); }
+    .stat-icon.purple { background-color: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+    .stat-icon.orange { background-color: rgba(249, 115, 22, 0.15); color: #f97316; }
+
+    /* Tables & Controls */
+    .table-container {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 24px;
+    }
+
+    .table-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .table-header h2 {
+      font-size: 20px;
+      font-family: var(--font-heading);
+    }
+
+    .table-controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      background-color: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 16px 10px 40px;
+      color: var(--text-main);
+      outline: none;
+      width: 240px;
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      border-color: var(--color-primary);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border-color);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+    }
+
+    .btn-danger {
+      background-color: #ef4444;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #dc2626;
+    }
+
+    /* Main Table Element */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 14px;
+    }
+
+    th {
+      background-color: rgba(15, 23, 42, 0.5);
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .badge-success { background-color: rgba(34, 153, 32, 0.15); color: #4ade80; }
+    .badge-warning { background-color: rgba(234, 179, 8, 0.15); color: #facc15; }
+    .badge-info { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+    .badge-danger { background-color: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+    /* Switch Toggles */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #475569;
+      transition: .3s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--color-primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Action Columns */
+    .actions-cell {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 20px;
+      font-family: var(--font-heading);
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: var(--text-main);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      background-color: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--color-primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .modal-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* Message banner */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .alert-success { background-color: rgba(34, 153, 32, 0.15); border: 1px solid rgba(34, 153, 32, 0.3); color: #4ade80; }
+    .alert-error { background-color: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      body {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 16px 24px;
+      }
+      .logo-area {
+        margin-bottom: 16px;
+      }
+      .nav-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      main {
+        padding: 24px;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="logo-area">
+      <img src="assets/img/ikaisoft-logo.png" alt="Ikaisoft Logo">
+    </div>
+    <ul class="nav-menu">
+      <li><a class="nav-item active" data-tab="dashboard-tab"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+      <li><a class="nav-item" data-tab="jobs-tab"><i class="fa-solid fa-briefcase"></i> Manage Jobs</a></li>
+      <li><a class="nav-item" data-tab="courses-tab"><i class="fa-solid fa-graduation-cap"></i> Manage Courses</a></li>
+      <li><a class="nav-item" data-tab="contacts-tab"><i class="fa-solid fa-envelope"></i> Contacts Inbox</a></li>
+      <li><a class="nav-item" data-tab="enrollments-tab"><i class="fa-solid fa-user-graduate"></i> Enrollments</a></li>
+      <li><a class="nav-item" data-tab="registrations-tab"><i class="fa-solid fa-file-signature"></i> Registrations</a></li>
+      <li><a class="nav-item" data-tab="settings-tab"><i class="fa-solid fa-cog"></i> Settings</a></li>
+      <li><a class="nav-item logout-btn" id="sidebar-logout-btn"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main>
+    <header>
+      <h1 id="page-title">Dashboard Overview</h1>
+      <div class="user-profile">
+        <span id="user-display-name" style="font-weight: 500;">Admin</span>
+        <div class="user-avatar" id="user-avatar-letter">A</div>
+      </div>
+    </header>
+
+    <!-- ALERT BANNER -->
+    <div id="global-alert" style="display: none;"></div>
+
+    <!-- TAB: DASHBOARD -->
+    <div id="dashboard-tab" class="tab-content active">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Active Jobs</h3>
+            <p id="stat-active-jobs">0</p>
+          </div>
+          <div class="stat-icon green">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Active Courses</h3>
+            <p id="stat-active-courses">0</p>
+          </div>
+          <div class="stat-icon blue">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>General Inquiries</h3>
+            <p id="stat-contacts">0</p>
+          </div>
+          <div class="stat-icon purple">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Course Enrollments</h3>
+            <p id="stat-enrollments">0</p>
+          </div>
+          <div class="stat-icon orange">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container" style="margin-top: 0;">
+        <div class="table-header">
+          <h2>Quick Actions</h2>
+        </div>
+        <div style="padding: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="openAddJobModal()"><i class="fa-solid fa-plus"></i> Post a New Job</button>
+          <button class="btn btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add a New Course</button>
+          <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-globe"></i> View Website</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: MANAGE JOBS -->
+    <div id="jobs-tab" class="tab-content">
+      <div class="table-container">
+        <div class="table-header">
+          <h2>Job & Internship Openings</h2>
+          <div class="table-controls">
+            <div class="search-box">
+              <i class="fa-solid fa-search"></i>
+              <input type="text" id="job-search" placeholder="Search jobs...">
+            </div>
+            <button class="btn btn-primary" onclick="openAddJobModal()"><i class="fa-solid fa-plus"></i> Add Job</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="jobs-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Team</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="jobs-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: MANAGE COURSES -->
+    <div id="courses-tab" class="tab-content">
+      <div class="table-container">
+        <div class="table-header">
+          <h2>Learning Courses</h2>
+          <div class="table-controls">
+            <div class="search-box">
+              <i class="fa-solid fa-search"></i>
+              <input type="text" id="course-search" placeholder="Search courses...">
+            </div>
+            <button class="btn btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add Course</button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="courses-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Duration</th>
+                <th>Mode</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="courses-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: CONTACTS -->
+    <div id="contacts-tab" class="tab-content">
+      <div class="table-container">
+        <div class="table-header">
+          <h2>Contact Inquiries Inbox</h2>
+          <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="contacts-search" placeholder="Search inbox...">
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="contacts-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Service Type</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="contacts-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: ENROLLMENTS -->
+    <div id="enrollments-tab" class="tab-content">
+      <div class="table-container">
+        <div class="table-header">
+          <h2>Course Enrollments</h2>
+          <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="enrollments-search" placeholder="Search enrollments...">
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="enrollments-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Course</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="enrollments-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: REGISTRATIONS -->
+    <div id="registrations-tab" class="tab-content">
+      <div class="table-container">
+        <div class="table-header">
+          <h2>Registrations</h2>
+          <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="registrations-search" placeholder="Search registrations...">
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="registrations-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Course</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="registrations-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: SETTINGS -->
+    <div id="settings-tab" class="tab-content">
+      <div class="table-container" style="max-width: 600px; margin-top: 0;">
+        <div class="table-header">
+          <h2>Reset Password</h2>
+        </div>
+        <div style="padding: 24px;">
+          <form id="reset-password-form">
+            <div class="form-group">
+              <label for="oldPassword">Current Password</label>
+              <input type="password" id="oldPassword" required>
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New Password (Min 6 chars)</label>
+              <input type="password" id="newPassword" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmNewPassword">Confirm New Password</label>
+              <input type="password" id="confirmNewPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-key"></i> Update Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ADD/EDIT JOB MODAL -->
+  <div id="job-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="job-modal-title">Post New Job</h3>
+        <button class="close-btn" onclick="closeJobModal()">&times;</button>
+      </div>
+      <form id="job-form">
+        <input type="hidden" id="job-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="job-title">Job Title *</label>
+            <input type="text" id="job-title" placeholder="e.g. Frontend Developer" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="job-team">Team *</label>
+              <select id="job-team" required>
+                <option value="Development">Development</option>
+                <option value="Consulting">Consulting</option>
+                <option value="Design">Design</option>
+                <option value="Operations">Operations</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="job-type">Job Type *</label>
+              <select id="job-type" required>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Internship">Internship</option>
+                <option value="Contract">Contract</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="job-location">Location *</label>
+              <select id="job-location" required>
+                <option value="Remote">Remote</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="job-tags">Tags (Comma separated)</label>
+              <input type="text" id="job-tags" placeholder="e.g. react, html, css">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="job-summary">Description / Summary *</label>
+            <textarea id="job-summary" rows="4" placeholder="Brief details about the role..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeJobModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADD/EDIT COURSE MODAL -->
+  <div id="course-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="course-modal-title">Add New Course</h3>
+        <button class="close-btn" onclick="closeCourseModal()">&times;</button>
+      </div>
+      <form id="course-form">
+        <input type="hidden" id="course-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="course-title">Course Title *</label>
+            <input type="text" id="course-title" placeholder="e.g. Machine Learning Foundation" required>
+          </div>
+          <div class="form-group">
+            <label for="course-description">Description *</label>
+            <textarea id="course-description" rows="3" placeholder="Brief outline..." required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="course-category">Category *</label>
+              <select id="course-category" required>
+                <option value="Data Related">Data Related</option>
+                <option value="Full Stack">Full Stack</option>
+                <option value="Other Courses">Other Courses</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="course-status">Status *</label>
+              <select id="course-status" required>
+                <option value="Live">Live</option>
+                <option value="Upcoming">Upcoming</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="course-duration">Duration</label>
+              <input type="text" id="course-duration" placeholder="e.g. 6 Months">
+            </div>
+            <div class="form-group">
+              <label for="course-level">Level</label>
+              <input type="text" id="course-level" placeholder="e.g. Beginner to Advanced">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="course-mode">Mode of Training</label>
+              <input type="text" id="course-mode" placeholder="e.g. Online / Classroom">
+            </div>
+            <div class="form-group">
+              <label for="course-schedule">Schedule</label>
+              <input type="text" id="course-schedule" placeholder="e.g. Weekdays / Weekends">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="course-image">Course Image URL</label>
+              <input type="text" id="course-image" placeholder="e.g. assets/img/courses-img/custom.png">
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; margin-top: 30px; gap: 8px;">
+              <input type="checkbox" id="course-certificate" checked style="width: auto;">
+              <label for="course-certificate" style="margin-bottom: 0;">Provides Certificate</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="course-modules">Modules (One per line)</label>
+            <textarea id="course-modules" rows="3" placeholder="Module 1: Intro&#10;Module 2: Python..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="course-highlights">Highlights (One per line)</label>
+            <textarea id="course-highlights" rows="3" placeholder="Hands-on Projects&#10;Mentorship Support..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeCourseModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Course</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODULE SCRIPT -->
+  <script type="module">
+    import * as adminApi from "./api/adminApi.js";
+
+    // Global arrays to hold data for search filtering
+    let jobs = [];
+    let courses = [];
+    let contacts = [];
+    let enrollments = [];
+    let registrations = [];
+
+    // Check Authentication on Page Load
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("adminToken");
+      const userStr = localStorage.getItem("adminUser");
+
+      if (!token) {
+        window.location.href = "index.html?loginRequired=true";
+        return;
+      }
+
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        document.getElementById("user-display-name").textContent = user.name || "Admin";
+        document.getElementById("user-avatar-letter").textContent = (user.name || "Admin").charAt(0).toUpperCase();
+      }
+
+      // Initialize dashboard data
+      loadDashboardStats();
+      loadAllTabStats();
+    });
+
+    // Sidebar Toggles
+    const navItems = document.querySelectorAll(".nav-item:not(.logout-btn)");
+    navItems.forEach(item => {
+      item.addEventListener("click", (e) => {
+        navItems.forEach(n => n.classList.remove("active"));
+        item.classList.add("active");
+
+        const tabId = item.getAttribute("data-tab");
+        document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+
+        // Change title text
+        document.getElementById("page-title").textContent = item.textContent.trim();
+
+        // Refresh dynamic content on tab change
+        if (tabId === "dashboard-tab") loadDashboardStats();
+        if (tabId === "jobs-tab") loadJobsTable();
+        if (tabId === "courses-tab") loadCoursesTable();
+        if (tabId === "contacts-tab") loadContactsTable();
+        if (tabId === "enrollments-tab") loadEnrollmentsTable();
+        if (tabId === "registrations-tab") loadRegistrationsTable();
+      });
+    });
+
+    // Sidebar Logout Click
+    document.getElementById("sidebar-logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("adminToken");
+      localStorage.removeItem("adminUser");
+      showGlobalAlert("Logged out successfully.", "success");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1000);
+    });
+
+    // Alert Banner Helper
+    function showGlobalAlert(msg, type = "success") {
+      const alert = document.getElementById("global-alert");
+      alert.style.display = "flex";
+      alert.className = `alert alert-${type}`;
+      alert.innerHTML = `
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>
+        <span>${msg}</span>
+      `;
+      setTimeout(() => {
+        alert.style.display = "none";
+      }, 5000);
+    }
+
+    // STATS LOADING
+    async function loadDashboardStats() {
+      try {
+        const res = await adminApi.getDashboardStats();
+        if (res.success) {
+          const stats = res.data;
+          document.getElementById("stat-active-jobs").textContent = stats.activeJobs;
+          document.getElementById("stat-active-courses").textContent = stats.activeCourses;
+          document.getElementById("stat-contacts").textContent = stats.contacts;
+          document.getElementById("stat-enrollments").textContent = stats.enrollments;
+        }
+      } catch (err) {
+        console.error("Dashboard Stats Err:", err);
+      }
+    }
+
+    async function loadAllTabStats() {
+      // Lazy load arrays
+      try {
+        const [jobsRes, coursesRes, contactsRes, enrollsRes, regsRes] = await Promise.all([
+          adminApi.getAllJobsAdmin().catch(() => ({ success: false })),
+          adminApi.getAllCoursesAdmin().catch(() => ({ success: false })),
+          adminApi.getContacts().catch(() => ({ success: false })),
+          adminApi.getEnrollments().catch(() => ({ success: false })),
+          adminApi.getRegistrations().catch(() => ({ success: false })),
+        ]);
+
+        if (jobsRes.success) jobs = jobsRes.data;
+        if (coursesRes.success) courses = coursesRes.data;
+        if (contactsRes.success) contacts = contactsRes.data;
+        if (enrollsRes.success) enrollments = enrollsRes.data;
+        if (regsRes.success) registrations = regsRes.data;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // JOBS MANAGEMENT
+    async function loadJobsTable() {
+      try {
+        const res = await adminApi.getAllJobsAdmin();
+        if (res.success) {
+          jobs = res.data;
+          renderJobs(jobs);
+        }
+      } catch (err) {
+        showGlobalAlert("Failed to load jobs.", "error");
+      }
+    }
+
+    function renderJobs(data) {
+      const tbody = document.getElementById("jobs-tbody");
+      tbody.innerHTML = "";
+      
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No jobs found.</td></tr>`;
+        return;
+      }
+
+      data.forEach(job => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${escapeHTML(job.title)}</strong></td>
+          <td>${escapeHTML(job.team)}</td>
+          <td>${escapeHTML(job.type)}</td>
+          <td>${escapeHTML(job.location)}</td>
+          <td>
+            <label class="switch">
+              <input type="checkbox" class="toggle-job-active" data-id="${job._id}" ${job.isActive ? "checked" : ""}>
+              <span class="slider"></span>
+            </label>
+          </td>
+          <td>
+            <div class="actions-cell">
+              <button class="btn btn-secondary btn-sm edit-job-btn" data-id="${job._id}"><i class="fa-solid fa-edit"></i> Edit</button>
+              <button class="btn btn-danger btn-sm delete-job-btn" data-id="${job._id}"><i class="fa-solid fa-trash"></i> Delete</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Bind Listeners
+      document.querySelectorAll(".toggle-job-active").forEach(checkbox => {
+        checkbox.addEventListener("change", async (e) => {
+          const id = e.target.getAttribute("data-id");
+          const toggleRes = await adminApi.toggleJobStatus(id);
+          if (toggleRes.success) {
+            showGlobalAlert(`Job status updated to ${toggleRes.data.isActive ? "Active" : "Inactive"}.`, "success");
+            loadDashboardStats();
+          } else {
+            showGlobalAlert("Failed to toggle status.", "error");
+            e.target.checked = !e.target.checked;
+          }
+        });
+      });
+
+      document.querySelectorAll(".edit-job-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          const job = jobs.find(j => j._id === id);
+          if (job) {
+            document.getElementById("job-id").value = job._id;
+            document.getElementById("job-title").value = job.title;
+            document.getElementById("job-team").value = job.team;
+            document.getElementById("job-type").value = job.type;
+            document.getElementById("job-location").value = job.location;
+            document.getElementById("job-tags").value = job.tags.join(", ");
+            document.getElementById("job-summary").value = job.summary;
+            
+            document.getElementById("job-modal-title").textContent = "Edit Job Role";
+            document.getElementById("job-modal").style.display = "flex";
+          }
+        });
+      });
+
+      document.querySelectorAll(".delete-job-btn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-id");
+          if (confirm("Are you sure you want to delete this job posting?")) {
+            const delRes = await adminApi.deleteJob(id);
+            if (delRes.success) {
+              showGlobalAlert("Job deleted successfully.", "success");
+              loadJobsTable();
+              loadDashboardStats();
+            } else {
+              showGlobalAlert("Failed to delete job.", "error");
+            }
+          }
+        });
+      });
+    }
+
+    // Modal Add Job Window triggers
+    window.openAddJobModal = function() {
+      document.getElementById("job-form").reset();
+      document.getElementById("job-id").value = "";
+      document.getElementById("job-modal-title").textContent = "Post New Job";
+      document.getElementById("job-modal").style.display = "flex";
+    };
+
+    window.closeJobModal = function() {
+      document.getElementById("job-modal").style.display = "none";
+    };
+
+    // Save Job Submission
+    document.getElementById("job-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.getElementById("job-id").value;
+      const tagsStr = document.getElementById("job-tags").value;
+      const jobData = {
+        title: document.getElementById("job-title").value,
+        team: document.getElementById("job-team").value,
+        type: document.getElementById("job-type").value,
+        location: document.getElementById("job-location").value,
+        tags: tagsStr ? tagsStr.split(",").map(t => t.trim()).filter(t => t !== "") : [],
+        summary: document.getElementById("job-summary").value,
+      };
+
+      try {
+        let res;
+        if (id) {
+          res = await adminApi.updateJob(id, jobData);
+        } else {
+          res = await adminApi.createJob(jobData);
+        }
+
+        if (res.success) {
+          showGlobalAlert(id ? "Job updated successfully." : "Job posted successfully.", "success");
+          closeJobModal();
+          loadJobsTable();
+          loadDashboardStats();
+        } else {
+          showGlobalAlert(res.message || "Failed to save job.", "error");
+        }
+      } catch (err) {
+        showGlobalAlert("Network error occurred.", "error");
+      }
+    });
+
+    // Job Search Toggles
+    document.getElementById("job-search").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = jobs.filter(j => 
+        j.title.toLowerCase().includes(q) || 
+        j.team.toLowerCase().includes(q) || 
+        j.summary.toLowerCase().includes(q)
+      );
+      renderJobs(filtered);
+    });
+
+
+    // COURSES MANAGEMENT
+    async function loadCoursesTable() {
+      try {
+        const res = await adminApi.getAllCoursesAdmin();
+        if (res.success) {
+          courses = res.data;
+          renderCourses(courses);
+        }
+      } catch (err) {
+        showGlobalAlert("Failed to load courses.", "error");
+      }
+    }
+
+    function renderCourses(data) {
+      const tbody = document.getElementById("courses-tbody");
+      tbody.innerHTML = "";
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">No courses found.</td></tr>`;
+        return;
+      }
+
+      data.forEach(course => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${escapeHTML(course.title)}</strong></td>
+          <td><span class="badge ${course.category === 'Full Stack' ? 'badge-info' : course.category === 'Data Related' ? 'badge-success' : 'badge-warning'}">${escapeHTML(course.category)}</span></td>
+          <td><span class="badge ${course.status === 'Live' ? 'badge-success' : 'badge-warning'}">${escapeHTML(course.status)}</span></td>
+          <td>${escapeHTML(course.duration || 'N/A')}</td>
+          <td>${escapeHTML(course.mode || 'N/A')}</td>
+          <td>
+            <label class="switch">
+              <input type="checkbox" class="toggle-course-active" data-id="${course._id}" ${course.isActive ? "checked" : ""}>
+              <span class="slider"></span>
+            </label>
+          </td>
+          <td>
+            <div class="actions-cell">
+              <button class="btn btn-secondary btn-sm edit-course-btn" data-id="${course._id}"><i class="fa-solid fa-edit"></i> Edit</button>
+              <button class="btn btn-danger btn-sm delete-course-btn" data-id="${course._id}"><i class="fa-solid fa-trash"></i> Delete</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Bind Listeners
+      document.querySelectorAll(".toggle-course-active").forEach(checkbox => {
+        checkbox.addEventListener("change", async (e) => {
+          const id = e.target.getAttribute("data-id");
+          const toggleRes = await adminApi.toggleCourseStatus(id);
+          if (toggleRes.success) {
+            showGlobalAlert(`Course status updated to ${toggleRes.data.isActive ? "Active" : "Inactive"}.`, "success");
+            loadDashboardStats();
+          } else {
+            showGlobalAlert("Failed to toggle status.", "error");
+            e.target.checked = !e.target.checked;
+          }
+        });
+      });
+
+      document.querySelectorAll(".edit-course-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          const course = courses.find(c => c._id === id);
+          if (course) {
+            document.getElementById("course-id").value = course._id;
+            document.getElementById("course-title").value = course.title;
+            document.getElementById("course-description").value = course.description;
+            document.getElementById("course-category").value = course.category;
+            document.getElementById("course-status").value = course.status;
+            document.getElementById("course-duration").value = course.duration || "";
+            document.getElementById("course-level").value = course.level || "";
+            document.getElementById("course-mode").value = course.mode || "";
+            document.getElementById("course-schedule").value = course.schedule || "";
+            document.getElementById("course-image").value = course.imageUrl || "";
+            document.getElementById("course-certificate").checked = course.certificate !== false;
+            document.getElementById("course-modules").value = (course.modules || []).join("\n");
+            document.getElementById("course-highlights").value = (course.highlights || []).join("\n");
+            
+            document.getElementById("course-modal-title").textContent = "Edit Course Details";
+            document.getElementById("course-modal").style.display = "flex";
+          }
+        });
+      });
+
+      document.querySelectorAll(".delete-course-btn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-id");
+          if (confirm("Are you sure you want to delete this course?")) {
+            const delRes = await adminApi.deleteCourse(id);
+            if (delRes.success) {
+              showGlobalAlert("Course deleted successfully.", "success");
+              loadCoursesTable();
+              loadDashboardStats();
+            } else {
+              showGlobalAlert("Failed to delete course.", "error");
+            }
+          }
+        });
+      });
+    }
+
+    window.openAddCourseModal = function() {
+      document.getElementById("course-form").reset();
+      document.getElementById("course-id").value = "";
+      document.getElementById("course-modal-title").textContent = "Add New Course";
+      document.getElementById("course-modal").style.display = "flex";
+    };
+
+    window.closeCourseModal = function() {
+      document.getElementById("course-modal").style.display = "none";
+    };
+
+    // Course form submit
+    document.getElementById("course-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = document.getElementById("course-id").value;
+      const modStr = document.getElementById("course-modules").value;
+      const highStr = document.getElementById("course-highlights").value;
+
+      const courseData = {
+        title: document.getElementById("course-title").value,
+        description: document.getElementById("course-description").value,
+        category: document.getElementById("course-category").value,
+        status: document.getElementById("course-status").value,
+        duration: document.getElementById("course-duration").value,
+        level: document.getElementById("course-level").value,
+        mode: document.getElementById("course-mode").value,
+        schedule: document.getElementById("course-schedule").value,
+        imageUrl: document.getElementById("course-image").value,
+        certificate: document.getElementById("course-certificate").checked,
+        modules: modStr ? modStr.split("\n").map(m => m.trim()).filter(m => m !== "") : [],
+        highlights: highStr ? highStr.split("\n").map(h => h.trim()).filter(h => h !== "") : [],
+      };
+
+      try {
+        let res;
+        if (id) {
+          res = await adminApi.updateCourse(id, courseData);
+        } else {
+          res = await adminApi.createCourse(courseData);
+        }
+
+        if (res.success) {
+          showGlobalAlert(id ? "Course updated successfully." : "Course added successfully.", "success");
+          closeCourseModal();
+          loadCoursesTable();
+          loadDashboardStats();
+        } else {
+          showGlobalAlert(res.message || "Failed to save course.", "error");
+        }
+      } catch (err) {
+        showGlobalAlert("Network error occurred.", "error");
+      }
+    });
+
+    // Course Search Toggles
+    document.getElementById("course-search").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = courses.filter(c => 
+        c.title.toLowerCase().includes(q) || 
+        c.category.toLowerCase().includes(q) || 
+        c.description.toLowerCase().includes(q)
+      );
+      renderCourses(filtered);
+    });
+
+
+    // CONTACT INBOX
+    async function loadContactsTable() {
+      try {
+        const res = await adminApi.getContacts();
+        if (res.success) {
+          contacts = res.data;
+          renderContacts(contacts);
+        }
+      } catch (err) {
+        showGlobalAlert("Failed to load contacts.", "error");
+      }
+    }
+
+    function renderContacts(data) {
+      const tbody = document.getElementById("contacts-tbody");
+      tbody.innerHTML = "";
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Inbox is empty.</td></tr>`;
+        return;
+      }
+
+      data.forEach(c => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${escapeHTML(c.name)}</strong></td>
+          <td><a href="mailto:${escapeHTML(c.email)}" style="color: #60a5fa; text-decoration: none;">${escapeHTML(c.email)}</a></td>
+          <td>${escapeHTML(c.phone || 'N/A')}</td>
+          <td><span class="badge badge-info">${escapeHTML(c.service || 'General')}</span></td>
+          <td style="max-width: 300px; white-space: normal;">${escapeHTML(c.message)}</td>
+          <td>${new Date(c.createdAt).toLocaleDateString()} ${new Date(c.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById("contacts-search").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = contacts.filter(c => 
+        c.name.toLowerCase().includes(q) || 
+        c.email.toLowerCase().includes(q) || 
+        (c.phone && c.phone.includes(q)) || 
+        (c.service && c.service.toLowerCase().includes(q)) || 
+        c.message.toLowerCase().includes(q)
+      );
+      renderContacts(filtered);
+    });
+
+
+    // ENROLLMENTS
+    async function loadEnrollmentsTable() {
+      try {
+        const res = await adminApi.getEnrollments();
+        if (res.success) {
+          enrollments = res.data;
+          renderEnrollments(enrollments);
+        }
+      } catch (err) {
+        showGlobalAlert("Failed to load enrollments.", "error");
+      }
+    }
+
+    function renderEnrollments(data) {
+      const tbody = document.getElementById("enrollments-tbody");
+      tbody.innerHTML = "";
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No enrollments found.</td></tr>`;
+        return;
+      }
+
+      data.forEach(e => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${escapeHTML(e.name)}</strong></td>
+          <td><a href="mailto:${escapeHTML(e.email)}" style="color: #60a5fa; text-decoration: none;">${escapeHTML(e.email)}</a></td>
+          <td>${escapeHTML(e.phone || 'N/A')}</td>
+          <td><span class="badge badge-success">${escapeHTML(e.course)}</span></td>
+          <td style="max-width: 250px; white-space: normal;">${escapeHTML(e.message || 'N/A')}</td>
+          <td>${new Date(e.createdAt).toLocaleDateString()} ${new Date(e.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById("enrollments-search").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = enrollments.filter(e => 
+        e.name.toLowerCase().includes(q) || 
+        e.email.toLowerCase().includes(q) || 
+        (e.phone && e.phone.includes(q)) || 
+        e.course.toLowerCase().includes(q) || 
+        (e.message && e.message.toLowerCase().includes(q))
+      );
+      renderEnrollments(filtered);
+    });
+
+
+    // REGISTRATIONS
+    async function loadRegistrationsTable() {
+      try {
+        const res = await adminApi.getRegistrations();
+        if (res.success) {
+          registrations = res.data;
+          renderRegistrations(registrations);
+        }
+      } catch (err) {
+        showGlobalAlert("Failed to load registrations.", "error");
+      }
+    }
+
+    function renderRegistrations(data) {
+      const tbody = document.getElementById("registrations-tbody");
+      tbody.innerHTML = "";
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No registrations found.</td></tr>`;
+        return;
+      }
+
+      data.forEach(r => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${escapeHTML(r.name)}</strong></td>
+          <td><a href="mailto:${escapeHTML(r.email)}" style="color: #60a5fa; text-decoration: none;">${escapeHTML(r.email)}</a></td>
+          <td>${escapeHTML(r.phone || 'N/A')}</td>
+          <td><span class="badge badge-info">${escapeHTML(r.course)}</span></td>
+          <td style="max-width: 250px; white-space: normal;">${escapeHTML(r.message || 'N/A')}</td>
+          <td>${new Date(r.createdAt).toLocaleDateString()} ${new Date(r.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById("registrations-search").addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = registrations.filter(r => 
+        r.name.toLowerCase().includes(q) || 
+        r.email.toLowerCase().includes(q) || 
+        (r.phone && r.phone.includes(q)) || 
+        r.course.toLowerCase().includes(q) || 
+        (r.message && r.message.toLowerCase().includes(q))
+      );
+      renderRegistrations(filtered);
+    });
+
+
+    // PASSWORD RESET
+    document.getElementById("reset-password-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const oldPassword = document.getElementById("oldPassword").value;
+      const newPassword = document.getElementById("newPassword").value;
+      const confirmNewPassword = document.getElementById("confirmNewPassword").value;
+
+      if (newPassword !== confirmNewPassword) {
+        showGlobalAlert("New passwords do not match.", "error");
+        return;
+      }
+
+      try {
+        const res = await adminApi.resetPassword(oldPassword, newPassword);
+        if (res.success) {
+          showGlobalAlert("Password reset successfully. Please login with new credentials next time.", "success");
+          document.getElementById("reset-password-form").reset();
+        } else {
+          showGlobalAlert(res.message || "Failed to reset password.", "error");
+        }
+      } catch (err) {
+        showGlobalAlert("Network error resetting password.", "error");
+      }
+    });
+
+    // Helper to sanitize HTML strings
+    function escapeHTML(str) {
+      if (!str) return "";
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+  </script>
+
+</body>
+</html>

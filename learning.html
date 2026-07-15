@@ -151,6 +151,280 @@
         --font-h3--size: 28px;
         --font-h4--size: 20px;
         --font-h5--size: 18px;
+
+        /* Course Catalog Split Layout styles */
+        .category-tab-btn {
+          font-size: 16px;
+          font-family: var(--font-heading--family);
+          cursor: pointer;
+          transition: all 0.25s ease;
+        }
+
+        .category-tab-btn:hover {
+          background: rgba(34, 153, 32, 0.08) !important;
+          color: #229920 !important;
+        }
+
+        .category-tab-btn.active {
+          background: #229920 !important;
+          color: white !important;
+          border-color: #229920 !important;
+        }
+
+        .courses-split-layout {
+          margin-top: 20px;
+        }
+
+        .course-card-item {
+          background: #ffffff;
+          border: 1px solid rgba(28, 37, 57, 0.06);
+          border-radius: 16px;
+          padding: 20px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+        }
+
+        .course-card-item:hover,
+        .course-card-item.selected {
+          border-color: rgba(34, 153, 32, 0.3);
+          box-shadow: 0 10px 25px rgba(34, 153, 32, 0.06);
+          transform: translateY(-2px);
+        }
+
+        .course-card-item.selected {
+          background: #fbfdfa;
+          border-left: 4px solid #229920;
+        }
+
+        .course-card-item .icon-box {
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
+          background: rgba(34, 153, 32, 0.06);
+          color: #229920;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          flex-shrink: 0;
+        }
+
+        .course-card-item .card-info h4 {
+          font-size: 18px;
+          font-family: var(--font-heading--family);
+          font-weight: 600;
+          color: #1c2539;
+          margin-bottom: 4px;
+        }
+
+        .course-card-item .card-info p {
+          font-size: 13px;
+          color: rgba(28, 37, 57, 0.6);
+          margin-bottom: 0;
+        }
+
+        .course-details-title {
+          font-family: var(--font-heading--family);
+          font-size: 28px;
+          font-weight: 700;
+          color: #1c2539;
+          margin-bottom: 12px;
+        }
+
+        .course-meta-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 24px;
+        }
+
+        .course-meta-tag {
+          background: #f4f8f3;
+          border: 1px solid rgba(34, 153, 32, 0.08);
+          padding: 6px 14px;
+          border-radius: 30px;
+          font-size: 13px;
+          color: #2c5e2d;
+          font-weight: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .detail-section-title {
+          font-family: var(--font-heading--family);
+          font-size: 18px;
+          font-weight: 600;
+          color: #1c2539;
+          margin-bottom: 12px;
+          border-bottom: 2px solid #f1f5f9;
+          padding-bottom: 8px;
+        }
+
+        /* Accordion Styles */
+        .module-accordion {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 24px;
+        }
+
+        .accordion-item {
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          overflow: hidden;
+          background: #fff;
+        }
+
+        .accordion-header {
+          background: #f8fafc;
+          padding: 14px 20px;
+          cursor: pointer;
+          font-weight: 500;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+          background: #f1f5f9;
+        }
+
+        .accordion-body {
+          padding: 16px 20px;
+          display: none;
+          border-top: 1px solid #e2e8f0;
+          font-size: 14px;
+          color: rgba(28, 37, 57, 0.7);
+        }
+
+        /* Highlight checklist styling */
+        .highlight-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 8px;
+          font-size: 14px;
+          color: rgba(28, 37, 57, 0.75);
+        }
+
+        .highlight-item i {
+          color: #229920;
+        }
+
+        /* Modal for Enrollment */
+        #enroll-modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(15, 23, 42, 0.6);
+          backdrop-filter: blur(6px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999999;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+
+        #enroll-modal.open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .enroll-box {
+          background: #ffffff;
+          border-radius: 20px;
+          padding: 32px;
+          width: 90%;
+          max-width: 480px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          color: #1c2539;
+          transform: scale(0.9);
+          transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #enroll-modal.open .enroll-box {
+          transform: scale(1);
+        }
+
+        .enroll-box h3 {
+          font-family: var(--font-heading--family);
+          font-size: 22px;
+          font-weight: 700;
+          margin-top: 0;
+          margin-bottom: 20px;
+          color: #1c2539;
+          border-bottom: 2px solid #229920;
+          padding-bottom: 10px;
+        }
+
+        .enroll-form-group {
+          margin-bottom: 16px;
+        }
+
+        .enroll-form-group label {
+          display: block;
+          font-size: 13px;
+          font-weight: 600;
+          margin-bottom: 6px;
+          color: rgba(28, 37, 57, 0.7);
+        }
+
+        .enroll-form-group input,
+        .enroll-form-group textarea {
+          width: 100%;
+          border: 1px solid rgba(28, 37, 57, 0.15);
+          border-radius: 8px;
+          padding: 10px 14px;
+          font-size: 14px;
+          color: #1c2539;
+          outline: none;
+          box-sizing: border-box;
+          transition: all 0.2s;
+        }
+
+        .enroll-form-group input:focus,
+        .enroll-form-group textarea:focus {
+          border-color: #229920;
+          box-shadow: 0 0 0 3px rgba(34, 153, 32, 0.1);
+        }
+
+        .enroll-submit-btn {
+          width: 100%;
+          background: #229920;
+          color: #fff;
+          font-weight: 600;
+          border: none;
+          padding: 12px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 15px;
+          transition: background 0.2s;
+        }
+
+        .enroll-submit-btn:hover {
+          background: #1b801a;
+        }
+
+        @media (max-width: 768px) {
+          .courses-split-layout {
+            grid-template-columns: 1fr !important;
+          }
+
+          .course-details-column {
+            position: static !important;
+            max-height: none !important;
+          }
+        }
       }
     }
   </style>
@@ -167,7 +441,7 @@
             <a class="header-logo" href="index.html" aria-label="ikaisoft">
               <img src="assets/img/ikaisoft-logo.png" alt="ikaisoft Logo" width="189" height="32" />
             </a>
-            <span class="header-slogan" >Shaping Tomorrow, Today</span>
+            <span class="header-slogan">Shaping Tomorrow, Today</span>
           </div>
           <drawer-menu>
             <nav class="header-nav drawer-menu">
@@ -177,13 +451,13 @@
                 </a>
                 <drawer-opener class="mobile-nav-close" data-drawer=".header-nav" aria-label="Close menu">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
                   </svg>
                 </drawer-opener>
               </div>
               <ul class="header-menu list-unstyled">
                 <li class="nav-item">
-                  <button class="button button--primary led-btn" onclick="window.location.href='course.html'" >
+                  <button class="button button--primary led-btn" onclick="window.location.href='course.html'">
                     Live courses
                   </button>
                 </li>
@@ -192,7 +466,7 @@
                     Home
                   </a>
                 </li>
-                
+
                 <li class="nav-item">
                   <a class="menu-link menu-link-main" href="about.html">
                     About Us
@@ -224,7 +498,7 @@
           <div class="header-actions d-flex align-items-center">
             <drawer-opener class="mobile-menu-toggle" data-drawer=".header-nav" aria-label="Open menu">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
               </svg>
             </drawer-opener>
             <a href="contact.html" aria-label="contact us" class="button button--primary button--slim"
@@ -435,121 +709,71 @@
           </h2>
         </div>
         <div class="section-content">
-          <div class="row product-grid justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="card-blog radius18">
-                <a class="card-blog-bottom" href="blog-details.html" aria-label="Blog details">
-                  <span class="blog-tag subheading subheading-bg text-16 fw-500">Learning</span>
-                  <div class="media">
-                    <img src="assets/img/blog/1.jpg" alt="blog image" width="1000" height="707" loading="lazy">
-                  </div>
-                  <div class="buttons">
-                    <div class="button button--primary">
-                      Full List Available on Request
-                      <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z"
-                          fill="currentColor" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <div class="card-blog-top">
-                  <h2 class="card-blog-heading heading text-22">
-                    <a href="blog-details.html" class="heading text-22">
-                      Web Development Track
-                    </a>
-                  </h2>
-                  <p class="card-blog-text text-16">
-                  <ul>
-                    <li>Full-Stack Web Development (HTML, CSS, JavaScript, React, Node.js)</li>
-                    <li>Front-End Development with React.js</li>
-                    <li>Back-End Development with Node.js & Express</li>
-                  </ul>
-                  </p>
-                </div>
-              </div>
+          <!-- Category Tabs -->
+          <div class="category-tabs-container"
+            style="display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;"
+            data-aos="fade-up" data-aos-delay="100">
+            <button class="category-tab-btn active" data-category="Full Stack"
+              style="background: #229920; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Full
+              Stack</button>
+            <button class="category-tab-btn" data-category="Data Related"
+              style="background: #f4f8f3; color: #2c5e2d; border: 1px solid rgba(34, 153, 32, 0.1); padding: 12px 24px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Data
+              Related</button>
+            <button class="category-tab-btn" data-category="Other Courses"
+              style="background: #f4f8f3; color: #2c5e2d; border: 1px solid rgba(34, 153, 32, 0.1); padding: 12px 24px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.2s;">Other
+              Courses</button>
+          </div>
+
+          <!-- Courses Split View Layout -->
+          <div class="courses-split-layout"
+            style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; min-height: 500px;" data-aos="fade-up"
+            data-aos-delay="200">
+            <!-- Left Panel: Course Cards List -->
+            <div class="courses-list-column" id="courses-list-container"
+              style="display: flex; flex-direction: column; gap: 20px;">
+              <!-- Dynamic short cards -->
             </div>
-            <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-              <div class="card-blog radius18">
-                <a class="card-blog-bottom" href="blog-details.html" aria-label="Blog details">
-                  <span class="blog-tag subheading subheading-bg text-16 fw-500">Learning</span>
-                  <div class="media">
-                    <img src="assets/img/blog/2.jpg" alt="blog image" width="1000" height="707" loading="lazy">
-                  </div>
-                  <div class="buttons">
-                    <div class="button button--primary">
-                      Full List Available on Request
-                      <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z"
-                          fill="currentColor" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <div class="card-blog-top">
-                  <h2 class="card-blog-heading heading text-22">
-                    <a href="blog-details.html" class="heading text-22">
-                      Data Science & AI Track
-                    </a>
-                  </h2>
-                  <p class="card-blog-text text-16">
-                  <ul>
-                    <li>Data Science Fundamentals (Python, Pandas, NumPy, Statistics)</li>
-                    <li>Machine Learning Foundations </li>
-                    <li>Applied AI & Generative AI Tools </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-              <div class="card-blog radius18">
-                <a class="card-blog-bottom" href="blog-details.html" aria-label="Blog details">
-                  <span class="blog-tag subheading subheading-bg text-16 fw-500">Learning</span>
-                  <div class="media">
-                    <img src="assets/img/blog/3.jpg" alt="blog image" width="1000" height="707" loading="lazy">
-                  </div>
-                  <div class="buttons">
-                    <div class="button button--primary">
-                      Full List Available on Request
-                      <svg viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M2.16668 0.833333C2.16668 0.61232 2.25448 0.400358 2.41076 0.244078C2.56704 0.0877975 2.779 0 3.00001 0H9.66668C9.88769 0 10.0997 0.0877975 10.2559 0.244078C10.4122 0.400358 10.5 0.61232 10.5 0.833333V7.5C10.5 7.72101 10.4122 7.93297 10.2559 8.08926C10.0997 8.24554 9.88769 8.33333 9.66668 8.33333C9.44567 8.33333 9.2337 8.24554 9.07742 8.08926C8.92114 7.93297 8.83335 7.72101 8.83335 7.5V2.845L1.92251 9.75583C1.76535 9.90763 1.55484 9.99163 1.33635 9.98973C1.11785 9.98783 0.908839 9.90019 0.754332 9.74568C0.599825 9.59118 0.512184 9.38216 0.510285 9.16367C0.508387 8.94517 0.592382 8.73467 0.744181 8.5775L7.65501 1.66667H3.00001C2.779 1.66667 2.56704 1.57887 2.41076 1.42259C2.25448 1.26631 2.16668 1.05435 2.16668 0.833333Z"
-                          fill="currentColor" />
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <div class="card-blog-top">
-                  <h2 class="card-blog-heading heading text-22">
-                    <a href="blog-details.html" class="heading text-22">
-                      Cloud & DevOps Track
-                    </a>
-                  </h2>
-                  <p class="card-blog-text text-16">
-                  <ul>
-                    <li>AWS Cloud Practitioner Prep </li>
-                    <li>Cloud Computing Fundamentals (AWS/Azure)</li>
-                    <li>Docker & Containerization Basics</li>
-                  </ul>
-                </div>
+
+            <!-- Right Panel: Course Details Page Layout -->
+            <div class="course-details-column" id="course-details-container"
+              style="background: #ffffff; border: 1px solid rgba(28, 37, 57, 0.08); border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); color: #1c2539; position: sticky; top: 100px; height: fit-content; max-height: 85vh; overflow-y: auto;">
+              <div style="text-align: center; padding: 60px 20px; color: rgba(28, 37, 57, 0.5);">
+                <i class="fa-solid fa-graduation-cap" style="font-size: 48px; color: #229920; margin-bottom: 20px;"></i>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Select a course</h3>
+                <p>Click on any course in the catalog to view modules, details, and enroll.</p>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="buttons buttons-discover" data-aos="fade-up" data-aos-delay="100">
-            <a href="blog.html" class="button button--secondary" aria-label="Discover more blog posts">
-              Discover More
-              <span class="svg-wrapper">
-                <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                    fill="CurrentColor" />
-                </svg>
-              </span>
-            </a>
+        <!-- Enrollment Modal -->
+        <div id="enroll-modal">
+          <div class="enroll-box">
+            <h3 style="margin-top:0;">Course Enrollment</h3>
+            <form id="enroll-form">
+              <input type="hidden" id="enroll-course-title">
+              <div class="enroll-form-group">
+                <label for="enroll-name">Full Name *</label>
+                <input type="text" id="enroll-name" placeholder="John Doe" required>
+              </div>
+              <div class="enroll-form-group">
+                <label for="enroll-email">Email Address *</label>
+                <input type="email" id="enroll-email" placeholder="john@example.com" required>
+              </div>
+              <div class="enroll-form-group">
+                <label for="enroll-phone">Phone Number *</label>
+                <input type="text" id="enroll-phone" placeholder="e.g. +91 9999999999" required>
+              </div>
+              <div class="enroll-form-group">
+                <label for="enroll-message">Message / Queries (Optional)</label>
+                <textarea id="enroll-message" rows="3" placeholder="Any queries or expectations..."></textarea>
+              </div>
+              <button type="submit" class="enroll-submit-btn">Submit Enrollment</button>
+              <div style="margin-top: 12px; text-align: center; display: none;" id="enroll-status"></div>
+              <button type="button"
+                style="background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 13px; display: block; margin: 12px auto 0 auto;"
+                id="enroll-modal-close">Close</button>
+            </form>
           </div>
         </div>
       </div>
@@ -1013,200 +1237,117 @@
   </main>
 
   <!-- Footer -->
-  <footer >
-     <!-- Footer Contact Form -->
-      <div
-        class="footer-contact bg-contain"
-        style="background-image: url(assets/img/contact/contact-bg.jpg)"
-      >
-        <div class="container">
-          <div class="contact-box radius18">
-            <div class="row">
-              <div class="col-12 col-lg-6">
-                <div
-                  class="contact-media"
-                >
-                  <img
-                    src="assets/img/contact/contact.jpg"
-                    alt="contact image"
-                    width="1290"
-                    height="1400"
-                    loading="lazy"
-                  >
-                </div>
+  <footer>
+    <!-- Footer Contact Form -->
+    <div class="footer-contact bg-contain" style="background-image: url(assets/img/contact/contact-bg.jpg)">
+      <div class="container">
+        <div class="contact-box radius18">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="contact-media">
+                <img src="assets/img/contact/contact.jpg" alt="contact image" width="1290" height="1400" loading="lazy">
               </div>
-              <div class="col-12 col-lg-6">
-                <div class="contact-form-wrap">
-                  <div class="contact-box-headings section-headings">
-                    <div
-                      class="subheading text-20 subheading-bg"
-                    >
-                      <svg
-                        class="icon icon-14"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                      >
-                        <g clip-path="url(#clip0_9088_4143)">
-                          <path
-                            d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                            fill="CurrentColor"
-                          />
-                        </g>
-                        <defs>
-                          <clipPath>
-                            <rect width="14" height="14" fill="CurrentColor" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      <span>Enquiry</span>
-                      <svg
-                        class="icon icon-14"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                      >
-                        <g clip-path="url(#clip0_9088_4143)">
-                          <path
-                            d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                            fill="CurrentColor"
-                          />
-                        </g>
-                        <defs>
-                          <clipPath>
-                            <rect width="14" height="14" fill="CurrentColor" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-                    </div>
-                    <h2
-                      class="heading text-50"
-                    >
-                      Get Free Enquiry
-                    </h2>
-                    <p
-                      class="text text-18"
-                    >
-                      Need help with a project, have a question about our work?
-                      have a question about our work? We're here to help you.
-                    </p>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="contact-form-wrap">
+                <div class="contact-box-headings section-headings">
+                  <div class="subheading text-20 subheading-bg">
+                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none">
+                      <g clip-path="url(#clip0_9088_4143)">
+                        <path
+                          d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
+                          fill="CurrentColor" />
+                      </g>
+                      <defs>
+                        <clipPath>
+                          <rect width="14" height="14" fill="CurrentColor" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <span>Enquiry</span>
+                    <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                      viewBox="0 0 14 14" fill="none">
+                      <g clip-path="url(#clip0_9088_4143)">
+                        <path
+                          d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
+                          fill="CurrentColor" />
+                      </g>
+                      <defs>
+                        <clipPath>
+                          <rect width="14" height="14" fill="CurrentColor" />
+                        </clipPath>
+                      </defs>
+                    </svg>
                   </div>
-                  <form action="#" id="contactForm" class="form contact-form">
-                    <div
-                      class="field w-half"
-                    >
-                      <label for="ContactForm-name" class="visually-hidden">
-                        Your Name
-                      </label>
-                      <input
-                        id="ContactForm-name"
-                        class="text text-16"
-                        type="text"
-                        placeholder="Your Name*"
-                        name="name"
-                        required
-                      >
-                    </div>
-                    <div
-                      class="field w-half"
-                    >
-                      <label for="ContactForm-email" class="visually-hidden">
-                        Your Email
-                      </label>
-                      <input
-                        id="ContactForm-email"
-                        class="text text-16"
-                        type="text"
-                        placeholder="Your Email*"
-                        name="email"
-                        required
-                      >
-                    </div>
-                    <div
-                      class="field w-half"
-                    >
-                      <label for="ContactForm-email" class="visually-hidden">
-                        Contact Number
-                      </label>
-                      <input
-                        id="ContactForm-phone"
-                        class="text text-16"
-                        type="Number"
-                        placeholder="+91 XXX XXX XXXX *"
-                        name="phone"
-                        required
-                      >
-                    </div>
-                    <div
-                      class="field w-half"
-                    >
-                      <label for="ContactForm-email" class="visually-hidden">
-                        Type of Service
-                      </label>
-                      <select
-                        id="ContactForm-service"                       
-                        name="service"
-                        required
-                        class="text-16 service-select"
-  onchange="this.style.color='#1c2539'"
-                      >
-                        <option value="" disabled selected>
-                          Select service type *
-                        </option>
-                        <option value="Training">Training</option>
-                        <option value="Business or Project">Business or Project</option>
-                        <option value="Research Guidance">Research Guidance</option> 
-                        <option value="Institutional Partnership">Institutional Partnership</option>
-                        <option value="Other">Other</option>
-                      </select>  
-                    </div>
-                    <div
-                      class="field"
-                    >
-                      <label for="ContactForm-body" class="visually-hidden">
-                        Write your message
-                      </label>
-                      <textarea
-                        id="ContactForm-body"
-                        class="text text-16"
-                        rows="4"
-                        placeholder="Write your message*"
-                        name="message"
-                        required
-                      ></textarea>
-                    </div>
-                    <div
-                      class="form-button"
-                    >
-                      <button
-                        type="submit"
-                        class="button button--primary"
-                        aria-label="Request Free Consultation"
-                      >
-                        Request Free Consultation
-                        <span class="svg-wrapper">
-                          <svg
-                            class="icon-20"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
-                              fill="currentColor"
-                            ></path>
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                  </form>
-                  <div id="successMessage" class="success-message" style="display:none;">
+                  <h2 class="heading text-50">
+                    Get Free Enquiry
+                  </h2>
+                  <p class="text text-18">
+                    Need help with a project, have a question about our work?
+                    have a question about our work? We're here to help you.
+                  </p>
+                </div>
+                <form action="#" id="contactForm" class="form contact-form">
+                  <div class="field w-half">
+                    <label for="ContactForm-name" class="visually-hidden">
+                      Your Name
+                    </label>
+                    <input id="ContactForm-name" class="text text-16" type="text" placeholder="Your Name*" name="name"
+                      required>
+                  </div>
+                  <div class="field w-half">
+                    <label for="ContactForm-email" class="visually-hidden">
+                      Your Email
+                    </label>
+                    <input id="ContactForm-email" class="text text-16" type="text" placeholder="Your Email*"
+                      name="email" required>
+                  </div>
+                  <div class="field w-half">
+                    <label for="ContactForm-email" class="visually-hidden">
+                      Contact Number
+                    </label>
+                    <input id="ContactForm-phone" class="text text-16" type="Number" placeholder="+91 XXX XXX XXXX *"
+                      name="phone" required>
+                  </div>
+                  <div class="field w-half">
+                    <label for="ContactForm-email" class="visually-hidden">
+                      Type of Service
+                    </label>
+                    <select id="ContactForm-service" name="service" required class="text-16 service-select"
+                      onchange="this.style.color='#1c2539'">
+                      <option value="" disabled selected>
+                        Select service type *
+                      </option>
+                      <option value="Training">Training</option>
+                      <option value="Business or Project">Business or Project</option>
+                      <option value="Research Guidance">Research Guidance</option>
+                      <option value="Institutional Partnership">Institutional Partnership</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="ContactForm-body" class="visually-hidden">
+                      Write your message
+                    </label>
+                    <textarea id="ContactForm-body" class="text text-16" rows="4" placeholder="Write your message*"
+                      name="message" required></textarea>
+                  </div>
+                  <div class="form-button">
+                    <button type="submit" class="button button--primary" aria-label="Request Free Consultation">
+                      Request Free Consultation
+                      <span class="svg-wrapper">
+                        <svg class="icon-20" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M13.3365 7.84518L6.16435 15.0173L4.98584 13.8388L12.158 6.66667H5.83652V5H15.0032V14.1667H13.3365V7.84518Z"
+                            fill="currentColor"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </form>
+                <div id="successMessage" class="success-message" style="display:none;">
                   <div class="success-icon">✅</div>
 
                   <h3>Your request has been booked successfully!</h3>
@@ -1222,12 +1363,12 @@
                 <div id="errorMessage" class="error-message" style="display:none;">
                   Something went wrong. Please try again.
                 </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     <!-- Footer Main -->
     <div class="footer-main bg-contain" style="background-image: url(assets/img/footer/footer-bg-large.jpg)">
       <div class="footer-top">
@@ -1393,7 +1534,7 @@
 
   <!-- Modal and Drawer Overlay -->
   <drawer-opener id="drawer-overlay"></drawer-opener>
-<!-- sidebar nav -->
+  <!-- sidebar nav -->
   <div class="apply-tab">
     <ul class="list-unstyled">
       <li><a class="social-link text text-white" href="https://www.instagram.com/ikaisoft/">
@@ -1442,6 +1583,255 @@
   <script src="assets/js/main.js" defer></script>
   <script src="api/contactApi.js"></script>
   <script src="assets/js/contact.js"></script>
+  <script src="assets/js/admin-modal.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.port !== ""
+        ? "http://localhost:5000/api"
+        : "https://ikaisoft-website-backend.onrender.com/api";
+
+      let allCourses = [];
+      let currentCategory = "Full Stack";
+      let selectedCourse = null;
+
+      // Tab Button Clicks
+      const tabBtns = document.querySelectorAll(".category-tab-btn");
+      tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach(b => {
+            b.classList.remove("active");
+            b.style.background = "#f4f8f3";
+            b.style.color = "#2c5e2d";
+          });
+          btn.classList.add("active");
+          btn.style.background = "#229920";
+          btn.style.color = "white";
+
+          currentCategory = btn.getAttribute("data-category");
+          renderList();
+        });
+      });
+
+      // Fetch Courses
+      async function loadCourses() {
+        try {
+          const res = await fetch(`${BASE_URL}/courses`);
+          const json = await res.json();
+          if (json.success) {
+            allCourses = json.data;
+            renderList();
+          }
+        } catch (err) {
+          console.error("Failed to load courses:", err);
+          document.getElementById("courses-list-container").innerHTML = `<p style="color: #ef4444; text-align: center; padding: 20px;">Failed to load courses catalogue.</p>`;
+        }
+      }
+
+      function renderList() {
+        const container = document.getElementById("courses-list-container");
+        container.innerHTML = "";
+
+        const filtered = allCourses.filter(c => c.category === currentCategory);
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<p style="color: rgba(28, 37, 57, 0.5); text-align: center; padding: 40px 20px;">No courses available in this category yet.</p>`;
+          document.getElementById("course-details-container").innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; color: rgba(28, 37, 57, 0.5);">
+              <i class="fa-solid fa-graduation-cap" style="font-size: 48px; color: #229920; margin-bottom: 20px;"></i>
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">No course selected</h3>
+              <p>Choose a category that contains active courses to view details.</p>
+            </div>
+          `;
+          return;
+        }
+
+        filtered.forEach((course, index) => {
+          const isSelected = selectedCourse && selectedCourse._id === course._id;
+          const card = document.createElement("div");
+          card.className = `course-card-item ${isSelected || (!selectedCourse && index === 0) ? 'selected' : ''}`;
+
+          // Determine font awesome icon depending on category
+          let icon = "fa-laptop-code";
+          if (course.category === "Data Related") icon = "fa-chart-pie";
+          if (course.category === "Other Courses") icon = "fa-book-open";
+
+          card.innerHTML = `
+            <div class="icon-box">
+              <i class="fa-solid ${icon}"></i>
+            </div>
+            <div class="card-info">
+              <h4>${escapeHTML(course.title)}</h4>
+              <p>${escapeHTML(course.duration || 'Flexible')} • ${escapeHTML(course.status)}</p>
+            </div>
+          `;
+
+          card.addEventListener("click", () => {
+            document.querySelectorAll(".course-card-item").forEach(c => c.classList.remove("selected"));
+            card.classList.add("selected");
+            selectedCourse = course;
+            renderDetails(course);
+          });
+
+          container.appendChild(card);
+        });
+
+        // Auto select first course in filtered list if not already set
+        if (!selectedCourse || !filtered.some(c => c._id === selectedCourse._id)) {
+          selectedCourse = filtered[0];
+        }
+        renderDetails(selectedCourse);
+      }
+
+      function renderDetails(course) {
+        const container = document.getElementById("course-details-container");
+        if (!course) return;
+
+        // Modules accordion HTML builder
+        let modulesHTML = "";
+        if (course.modules && course.modules.length > 0) {
+          modulesHTML = `<div class="module-accordion">`;
+          course.modules.forEach((module, i) => {
+            const parts = module.split(":");
+            const modTitle = parts[0] + (parts[1] ? (":" + parts[1].split("-")[0]) : "");
+            const modDesc = parts[1] && parts[1].split("-")[1] ? parts[1].split("-")[1].trim() : "Comprehensive coverage of standard topics and hands-on exercises.";
+
+            modulesHTML += `
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">
+                  <span>${escapeHTML(module)}</span>
+                  <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: var(--text-muted);"></i>
+                </div>
+                <div class="accordion-body">
+                  <p>${escapeHTML(modDesc)}</p>
+                </div>
+              </div>
+            `;
+          });
+          modulesHTML += `</div>`;
+        } else {
+          modulesHTML = `<p style="color: rgba(28, 37, 57, 0.6); margin-bottom: 24px;">Module details will be shared during onboarding.</p>`;
+        }
+
+        // Highlights checklist HTML builder
+        let highlightsHTML = "";
+        if (course.highlights && course.highlights.length > 0) {
+          course.highlights.forEach(high => {
+            highlightsHTML += `
+              <div class="highlight-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>${escapeHTML(high)}</span>
+              </div>
+            `;
+          });
+        } else {
+          highlightsHTML = `
+            <div class="highlight-item"><i class="fa-solid fa-circle-check"></i> <span>Hands-on Live Projects</span></div>
+            <div class="highlight-item"><i class="fa-solid fa-circle-check"></i> <span>Industry Expert Mentors</span></div>
+            <div class="highlight-item"><i class="fa-solid fa-circle-check"></i> <span>Placement Assistance</span></div>
+          `;
+        }
+
+        container.innerHTML = `
+          <div class="course-meta-tags">
+            <span class="course-meta-tag"><i class="fa-solid fa-clock"></i> ${escapeHTML(course.duration || 'N/A')}</span>
+            <span class="course-meta-tag"><i class="fa-solid fa-layer-group"></i> ${escapeHTML(course.level || 'Beginner to Advanced')}</span>
+            <span class="course-meta-tag"><i class="fa-solid fa-house-laptop"></i> ${escapeHTML(course.mode || 'Online / Classroom')}</span>
+            <span class="course-meta-tag"><i class="fa-solid fa-certificate"></i> Certificate: ${course.certificate !== false ? 'Yes' : 'No'}</span>
+          </div>
+
+          <h2 class="course-details-title">${escapeHTML(course.title)}</h2>
+          <p style="font-size: 16px; line-height: 1.6; color: rgba(28, 37, 57, 0.75); margin-bottom: 24px;">${escapeHTML(course.description)}</p>
+          
+          <div style="display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;">
+            <button class="button button--primary" onclick="openEnrollModal('${escapeHTML(course.title).replace(/'/g, "\\'")}')" style="background-color: #229920; border-color: #229920;">Enroll Now</button>
+            <a href="contact.html?subject=Brochure Request: ${encodeURIComponent(course.title)}" class="button button--secondary">Download Brochure</a>
+          </div>
+
+          <h3 class="detail-section-title">Course Content</h3>
+          ${modulesHTML}
+
+          <h3 class="detail-section-title">What You'll Learn</h3>
+          <div style="margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            ${highlightsHTML}
+          </div>
+        `;
+      }
+
+      // Enrollment Modal Control
+      window.openEnrollModal = function (courseTitle) {
+        document.getElementById("enroll-course-title").value = courseTitle;
+        const modal = document.getElementById("enroll-modal");
+        modal.classList.add("open");
+
+        const statusDiv = document.getElementById("enroll-status");
+        statusDiv.style.display = "none";
+        statusDiv.innerText = "";
+
+        document.getElementById("enroll-name").focus();
+      };
+
+      const closeBtn = document.getElementById("enroll-modal-close");
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          document.getElementById("enroll-modal").classList.remove("open");
+        });
+      }
+
+      // Submit enrollment form
+      document.getElementById("enroll-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const course = document.getElementById("enroll-course-title").value;
+        const name = document.getElementById("enroll-name").value;
+        const email = document.getElementById("enroll-email").value;
+        const phone = document.getElementById("enroll-phone").value;
+        const message = document.getElementById("enroll-message").value;
+
+        const statusDiv = document.getElementById("enroll-status");
+        statusDiv.style.display = "block";
+        statusDiv.style.color = "#229920";
+        statusDiv.innerText = "Submitting enrollment details...";
+
+        try {
+          const res = await fetch(`${BASE_URL}/enroll`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, phone, course, message })
+          });
+          const json = await res.json();
+          if (json.success) {
+            statusDiv.innerText = "Enrolled successfully! A confirmation email has been sent.";
+            statusDiv.style.color = "#229920";
+            setTimeout(() => {
+              document.getElementById("enroll-modal").classList.remove("open");
+              document.getElementById("enroll-form").reset();
+            }, 2500);
+          } else {
+            statusDiv.innerText = json.message || "Failed to submit. Please try again.";
+            statusDiv.style.color = "#ef4444";
+          }
+        } catch (err) {
+          statusDiv.innerText = "Network error. Please try again later.";
+          statusDiv.style.color = "#ef4444";
+        }
+      });
+
+      function escapeHTML(str) {
+        if (!str) return "";
+        return str.replace(/[&<>'"]/g,
+          tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag)
+        );
+      }
+
+      // Start fetching
+      loadCourses();
+    });
+  </script>
 </body>
 
 </html>
