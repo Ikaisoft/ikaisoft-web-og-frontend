@@ -429,6 +429,44 @@
     .actions-cell {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .applicant-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34, 153, 32, 0.12);
+      color: var(--color-primary);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .applicant-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .applicant-item {
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.35);
+    }
+
+    .applicant-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .applicant-item span, .applicant-item p {
+      color: var(--text-muted);
+      font-size: 13px;
     }
 
     /* Modals */
@@ -905,6 +943,23 @@
     </div>
   </div>
 
+  <!-- VIEW APPLICANTS MODAL -->
+  <div id="applicants-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="applicants-modal-title">Job Applicants</h3>
+        <button class="close-btn" onclick="closeApplicantsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="applicants-modal-subtitle" style="color: var(--text-muted); margin-bottom: 8px;">Loading applicants...</p>
+        <div id="applicants-list" class="applicant-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeApplicantsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ADD/EDIT COURSE MODAL -->
   <div id="course-modal" class="modal">
     <div class="modal-content">
@@ -1141,6 +1196,8 @@
           </td>
           <td>
             <div class="actions-cell">
+              <span class="applicant-pill">${(job.applicantCount || 0)} applicants</span>
+              <button class="btn btn-secondary btn-sm view-applicants-btn" data-id="${job._id}"><i class="fa-solid fa-users"></i> View</button>
               <button class="btn btn-secondary btn-sm edit-job-btn" data-id="${job._id}"><i class="fa-solid fa-edit"></i> Edit</button>
               <button class="btn btn-danger btn-sm delete-job-btn" data-id="${job._id}"><i class="fa-solid fa-trash"></i> Delete</button>
             </div>
@@ -1198,7 +1255,60 @@
           }
         });
       });
+
+      document.querySelectorAll(".view-applicants-btn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-id");
+          await openApplicantsModal(id);
+        });
+      });
     }
+
+    async function openApplicantsModal(id) {
+      const modal = document.getElementById("applicants-modal");
+      const title = document.getElementById("applicants-modal-title");
+      const subtitle = document.getElementById("applicants-modal-subtitle");
+      const list = document.getElementById("applicants-list");
+      const selectedJob = jobs.find(job => job._id === id);
+
+      title.textContent = selectedJob ? `${selectedJob.title} Applicants` : "Job Applicants";
+      subtitle.textContent = "Loading applicants...";
+      list.innerHTML = "";
+      modal.style.display = "flex";
+
+      try {
+        const res = await adminApi.getJobApplications(id);
+        if (res.success) {
+          const applications = res.data || [];
+          subtitle.textContent = applications.length === 0 ? "No applicants for this role yet." : `${applications.length} applicant(s) found.`;
+          if (applications.length === 0) {
+            list.innerHTML = `<div class="applicant-item"><strong>No applications yet</strong><p>Applications will appear here once candidates submit their forms.</p></div>`;
+            return;
+          }
+
+          list.innerHTML = applications.map(app => `
+            <div class="applicant-item">
+              <strong>${escapeHTML(app.fullName || "Unnamed applicant")}</strong>
+              <p><i class="fa-solid fa-envelope"></i> ${escapeHTML(app.email || "No email")}</p>
+              <p><i class="fa-solid fa-phone"></i> ${escapeHTML(app.phone || "No phone")}</p>
+              ${app.experience ? `<p><i class="fa-solid fa-briefcase"></i> Experience: ${escapeHTML(app.experience)}</p>` : ""}
+              ${app.education ? `<p><i class="fa-solid fa-graduation-cap"></i> Education: ${escapeHTML(app.education)}</p>` : ""}
+              ${app.message ? `<p><i class="fa-solid fa-message"></i> ${escapeHTML(app.message)}</p>` : ""}
+              <p><i class="fa-solid fa-calendar"></i> ${new Date(app.createdAt).toLocaleString()}</p>
+            </div>
+          `).join("");
+        } else {
+          subtitle.textContent = res.message || "Unable to load applicants.";
+        }
+      } catch (err) {
+        console.error("Applicants load error:", err);
+        subtitle.textContent = "Unable to load applicants.";
+      }
+    }
+
+    window.closeApplicantsModal = function() {
+      document.getElementById("applicants-modal").style.display = "none";
+    };
 
     // Modal Add Job Window triggers
     window.openAddJobModal = function() {

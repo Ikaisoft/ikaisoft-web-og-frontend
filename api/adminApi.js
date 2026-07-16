@@ -112,6 +112,20 @@ export async function deleteJob(id) {
   return await res.json();
 }
 
+export async function submitJobApplication(applicationData) {
+  const res = await fetch(`${BASE_URL}/jobs/apply`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(applicationData),
+  });
+  return await res.json();
+}
+
+export async function getJobApplications(id) {
+  const res = await authFetch(`${BASE_URL}/jobs/${id}/applications`);
+  return await res.json();
+}
+
 // Courses API
 export async function getAllCourses() {
   const res = await fetch(`${BASE_URL}/courses`);

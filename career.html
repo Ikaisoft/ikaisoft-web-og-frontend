@@ -359,6 +359,91 @@
             transition: all 0.3s ease;
         }
 
+        .apply-job-btn {
+            width: 100%;
+            justify-content: center;
+            border-color: rgba(28, 37, 57, 0.15);
+            background: transparent;
+            color: #1c2539;
+            transition: all 0.3s ease;
+        }
+
+        .apply-job-btn:hover {
+            background: #229920;
+            color: #ffffff;
+            border-color: #229920;
+        }
+
+        .application-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .application-modal-content {
+            background: #fff;
+            width: min(100%, 720px);
+            border-radius: 20px;
+            padding: 28px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .application-modal-content h3 {
+            color: #1c2539;
+            margin-bottom: 6px;
+        }
+
+        .application-modal-content p {
+            color: rgba(28, 37, 57, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .application-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .application-form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .application-form-grid label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1c2539;
+        }
+
+        .application-form-grid input,
+        .application-form-grid textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(28, 37, 57, 0.15);
+            background: #f8fcf6;
+        }
+
+        .application-form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .application-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .career-card:hover .button--secondary {
             background: #229920;
             color: #ffffff;
@@ -802,6 +887,55 @@
         </div>
     </section>
 
+    <div id="application-modal" class="application-modal">
+        <div class="application-modal-content">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                    <h3 class="heading text-26 fw-700">Apply for this role</h3>
+                    <p class="text mb-0">Tell us a bit about yourself and we’ll review your application.</p>
+                </div>
+                <button type="button" id="close-application-modal" class="button button--secondary" style="width:auto; padding:10px 16px;">Close</button>
+            </div>
+            <form id="application-form">
+                <input type="hidden" id="application-job-id">
+                <div class="application-form-grid">
+                    <div>
+                        <label for="application-name">Full name *</label>
+                        <input id="application-name" required>
+                    </div>
+                    <div>
+                        <label for="application-email">Email *</label>
+                        <input id="application-email" type="email" required>
+                    </div>
+                    <div>
+                        <label for="application-phone">Phone *</label>
+                        <input id="application-phone" required>
+                    </div>
+                    <div>
+                        <label for="application-experience">Experience</label>
+                        <input id="application-experience" placeholder="e.g. 2 years">
+                    </div>
+                    <div>
+                        <label for="application-education">Education / Qualification</label>
+                        <input id="application-education" placeholder="e.g. B.Tech, 75%">
+                    </div>
+                    <div class="full-width">
+                        <label for="application-message">Message</label>
+                        <textarea id="application-message" rows="4" placeholder="Tell us why you are a good fit for this role."></textarea>
+                    </div>
+                    <div class="full-width">
+                        <label for="application-resume">Resume (optional)</label>
+                        <input id="application-resume" type="file" accept=".pdf,.doc,.docx">
+                    </div>
+                </div>
+                <div class="application-form-actions">
+                    <button type="button" id="cancel-application-btn" class="button button--secondary">Cancel</button>
+                    <button type="submit" class="button button--primary">Submit application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <section class="section-padding">
         <div class="container">
             <div class="section-headings section-headings-horizontal align-items-center">
@@ -1082,6 +1216,11 @@
             const noRolesFound = document.getElementById('no-roles-found');
             const resetBtnEmpty = document.getElementById('reset-filters-btn-empty');
             const clearFiltersBtn = document.getElementById('clear-filters-btn');
+            const applicationModal = document.getElementById('application-modal');
+            const applicationForm = document.getElementById('application-form');
+            const applicationJobId = document.getElementById('application-job-id');
+            const closeApplicationModalBtn = document.getElementById('close-application-modal');
+            const cancelApplicationBtn = document.getElementById('cancel-application-btn');
 
             function filterJobs() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
@@ -1141,6 +1280,18 @@
                 filterJobs();
             }
 
+            function openApplicationModal(jobId) {
+                applicationJobId.value = jobId;
+                applicationForm.reset();
+                applicationModal.style.display = 'flex';
+            }
+
+            function closeApplicationModal() {
+                applicationModal.style.display = 'none';
+                applicationForm.reset();
+                applicationJobId.value = '';
+            }
+
             if (searchInput) searchInput.addEventListener('input', filterJobs);
             if (teamSelect) teamSelect.addEventListener('change', filterJobs);
             if (locationSelect) locationSelect.addEventListener('change', filterJobs);
@@ -1150,6 +1301,68 @@
             }
             if (clearFiltersBtn) {
                 clearFiltersBtn.addEventListener('click', resetFilters);
+            }
+            if (closeApplicationModalBtn) {
+                closeApplicationModalBtn.addEventListener('click', closeApplicationModal);
+            }
+            if (cancelApplicationBtn) {
+                cancelApplicationBtn.addEventListener('click', closeApplicationModal);
+            }
+            if (applicationModal) {
+                applicationModal.addEventListener('click', (event) => {
+                    if (event.target === applicationModal) {
+                        closeApplicationModal();
+                    }
+                });
+            }
+
+            applicationForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const fileInput = document.getElementById('application-resume');
+                const file = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+
+                const payload = {
+                    jobId: applicationJobId.value,
+                    fullName: document.getElementById('application-name').value.trim(),
+                    email: document.getElementById('application-email').value.trim(),
+                    phone: document.getElementById('application-phone').value.trim(),
+                    experience: document.getElementById('application-experience').value.trim(),
+                    education: document.getElementById('application-education').value.trim(),
+                    message: document.getElementById('application-message').value.trim(),
+                };
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = async () => {
+                        payload.resumeName = file.name;
+                        payload.resumeType = file.type;
+                        payload.resumeData = reader.result;
+                        await submitApplication(payload);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    await submitApplication(payload);
+                }
+            });
+
+            async function submitApplication(payload) {
+                try {
+                    const res = await fetch(`${BASE_URL}/jobs/apply`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        closeApplicationModal();
+                        alert('Application submitted successfully. We will contact you shortly.');
+                    } else {
+                        alert(data.message || 'Unable to submit your application right now.');
+                    }
+                } catch (err) {
+                    console.error('Application submit error:', err);
+                    alert('Unable to submit your application right now.');
+                }
             }
 
             async function loadJobs() {
@@ -1200,11 +1413,14 @@
                                                 ${job.team}
                                             </span>
                                         </div>
-                                        <a href="contact.html" class="button button--secondary w-full justify-center">Apply now</a>
+                                        <button type="button" class="apply-job-btn button button--secondary w-full justify-center" data-job-id="${job._id}">Apply now</button>
                                     </div>
                                 </article>
                             `;
                             container.appendChild(col);
+                        });
+                        document.querySelectorAll('.apply-job-btn').forEach(btn => {
+                            btn.addEventListener('click', () => openApplicationModal(btn.getAttribute('data-job-id')));
                         });
                         filterJobs();
                     }
