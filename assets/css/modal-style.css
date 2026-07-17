@@ -1,0 +1,489 @@
+/* ============================================
+   ENROLLMENT MODAL - COMPLETE STYLES
+   CENTERED ON PAGE
+   ============================================ */
+
+/* Modal Overlay/Backdrop */
+#enroll-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+}
+
+#enroll-modal.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Modal Box - Center on Body */
+.enroll-box {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(15, 23, 42, 0.35),
+                0 0 50px rgba(34, 153, 32, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    transform: translateY(40px) scale(0.94);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideInUp 0.5s ease-out forwards;
+}
+
+#enroll-modal.open .enroll-box {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Scrollbar Styling */
+.enroll-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.enroll-box::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.enroll-box::-webkit-scrollbar-thumb {
+    background: rgba(34, 153, 32, 0.5);
+    border-radius: 10px;
+}
+
+.enroll-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 153, 32, 0.8);
+}
+
+/* Close Button */
+#enroll-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(28, 37, 57, 0.08);
+    color: #1c2539;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#enroll-modal-close:hover {
+    background: rgba(34, 153, 32, 0.2);
+    color: #229920;
+    transform: rotate(90deg) scale(1.1);
+}
+
+#enroll-modal-close:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* Modal Heading */
+.enroll-box h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: #1c2539;
+    background: linear-gradient(135deg, #229920 0%, #1a7515 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* Form Group */
+.enroll-form-group {
+    margin-bottom: 22px;
+    animation: slideInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.enroll-form-group:nth-child(2) { animation-delay: 0.1s; }
+.enroll-form-group:nth-child(3) { animation-delay: 0.2s; }
+.enroll-form-group:nth-child(4) { animation-delay: 0.3s; }
+.enroll-form-group:nth-child(5) { animation-delay: 0.4s; }
+.enroll-form-group:nth-child(6) { animation-delay: 0.5s; }
+
+/* Form Labels */
+.enroll-form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1c2539;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.enroll-form-group:focus-within label {
+    color: #229920;
+}
+
+/* Form Inputs */
+.enroll-form-group input,
+.enroll-form-group textarea {
+    width: 100%;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #1c2539;
+    background: #ffffff;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.enroll-form-group input::placeholder,
+.enroll-form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Input Focus States */
+.enroll-form-group input:focus,
+.enroll-form-group textarea:focus {
+    border-color: #229920;
+    background: #ffffff;
+    box-shadow: 0 0 0 6px rgba(34, 153, 32, 0.12),
+                0 4px 12px rgba(34, 153, 32, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Input Hover State */
+.enroll-form-group input:hover:not(:focus),
+.enroll-form-group textarea:hover:not(:focus) {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Textarea */
+.enroll-form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    max-height: 300px;
+}
+
+/* Read-only Input */
+.enroll-form-group input:read-only {
+    background: #f1f5f9;
+    color: #475569;
+    cursor: not-allowed;
+}
+
+/* Submit Button */
+.enroll-submit-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #229920 0%, #1a7515 100%);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 10px 25px rgba(34, 153, 32, 0.25),
+                0 0 20px rgba(34, 153, 32, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Button Shimmer Effect */
+.enroll-submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.enroll-submit-btn:hover::before {
+    left: 100%;
+}
+
+/* Button Hover */
+.enroll-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(34, 153, 32, 0.35),
+                0 0 30px rgba(34, 153, 32, 0.15);
+}
+
+/* Button Active */
+.enroll-submit-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 15px rgba(34, 153, 32, 0.25);
+}
+
+/* Button Disabled */
+.enroll-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Status Message */
+#enroll-status {
+    margin-top: 16px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 20px;
+    border-radius: 8px;
+    display: none;
+    animation: slideInUp 0.3s ease-out;
+}
+
+#enroll-status.success {
+    background: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+#enroll-status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #f5222d;
+}
+
+#enroll-status.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border-left: 4px solid #17a2b8;
+}
+
+/* Body Overflow Hidden */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 640px) {
+    #enroll-modal {
+        padding: 16px;
+    }
+
+    .enroll-box {
+        width: 100%;
+        padding: 28px 20px;
+        border-radius: 16px;
+        max-height: 95vh;
+    }
+
+    #enroll-modal-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .enroll-box h3 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .modal-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .enroll-form-group {
+        margin-bottom: 18px;
+    }
+
+    .enroll-form-group label {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .enroll-form-group input,
+    .enroll-form-group textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .enroll-form-group textarea {
+        min-height: 100px;
+    }
+
+    .enroll-submit-btn {
+        padding: 14px 20px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #enroll-modal {
+        padding: 12px;
+    }
+
+    .enroll-box {
+        padding: 24px 16px;
+        border-radius: 14px;
+    }
+
+    .enroll-box h3 {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .modal-subtitle {
+        font-size: 12px;
+        margin-bottom: 18px;
+    }
+
+    .enroll-form-group {
+        margin-bottom: 16px;
+    }
+
+    .enroll-form-group input,
+    .enroll-form-group textarea {
+        padding: 11px 13px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    #enroll-modal,
+    .enroll-box,
+    .enroll-form-group,
+    .enroll-submit-btn {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .enroll-box {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5),
+                    0 0 50px rgba(34, 153, 32, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .enroll-box h3 {
+        color: #ffffff;
+    }
+
+    .modal-subtitle {
+        color: #d1d5db;
+    }
+
+    .enroll-form-group label {
+        color: #e5e7eb;
+    }
+
+    .enroll-form-group input,
+    .enroll-form-group textarea {
+        border-color: #374151;
+        background: #111827;
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .enroll-form-group input:focus,
+    .enroll-form-group textarea:focus {
+        border-color: #229920;
+        box-shadow: 0 0 0 6px rgba(34, 153, 32, 0.2),
+                    0 4px 12px rgba(34, 153, 32, 0.2);
+    }
+
+    .enroll-form-group input:read-only {
+        background: #1f2937;
+        color: #9ca3af;
+    }
+
+    #enroll-status.success {
+        background: rgba(16, 185, 129, 0.15);
+        color: #86efac;
+        border-left-color: #10b981;
+    }
+
+    #enroll-status.error {
+        background: rgba(239, 68, 68, 0.15);
+        color: #fca5a5;
+        border-left-color: #ef4444;
+    }
+
+    #enroll-status.info {
+        background: rgba(6, 182, 212, 0.15);
+        color: #67e8f9;
+        border-left-color: #06b6d4;
+    }
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
