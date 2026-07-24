@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Admin Dashboard | Ikaisoft</title>
@@ -9,8 +10,10 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com/" />
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -102,7 +105,8 @@
       transition: all 0.2s ease;
     }
 
-    .nav-item:hover, .nav-item.active {
+    .nav-item:hover,
+    .nav-item.active {
       color: var(--text-main);
       background-color: var(--bg-card);
     }
@@ -172,8 +176,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Dashboard Stats Card Grid */
@@ -223,10 +234,25 @@
       font-size: 24px;
     }
 
-    .stat-icon.blue { background-color: rgba(59, 130, 246, 0.15); color: #3b82f6; }
-    .stat-icon.green { background-color: rgba(34, 153, 32, 0.15); color: var(--color-primary); }
-    .stat-icon.purple { background-color: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
-    .stat-icon.orange { background-color: rgba(249, 115, 22, 0.15); color: #f97316; }
+    .stat-icon.blue {
+      background-color: rgba(59, 130, 246, 0.15);
+      color: #3b82f6;
+    }
+
+    .stat-icon.green {
+      background-color: rgba(34, 153, 32, 0.15);
+      color: var(--color-primary);
+    }
+
+    .stat-icon.purple {
+      background-color: rgba(139, 92, 246, 0.15);
+      color: #8b5cf6;
+    }
+
+    .stat-icon.orange {
+      background-color: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+    }
 
     /* Tables & Controls */
     .table-container {
@@ -341,7 +367,8 @@
       text-align: left;
     }
 
-    th, td {
+    th,
+    td {
       padding: 16px 24px;
       border-bottom: 1px solid var(--border-color);
       font-size: 14px;
@@ -374,10 +401,25 @@
       font-weight: 500;
     }
 
-    .badge-success { background-color: rgba(34, 153, 32, 0.15); color: #4ade80; }
-    .badge-warning { background-color: rgba(234, 179, 8, 0.15); color: #facc15; }
-    .badge-info { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-    .badge-danger { background-color: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .badge-success {
+      background-color: rgba(34, 153, 32, 0.15);
+      color: #4ade80;
+    }
+
+    .badge-warning {
+      background-color: rgba(234, 179, 8, 0.15);
+      color: #facc15;
+    }
+
+    .badge-info {
+      background-color: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+    }
+
+    .badge-danger {
+      background-color: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
 
     /* Switch Toggles */
     .switch {
@@ -417,11 +459,11 @@
       border-radius: 50%;
     }
 
-    input:checked + .slider {
+    input:checked+.slider {
       background-color: var(--color-primary);
     }
 
-    input:checked + .slider:before {
+    input:checked+.slider:before {
       transform: translateX(20px);
     }
 
@@ -464,7 +506,8 @@
       color: var(--text-main);
     }
 
-    .applicant-item span, .applicant-item p {
+    .applicant-item span,
+    .applicant-item p {
       color: var(--text-muted);
       font-size: 13px;
     }
@@ -543,7 +586,9 @@
       margin-bottom: 8px;
     }
 
-    .form-group input, .form-group select, .form-group textarea {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
       width: 100%;
       background-color: var(--bg-dark);
       border: 1px solid var(--border-color);
@@ -555,7 +600,9 @@
       transition: all 0.2s ease;
     }
 
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
       border-color: var(--color-primary);
     }
 
@@ -582,28 +629,41 @@
       font-size: 14px;
     }
 
-    .alert-success { background-color: rgba(34, 153, 32, 0.15); border: 1px solid rgba(34, 153, 32, 0.3); color: #4ade80; }
-    .alert-error { background-color: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
+    .alert-success {
+      background-color: rgba(34, 153, 32, 0.15);
+      border: 1px solid rgba(34, 153, 32, 0.3);
+      color: #4ade80;
+    }
+
+    .alert-error {
+      background-color: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
 
     /* Responsive */
     @media (max-width: 991px) {
       body {
         flex-direction: column;
       }
+
       aside {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
         padding: 16px 24px;
       }
+
       .logo-area {
         margin-bottom: 16px;
       }
+
       .nav-menu {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 6px;
       }
+
       main {
         padding: 24px;
         height: auto;
@@ -611,6 +671,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Sidebar -->
@@ -624,9 +685,11 @@
       <li><a class="nav-item" data-tab="courses-tab"><i class="fa-solid fa-graduation-cap"></i> Manage Courses</a></li>
       <li><a class="nav-item" data-tab="contacts-tab"><i class="fa-solid fa-envelope"></i> Contacts Inbox</a></li>
       <li><a class="nav-item" data-tab="enrollments-tab"><i class="fa-solid fa-user-graduate"></i> Enrollments</a></li>
-      <li><a class="nav-item" data-tab="registrations-tab"><i class="fa-solid fa-file-signature"></i> Registrations</a></li>
+      <li><a class="nav-item" data-tab="registrations-tab"><i class="fa-solid fa-file-signature"></i> Registrations</a>
+      </li>
       <li><a class="nav-item" data-tab="settings-tab"><i class="fa-solid fa-cog"></i> Settings</a></li>
-      <li><a class="nav-item logout-btn" id="sidebar-logout-btn"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+      <li><a class="nav-item logout-btn" id="sidebar-logout-btn"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+      </li>
     </ul>
   </aside>
 
@@ -689,8 +752,10 @@
           <h2>Quick Actions</h2>
         </div>
         <div style="padding: 24px; display: flex; gap: 16px; flex-wrap: wrap;">
-          <button class="btn btn-primary" onclick="openAddJobModal()"><i class="fa-solid fa-plus"></i> Post a New Job</button>
-          <button class="btn btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add a New Course</button>
+          <button class="btn btn-primary" onclick="openAddJobModal()"><i class="fa-solid fa-plus"></i> Post a New
+            Job</button>
+          <button class="btn btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add a New
+            Course</button>
           <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-globe"></i> View Website</a>
         </div>
       </div>
@@ -706,7 +771,8 @@
               <i class="fa-solid fa-search"></i>
               <input type="text" id="job-search" placeholder="Search jobs...">
             </div>
-            <button class="btn btn-primary" onclick="openAddJobModal()"><i class="fa-solid fa-plus"></i> Add Job</button>
+            <button class="btn btn-primary" onclick="openAddJobModal()"><i class="fa-solid fa-plus"></i> Add
+              Job</button>
           </div>
         </div>
         <div style="overflow-x: auto;">
@@ -739,7 +805,8 @@
               <i class="fa-solid fa-search"></i>
               <input type="text" id="course-search" placeholder="Search courses...">
             </div>
-            <button class="btn btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add Course</button>
+            <button class="btn btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add
+              Course</button>
           </div>
         </div>
         <div style="overflow-x: auto;">
@@ -951,7 +1018,8 @@
         <button class="close-btn" onclick="closeApplicantsModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <p id="applicants-modal-subtitle" style="color: var(--text-muted); margin-bottom: 8px;">Loading applicants...</p>
+        <p id="applicants-modal-subtitle" style="color: var(--text-muted); margin-bottom: 8px;">Loading applicants...
+        </p>
         <div id="applicants-list" class="applicant-list"></div>
       </div>
       <div class="modal-footer">
@@ -1031,7 +1099,8 @@
           </div>
           <div class="form-group">
             <label for="course-highlights">Highlights (One per line)</label>
-            <textarea id="course-highlights" rows="3" placeholder="Hands-on Projects&#10;Mentorship Support..."></textarea>
+            <textarea id="course-highlights" rows="3"
+              placeholder="Hands-on Projects&#10;Mentorship Support..."></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -1175,7 +1244,7 @@
     function renderJobs(data) {
       const tbody = document.getElementById("jobs-tbody");
       tbody.innerHTML = "";
-      
+
       if (data.length === 0) {
         tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No jobs found.</td></tr>`;
         return;
@@ -1233,7 +1302,7 @@
             document.getElementById("job-location").value = job.location;
             document.getElementById("job-tags").value = job.tags.join(", ");
             document.getElementById("job-summary").value = job.summary;
-            
+
             document.getElementById("job-modal-title").textContent = "Edit Job Role";
             document.getElementById("job-modal").style.display = "flex";
           }
@@ -1306,19 +1375,19 @@
       }
     }
 
-    window.closeApplicantsModal = function() {
+    window.closeApplicantsModal = function () {
       document.getElementById("applicants-modal").style.display = "none";
     };
 
     // Modal Add Job Window triggers
-    window.openAddJobModal = function() {
+    window.openAddJobModal = function () {
       document.getElementById("job-form").reset();
       document.getElementById("job-id").value = "";
       document.getElementById("job-modal-title").textContent = "Post New Job";
       document.getElementById("job-modal").style.display = "flex";
     };
 
-    window.closeJobModal = function() {
+    window.closeJobModal = function () {
       document.getElementById("job-modal").style.display = "none";
     };
 
@@ -1360,9 +1429,9 @@
     // Job Search Toggles
     document.getElementById("job-search").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
-      const filtered = jobs.filter(j => 
-        j.title.toLowerCase().includes(q) || 
-        j.team.toLowerCase().includes(q) || 
+      const filtered = jobs.filter(j =>
+        j.title.toLowerCase().includes(q) ||
+        j.team.toLowerCase().includes(q) ||
         j.summary.toLowerCase().includes(q)
       );
       renderJobs(filtered);
@@ -1448,7 +1517,7 @@
             document.getElementById("course-certificate").checked = course.certificate !== false;
             document.getElementById("course-modules").value = (course.modules || []).join("\n");
             document.getElementById("course-highlights").value = (course.highlights || []).join("\n");
-            
+
             document.getElementById("course-modal-title").textContent = "Edit Course Details";
             document.getElementById("course-modal").style.display = "flex";
           }
@@ -1472,14 +1541,14 @@
       });
     }
 
-    window.openAddCourseModal = function() {
+    window.openAddCourseModal = function () {
       document.getElementById("course-form").reset();
       document.getElementById("course-id").value = "";
       document.getElementById("course-modal-title").textContent = "Add New Course";
       document.getElementById("course-modal").style.display = "flex";
     };
 
-    window.closeCourseModal = function() {
+    window.closeCourseModal = function () {
       document.getElementById("course-modal").style.display = "none";
     };
 
@@ -1529,9 +1598,9 @@
     // Course Search Toggles
     document.getElementById("course-search").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
-      const filtered = courses.filter(c => 
-        c.title.toLowerCase().includes(q) || 
-        c.category.toLowerCase().includes(q) || 
+      const filtered = courses.filter(c =>
+        c.title.toLowerCase().includes(q) ||
+        c.category.toLowerCase().includes(q) ||
         c.description.toLowerCase().includes(q)
       );
       renderCourses(filtered);
@@ -1568,7 +1637,7 @@
           <td>${escapeHTML(c.phone || 'N/A')}</td>
           <td><span class="badge badge-info">${escapeHTML(c.service || 'General')}</span></td>
           <td style="max-width: 300px; white-space: normal;">${escapeHTML(c.message)}</td>
-          <td>${new Date(c.createdAt).toLocaleDateString()} ${new Date(c.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+          <td>${new Date(c.createdAt).toLocaleDateString()} ${new Date(c.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1576,11 +1645,11 @@
 
     document.getElementById("contacts-search").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
-      const filtered = contacts.filter(c => 
-        c.name.toLowerCase().includes(q) || 
-        c.email.toLowerCase().includes(q) || 
-        (c.phone && c.phone.includes(q)) || 
-        (c.service && c.service.toLowerCase().includes(q)) || 
+      const filtered = contacts.filter(c =>
+        c.name.toLowerCase().includes(q) ||
+        c.email.toLowerCase().includes(q) ||
+        (c.phone && c.phone.includes(q)) ||
+        (c.service && c.service.toLowerCase().includes(q)) ||
         c.message.toLowerCase().includes(q)
       );
       renderContacts(filtered);
@@ -1617,7 +1686,7 @@
           <td>${escapeHTML(e.phone || 'N/A')}</td>
           <td><span class="badge badge-success">${escapeHTML(e.course)}</span></td>
           <td style="max-width: 250px; white-space: normal;">${escapeHTML(e.message || 'N/A')}</td>
-          <td>${new Date(e.createdAt).toLocaleDateString()} ${new Date(e.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+          <td>${new Date(e.createdAt).toLocaleDateString()} ${new Date(e.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1625,11 +1694,11 @@
 
     document.getElementById("enrollments-search").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
-      const filtered = enrollments.filter(e => 
-        e.name.toLowerCase().includes(q) || 
-        e.email.toLowerCase().includes(q) || 
-        (e.phone && e.phone.includes(q)) || 
-        e.course.toLowerCase().includes(q) || 
+      const filtered = enrollments.filter(e =>
+        e.name.toLowerCase().includes(q) ||
+        e.email.toLowerCase().includes(q) ||
+        (e.phone && e.phone.includes(q)) ||
+        e.course.toLowerCase().includes(q) ||
         (e.message && e.message.toLowerCase().includes(q))
       );
       renderEnrollments(filtered);
@@ -1666,7 +1735,7 @@
           <td>${escapeHTML(r.phone || 'N/A')}</td>
           <td><span class="badge badge-info">${escapeHTML(r.course)}</span></td>
           <td style="max-width: 250px; white-space: normal;">${escapeHTML(r.message || 'N/A')}</td>
-          <td>${new Date(r.createdAt).toLocaleDateString()} ${new Date(r.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+          <td>${new Date(r.createdAt).toLocaleDateString()} ${new Date(r.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1674,11 +1743,11 @@
 
     document.getElementById("registrations-search").addEventListener("input", (e) => {
       const q = e.target.value.toLowerCase();
-      const filtered = registrations.filter(r => 
-        r.name.toLowerCase().includes(q) || 
-        r.email.toLowerCase().includes(q) || 
-        (r.phone && r.phone.includes(q)) || 
-        r.course.toLowerCase().includes(q) || 
+      const filtered = registrations.filter(r =>
+        r.name.toLowerCase().includes(q) ||
+        r.email.toLowerCase().includes(q) ||
+        (r.phone && r.phone.includes(q)) ||
+        r.course.toLowerCase().includes(q) ||
         (r.message && r.message.toLowerCase().includes(q))
       );
       renderRegistrations(filtered);
@@ -1713,7 +1782,7 @@
     // Helper to sanitize HTML strings
     function escapeHTML(str) {
       if (!str) return "";
-      return str.replace(/[&<>'"]/g, 
+      return str.replace(/[&<>'"]/g,
         tag => ({
           '&': '&amp;',
           '<': '&lt;',
@@ -1726,4 +1795,5 @@
   </script>
 
 </body>
+
 </html>
