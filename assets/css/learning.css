@@ -129,3 +129,105 @@
     color: #fff;
     transform: translateY(-2px);
 }
+
+/* Course Filtering and Pagination Styles */
+.course-filter-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+    margin-bottom: 45px;
+}
+
+.filter-btn {
+    background: #ffffff;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-heading--family), sans-serif;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    outline: none;
+}
+
+.filter-btn:hover {
+    color: #229920;
+    border-color: #229920;
+    background: rgba(34, 153, 32, 0.04);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(34, 153, 32, 0.08);
+}
+
+.filter-btn.active {
+    background: #229920;
+    color: #ffffff;
+    border-color: #229920;
+    box-shadow: 0 6px 20px rgba(34, 153, 32, 0.22);
+    transform: translateY(-2px);
+}
+
+.discover-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.discover-more-btn {
+    background: #ffffff;
+    color: #229920;
+    border: 2px solid #229920;
+    padding: 14px 38px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: var(--font-heading--family), sans-serif;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    outline: none;
+}
+
+.discover-more-btn:hover {
+    background: #229920;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(34, 153, 32, 0.18);
+}
+
+.discover-more-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.discover-more-btn:hover svg {
+    transform: translateY(3px);
+}
+
+/* Smooth filtering animations */
+.course-card-container {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: scale(1);
+    display: block;
+}
+
+.course-card-container.hidden-filter {
+    opacity: 0 !important;
+    transform: scale(0.8) !important;
+    display: none !important;
+}
+
+.course-card-container.hidden-pagination {
+    opacity: 0 !important;
+    transform: scale(0.8) !important;
+    display: none !important;
+}

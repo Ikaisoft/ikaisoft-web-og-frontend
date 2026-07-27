@@ -552,7 +552,7 @@
         </div>
       </div>
     </div>
-
+    <!-- our courses -->
     <div class="featured-blog has-bg section-padding"
       style="background-color: rgb(248 248 248 / 15%);padding-top: 54px;">
       <div class="container">
@@ -572,334 +572,562 @@
           </p>
         </div>
 
-        <div class="row gy-4" style="margin-top: 20px;">
+        <!-- Course Filter Tabs -->
+        <div class="course-filter-tabs text-center" data-aos="fade-up">
+          <button class="filter-btn active" data-filter="all">All courses</button>
+          <button class="filter-btn" data-filter="data">Data related courses</button>
+          <button class="filter-btn" data-filter="web">Web development related courses</button>
+          <button class="filter-btn" data-filter="ai">AI related courses</button>
+          <button class="filter-btn" data-filter="fullstack">Full stack related courses</button>
+        </div>
 
-          <!-- Card 1 -->
+        <div class="row gy-4" id="courses-grid" style="margin-top: 10px;">
 
-          <div class="col-lg-4 col-md-6">
-
+          <!-- Card 1 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
             <div class="course-card">
-
               <div class="course-image">
-
-                <img src="assets/img/courses-img/ikaisoft-agenticAI.png">
-
-                <span class="status live">
-                  Live
-                </span>
-
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Agentic AI Bootcamp">
+                <span class="status live">Live</span>
               </div>
-
               <div class="course-body">
-
                 <h3>Agentic AI Bootcamp</h3>
-
                 <div class="course-meta">
-
-                  <span>
-                    📅 Starts :
-                    <strong>10 Aug 2026</strong>
-                  </span>
-
-                  <span>
-                    ⏱ 4 Weeks
-                  </span>
-
-                  <span class="level beginner">
-                    Beginner
-                  </span>
-
+                  <span>📅 Starts : <strong>10 Aug 2026</strong></span>
+                  <span>⏱ 4 Weeks</span>
+                  <span class="level beginner">Beginner</span>
                 </div>
-
                 <p>
-
                   Master the next generation of AI by building intelligent agents powered by LLMs, RAG, MCP, workflows,
-                  and automation. Learn to create real-world AI systems thatexecute complex tasks independently.
-
+                  and automation. Learn to create real-world AI systems that execute complex tasks independently.
                 </p>
-
                 <div class="course-skills">
-
                   <span>Python</span>
-
                   <span>LLM</span>
-
                   <span>RAG</span>
-
                   <span>LangGraph</span>
-
                 </div>
-
-                <a href="courses/agentic-ai.html" class="view-btn">
-
-                  View Details →
-
-                </a>
-
+                <a href="courses/agentic-ai.html" class="view-btn">View Details →</a>
               </div>
-
             </div>
-
           </div>
 
-          <!-- Card 2 -->
-
-          <div class="col-lg-4 col-md-6">
-
+          <!-- Card 2 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
             <div class="course-card">
-
               <div class="course-image">
-
-                <img src="assets/img/courses-img/ikaisoft-DataAnalytics.png">
-
-                <span class="status live">
-                  Live
-                </span>
-
+                <img src="assets/img/courses-img/ikaisoft-DataAnalytics.png" alt="Data Analytics Program">
+                <span class="status live">Live</span>
               </div>
-
               <div class="course-body">
-
                 <h3>Data Analytics Program</h3>
-
                 <div class="course-meta">
-
-                  <span>
-                    📅 Starts :
-                    <strong>25 Aug 2026</strong>
-                  </span>
-
-                  <span>
-                    ⏱ 16 Weeks
-                  </span>
-
-                  <span class="level beginner">
-                    Beginner
-                  </span>
-
+                  <span>📅 Starts : <strong>25 Aug 2026</strong></span>
+                  <span>⏱ 16 Weeks</span>
+                  <span class="level beginner">Beginner</span>
                 </div>
-
                 <p>
-
                   Learn to analyze and interpret complex data sets, uncover insights, and make data-driven decisions.
                   Gain hands-on experience with tools like Python, R, SQL, and Tableau to become a proficient data
                   analyst.
-
                 </p>
-
                 <div class="course-skills">
-
                   <span>Python</span>
-
                   <span>Google Analytics</span>
-
                   <span>Excel</span>
-
                   <span>Tableau</span>
-
                 </div>
-
-                <a href="courses/data-analytics.html" class="view-btn">
-
-                  View Details →
-
-                </a>
-
+                <a href="courses/data-analytics.html" class="view-btn">View Details →</a>
               </div>
-
             </div>
-
           </div>
 
-          <!-- Card 3 -->
-
-          <div class="col-lg-4 col-md-6">
-
+          <!-- Card 3 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
             <div class="course-card">
-
               <div class="course-image">
-
-                <img src="assets/img/courses-img/ikaisoft-data-science.png">
-
-                <span class="status live">
-                  Upcoming
-                </span>
-
+                <img src="assets/img/courses-img/ikaisoft-data-science.png" alt="Data Science Program">
+                <span class="status live">Upcoming</span>
               </div>
-
               <div class="course-body">
-
                 <h3>Data Science Program</h3>
-
                 <div class="course-meta">
-
-                  <span>
-                    📅 Starts :
-                    <strong>15 Sep 2026</strong>
-                  </span>
-
-                  <span>
-                    ⏱ 12 Weeks
-                  </span>
-
-                  <span class="level beginner">
-                    Beginner
-                  </span>
-
+                  <span>📅 Starts : <strong>15 Sep 2026</strong></span>
+                  <span>⏱ 12 Weeks</span>
+                  <span class="level beginner">Beginner</span>
                 </div>
-
                 <p>
-
                   Gain hands-on expertise in Python, Machine Learning, Deep Learning, and AI to solve real-world
                   business challenges. Build industry-ready projects using modern data science tools, techniques, and
                   frameworks.
-
                 </p>
-
                 <div class="course-skills">
-
                   <span>Python</span>
-
                   <span>Power BI</span>
-
                   <span>Tableau</span>
-
                   <span>Excel</span>
-
                 </div>
-
-                <a href="courses/data-science.html" class="view-btn">
-
-                  View Details →
-
-                </a>
-
+                <a href="courses/data-science.html" class="view-btn">View Details →</a>
               </div>
-
             </div>
+          </div>
 
+          <!-- Card 4 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Generative AI & LLMs">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Generative AI & LLMs</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>20 Aug 2026</strong></span>
+                  <span>⏱ 6 Weeks</span>
+                  <span class="level">Intermediate</span>
+                </div>
+                <p>
+                  Build LLM-powered applications using OpenAI APIs, Hugging Face model hub, vector database storage,
+                  retrieval systems, and agentic workflows inside enterprise systems.
+                </p>
+                <div class="course-skills">
+                  <span>OpenAI</span>
+                  <span>Hugging Face</span>
+                  <span>LangChain</span>
+                  <span>ChromaDB</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Computer Vision & OpenCV">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Computer Vision & OpenCV</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>10 Sep 2026</strong></span>
+                  <span>⏱ 8 Weeks</span>
+                  <span class="level">Intermediate</span>
+                </div>
+                <p>
+                  Learn image processing algorithms, object detection with YOLO, facial recognition, and motion
+                  tracking.
+                  Build robust computer vision models using Python and OpenCV tools.
+                </p>
+                <div class="course-skills">
+                  <span>Python</span>
+                  <span>OpenCV</span>
+                  <span>YOLO</span>
+                  <span>TensorFlow</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Natural Language Processing">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>NLP Masterclass</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>25 Sep 2026</strong></span>
+                  <span>⏱ 6 Weeks</span>
+                  <span class="level">Advanced</span>
+                </div>
+                <p>
+                  Delve into parsing text, sentiment analysis, custom translation networks, and fine-tuning transformer
+                  architectures (BERT, GPT) using Hugging Face modules.
+                </p>
+                <div class="course-skills">
+                  <span>Python</span>
+                  <span>Transformers</span>
+                  <span>BERT</span>
+                  <span>Hugging Face</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="AI Ethics & Safety">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>AI Ethics & Safety</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>15 Oct 2026</strong></span>
+                  <span>⏱ 2 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Address critical challenges in modern AI systems including bias elimination, algorithm auditing,
+                  data governance frameworks, alignment models, and safe deployment strategies.
+                </p>
+                <div class="course-skills">
+                  <span>AI Safety</span>
+                  <span>Governance</span>
+                  <span>Bias Auditing</span>
+                  <span>Alignment</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Prompt Engineering">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Prompt Engineering</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>18 Oct 2026</strong></span>
+                  <span>⏱ 2 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Optimize Large Language Model outputs through advanced techniques such as multi-shot prompts,
+                  structured outputs, chain-of-thought, and dynamic prompt templating libraries.
+                </p>
+                <div class="course-skills">
+                  <span>Prompt Design</span>
+                  <span>System Prompts</span>
+                  <span>CoT</span>
+                  <span>JSON Output</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 9 (AI) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="ai">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Reinforcement Learning">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Reinforcement Learning</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>01 Nov 2026</strong></span>
+                  <span>⏱ 6 Weeks</span>
+                  <span class="level">Advanced</span>
+                </div>
+                <p>
+                  Master training loops using environments (Gymnasium), deep Q-networks (DQN), policy gradient
+                  optimizations (PPO), and actor-critic networks to automate decision structures.
+                </p>
+                <div class="course-skills">
+                  <span>Gymnasium</span>
+                  <span>DQN</span>
+                  <span>PPO</span>
+                  <span>Deep RL</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 10 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-DataAnalytics.png" alt="Big Data & Data Engineering">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Big Data & Engineering</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>05 Oct 2026</strong></span>
+                  <span>⏱ 8 Weeks</span>
+                  <span class="level">Intermediate</span>
+                </div>
+                <p>
+                  Design distributed pipeline structures using Spark, implement streaming structures with Kafka, and
+                  architect data warehouse layouts inside cloud warehouses (Snowflake).
+                </p>
+                <div class="course-skills">
+                  <span>SQL</span>
+                  <span>Apache Spark</span>
+                  <span>Kafka</span>
+                  <span>Snowflake</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 11 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-data-science.png" alt="Advanced ML & MLOps">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Advanced ML & MLOps</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>12 Oct 2026</strong></span>
+                  <span>⏱ 10 Weeks</span>
+                  <span class="level">Advanced</span>
+                </div>
+                <p>
+                  Streamline machine learning pipelines. Learn tracking using MLflow, containerized scaling via Docker,
+                  and infrastructure management in production pipelines.
+                </p>
+                <div class="course-skills">
+                  <span>Python</span>
+                  <span>MLflow</span>
+                  <span>Docker</span>
+                  <span>PyTorch</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 12 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-DataAnalytics.png" alt="Data Visualization">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Data Visualization</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>22 Oct 2026</strong></span>
+                  <span>⏱ 4 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Learn the art of storytelling with data. Create dashboard designs in Tableau and Power BI
+                  connecting dynamic data sources for robust corporate presentations.
+                </p>
+                <div class="course-skills">
+                  <span>Tableau</span>
+                  <span>Power BI</span>
+                  <span>SQL</span>
+                  <span>Design Rules</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 13 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-data-science.png" alt="Statistical Analysis & R">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Statistical Analysis & R</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>28 Oct 2026</strong></span>
+                  <span>⏱ 6 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Build a strong foundation in statistical theories, hypothesis test structures, regression
+                  methodologies,
+                  and data representation workflows utilizing the R programming platform.
+                </p>
+                <div class="course-skills">
+                  <span>R language</span>
+                  <span>Hypothesis Tests</span>
+                  <span>ggplot2</span>
+                  <span>Regression</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 14 (Data) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="data">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-DataAnalytics.png" alt="SQL for Data Analytics">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>SQL for Data Analytics</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>05 Nov 2026</strong></span>
+                  <span>⏱ 4 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Deep dive into data definition and query structures. Master complex joins, subqueries, grouping
+                  parameters,
+                  and window functions to retrieve analytical structures easily.
+                </p>
+                <div class="course-skills">
+                  <span>PostgreSQL</span>
+                  <span>Joins</span>
+                  <span>Window Functions</span>
+                  <span>Query Tuning</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 15 (Web) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="web">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-DataAnalytics.png" alt="Modern Frontend Web Dev">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Modern Frontend Web Dev</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>18 Aug 2026</strong></span>
+                  <span>⏱ 6 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Construct rich user interfaces using modern HTML5, styled with utility-first Tailwind CSS classes,
+                  integrated dynamically into component architectures inside React frameworks.
+                </p>
+                <div class="course-skills">
+                  <span>HTML/CSS</span>
+                  <span>JS ES6</span>
+                  <span>React</span>
+                  <span>Tailwind</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 16 (Web) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="web">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-data-science.png" alt="UX/UI Design & Prototyping">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>UX/UI Design & Coding</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>02 Sep 2026</strong></span>
+                  <span>⏱ 4 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Master vector drawing layouts in Figma, grid-based layouts, and responsive CSS frameworks to code
+                  high-fidelity mockups into dynamic webpage systems.
+                </p>
+                <div class="course-skills">
+                  <span>Figma</span>
+                  <span>Responsive Web</span>
+                  <span>CSS grid</span>
+                  <span>Micro-interactions</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 17 (Fullstack) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="fullstack">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-agenticAI.png" alt="Full Stack MERN Developer">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>MERN Developer Bootcamp</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>01 Sep 2026</strong></span>
+                  <span>⏱ 16 Weeks</span>
+                  <span class="level beginner">Beginner</span>
+                </div>
+                <p>
+                  Build end-to-end applications. Learn schema setups in MongoDB, routing structures in Express, frontend
+                  rendering in React, and backend logics inside Node runtime systems.
+                </p>
+                <div class="course-skills">
+                  <span>MongoDB</span>
+                  <span>Express</span>
+                  <span>React</span>
+                  <span>Node.js</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 18 (Fullstack) -->
+          <div class="col-lg-4 col-md-6 course-card-container" data-category="fullstack">
+            <div class="course-card">
+              <div class="course-image">
+                <img src="assets/img/courses-img/ikaisoft-data-science.png" alt="Next.js Full Stack Bootcamp">
+                <span class="status live">Upcoming</span>
+              </div>
+              <div class="course-body">
+                <h3>Next.js Full Stack</h3>
+                <div class="course-meta">
+                  <span>📅 Starts : <strong>10 Sep 2026</strong></span>
+                  <span>⏱ 8 Weeks</span>
+                  <span class="level">Intermediate</span>
+                </div>
+                <p>
+                  Create production-level serverless web architectures. Learn routing in Next.js, static site
+                  optimization,
+                  Prisma ORM integrations, and secure PostgreSQL schema design.
+                </p>
+                <div class="course-skills">
+                  <span>Next.js</span>
+                  <span>TypeScript</span>
+                  <span>PostgreSQL</span>
+                  <span>Prisma</span>
+                </div>
+                <a href="registration-form.html" class="view-btn">View Details →</a>
+              </div>
+            </div>
           </div>
 
         </div>
+
+        <!-- Discover More Button -->
+        <div class="discover-more-container" id="discover-more-container" data-aos="fade-up">
+          <button class="discover-more-btn" id="discover-more-btn">
+            Discover More
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+
 
       </div>
 
     </div>
-
-    <!-- what we offer
-    <div class="multicolumn section-padding">
-      <div class="media media-bg">
-        <img src="assets/img/contact/contact-bg.jpg" width="1920" height="883" loading="lazy" alt="Background image" />
-      </div>
-      <div class="container">
-        <div class="multicolumn-header section-headings">
-          <div class="subheading text-20 subheading-bg" data-aos="fade-up">
-            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
-              fill="none">
-              <g clip-path="url(#clip0_9088_4143)">
-                <path
-                  d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                  fill="CurrentColor" />
-              </g>
-              <defs>
-                <clipPath>
-                  <rect width="14" height="14" fill="CurrentColor" />
-                </clipPath>
-              </defs>
-            </svg>
-            <span>Who This Is For</span>
-            <svg class="icon icon-14" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
-              fill="none">
-              <g clip-path="url(#clip0_9088_4143)">
-                <path
-                  d="M8.71401 5.28599C11.7514 5.4205 14 5.9412 14 7C14 8.0588 11.7514 8.5795 8.71401 8.71401C8.5795 11.7514 8.0588 14 7 14C5.9412 14 5.4205 11.7514 5.28599 8.71401C2.2486 8.5795 -1.33117e-07 8.0588 0 7C4.62818e-08 5.94119 2.2486 5.4205 5.28599 5.28599C5.4205 2.2486 5.9412 0 7 0C8.0588 0 8.5795 2.2486 8.71401 5.28599Z"
-                  fill="CurrentColor" />
-              </g>
-              <defs>
-                <clipPath>
-                  <rect width="14" height="14" fill="CurrentColor" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <h2 class="heading text-50" data-aos="fade-up">
-            Industry-Oriented Training
-          </h2>
-          <p class="text text-18" data-aos="fade-up" data-aos-delay="100">
-            For College Students & Working Professionals<br>
-            Practical, mentor-led training designed to close the gap between what you've studied and what the industry
-            expects from day one.
-        </div>
-        <div class="service-slider section-content">
-          <div class="row product-grid justify-content-center">
-            <div class="col-xl-4 col-md-6 col-12">
-              <a href="learning.html" class="card-service image-card-service radius18 d-flex justify-content-center"
-                aria-label="Service Card" data-aos="fade-up">
-                <img src="assets/img/service/s3.jpg" alt="service image" width="1000" height="596" loading="lazy" />
-                <div class="card-service-content-absolute">
-                  <div class="card-service-content">
-                    <div class="card-working-process">
-                      <h2 class="heading text-24 fw-500">
-                        College Students
-                      </h2>
-                      <div class="card-icon-text card-icon-text-horizontal">
-                        <div class="content">
-                          <p class="text text-16">
-                            Placement-focused training aligned to your final-year and pre-final-year timeline.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-4 col-md-6 col-12">
-              <a href="learning.html" class="card-service image-card-service radius18 d-flex justify-content-center"
-                aria-label="Service Card" data-aos="fade-up">
-                <img src="assets/img/service/s4.jpg" alt="service image" width="1000" height="596" loading="lazy" />
-                <div class="card-service-content-absolute">
-                  <div class="card-service-content">
-                    <div class="card-working-process">
-                      <h2 class="heading text-24 fw-500">Working Professionals </h2>
-                      <div class="card-icon-text card-icon-text-horizontal">
-                        <div class="content">
-                          <p class="text text-16">
-                            Flexible-schedule upskilling and certification to support a role change or promotion.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-4 col-md-6 col-12">
-              <a href="learning.html" class="card-service image-card-service radius18 d-flex justify-content-center"
-                aria-label="Service Card" data-aos="fade-up">
-                <img src="assets/img/service/s5.jpg" alt="service image" width="1000" height="596" loading="lazy" />
-                <div class="card-service-content-absolute">
-                  <div class="card-service-content">
-                    <div class="card-working-process">
-                      <h2 class="heading text-24 fw-500">Institutions</h2>
-                      <div class="card-icon-text card-icon-text-horizontal">
-                        <div class="content">
-                          <p class="text text-16">
-                            Batch training, faculty development programs (FDPs), and curriculum partnerships
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div> -->
 
     <!--What Every Program Includes-->
     <div class="our-services section-padding">
@@ -1658,42 +1886,41 @@
   <drawer-opener id="drawer-overlay"></drawer-opener>
   <!-- sidebar nav -->
   <div class="apply-tab">
-        <ul class="list-unstyled">
-            <li><a class="social-link text text-white" href="https://www.instagram.com/ikaisoft/" target="_blank"
-                    rel="noopener noreferrer">
-                    <svg width="26" height="26" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M9.85724 0.671875C10.7951 0.673425 11.2703 0.678392 11.681 0.690617L11.8427 0.6959C12.0296 0.702542 12.2139 0.710875 12.4362 0.721292C13.3229 0.762267 13.9278 0.902542 14.4591 1.10879C15.0083 1.3206 15.4722 1.60671 15.9354 2.06991C16.3979 2.5331 16.6841 2.99837 16.8966 3.54629C17.1021 4.07685 17.2424 4.68241 17.2841 5.56921C17.294 5.79143 17.302 5.97577 17.3086 6.16263L17.3138 6.32437C17.326 6.73499 17.3316 7.21032 17.3333 8.14818L17.334 8.76952C17.3341 8.84543 17.3341 8.92377 17.3341 9.0046L17.334 9.23968L17.3335 9.8611C17.3319 10.7989 17.327 11.2743 17.3147 11.6848L17.3094 11.8466C17.3028 12.0335 17.2945 12.2178 17.2841 12.44C17.2431 13.3268 17.1021 13.9317 16.8966 14.4629C16.6847 15.0123 16.3979 15.4762 15.9354 15.9393C15.4722 16.4018 15.0062 16.6879 14.4591 16.9004C13.9278 17.106 13.3229 17.2463 12.4362 17.2879C12.2139 17.2978 12.0296 17.3059 11.8427 17.3124L11.681 17.3177C11.2703 17.3299 10.7951 17.3354 9.85724 17.3373L9.23582 17.3379C9.1599 17.3379 9.08157 17.3379 9.00074 17.3379H8.76565L8.14424 17.3373C7.2064 17.3358 6.73109 17.3309 6.32046 17.3186L6.15873 17.3134C5.97185 17.3067 5.78752 17.2983 5.5653 17.2879C4.67849 17.247 4.07433 17.106 3.54239 16.9004C2.99377 16.6887 2.52919 16.4018 2.06599 15.9393C1.6028 15.4762 1.31739 15.0102 1.10489 14.4629C0.898636 13.9317 0.759052 13.3268 0.717386 12.44C0.707486 12.2178 0.69941 12.0335 0.692869 11.8466L0.687627 11.6848C0.675435 11.2743 0.669877 10.7989 0.668077 9.8611L0.667969 8.14818C0.669519 7.21032 0.674477 6.73499 0.686702 6.32437L0.691994 6.16263C0.698635 5.97577 0.706969 5.79143 0.717386 5.56921C0.758352 4.68171 0.898636 4.07754 1.10489 3.54629C1.31669 2.99768 1.6028 2.5331 2.06599 2.06991C2.52919 1.60671 2.99447 1.32129 3.54239 1.10879C4.07364 0.902542 4.6778 0.762958 5.5653 0.721292C5.78752 0.7114 5.97185 0.703325 6.15873 0.696783L6.32046 0.691542C6.73109 0.679342 7.2064 0.673783 8.14424 0.671983L9.85724 0.671875ZM9.00074 4.83796C6.6983 4.83796 4.83405 6.70423 4.83405 9.0046C4.83405 11.307 6.70033 13.1713 9.00074 13.1713C11.3032 13.1713 13.1674 11.305 13.1674 9.0046C13.1674 6.70221 11.3011 4.83796 9.00074 4.83796ZM9.00074 6.50462C10.3815 6.50462 11.5007 7.62352 11.5007 9.0046C11.5007 10.3853 10.3818 11.5046 9.00074 11.5046C7.61999 11.5046 6.50072 10.3858 6.50072 9.0046C6.50072 7.62385 7.61957 6.50462 9.00074 6.50462ZM13.3757 3.58796C12.8013 3.58796 12.3341 4.05455 12.3341 4.62892C12.3341 5.20329 12.8007 5.6706 13.3757 5.6706C13.9501 5.6706 14.4174 5.20402 14.4174 4.62892C14.4174 4.05455 13.9493 3.58724 13.3757 3.58796Z"
-                            fill="currentColor" />
-                    </svg>
-                    <span class="visually-hidden">Instagram</span>
-                </a></li>
-            <li>
-                <a class="social-link text text-white"
-                    href="https://www.linkedin.com/in/ikaisoft-consultancy-services-5a995a407/?isSelfProfile=true"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg width="24" height="24" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M3.78357 2.16742C3.78326 2.84601 3.37157 3.45666 2.74262 3.71142C2.11367 3.96619 1.39306 3.81419 0.920587 3.32711C0.448112 2.84001 0.318129 2.11511 0.59192 1.49421C0.86572 0.873305 1.48862 0.480397 2.1669 0.500755C3.0678 0.527797 3.78398 1.26612 3.78357 2.16742ZM3.83357 5.06742H0.500237V15.5007H3.83357V5.06742ZM9.10025 5.06742H5.78357V15.5007H9.06692V10.0257C9.06692 6.97573 13.0419 6.6924 13.0419 10.0257V15.5007H16.3336V8.8924C16.3336 3.75075 10.4503 3.94242 9.06692 6.4674L9.10025 5.06742Z"
-                            fill="currentColor" />
-                    </svg>
-                    <span class="visually-hidden">Linkedin</span>
-                </a>
-            </li>
-            <li>
-                <a class="social-link text text-white" href="https://x.com/IkaiSoft" target="_blank"
-                    rel="noopener noreferrer">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true">
-                        <path
-                            d="M18.901 2H22.582L14.542 11.188L24 22H16.594L10.794 15.42L4.983 22H1.299L9.897 12.256L0.824 2H8.418L13.661 7.985L18.901 2ZM17.609 19.804H19.649L7.309 4.081H5.12L17.609 19.804Z"
-                            fill="currentColor" />
-                    </svg>
-                    <span class="visually-hidden">X</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <ul class="list-unstyled">
+      <li><a class="social-link text text-white" href="https://www.instagram.com/ikaisoft/" target="_blank"
+          rel="noopener noreferrer">
+          <svg width="26" height="26" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M9.85724 0.671875C10.7951 0.673425 11.2703 0.678392 11.681 0.690617L11.8427 0.6959C12.0296 0.702542 12.2139 0.710875 12.4362 0.721292C13.3229 0.762267 13.9278 0.902542 14.4591 1.10879C15.0083 1.3206 15.4722 1.60671 15.9354 2.06991C16.3979 2.5331 16.6841 2.99837 16.8966 3.54629C17.1021 4.07685 17.2424 4.68241 17.2841 5.56921C17.294 5.79143 17.302 5.97577 17.3086 6.16263L17.3138 6.32437C17.326 6.73499 17.3316 7.21032 17.3333 8.14818L17.334 8.76952C17.3341 8.84543 17.3341 8.92377 17.3341 9.0046L17.334 9.23968L17.3335 9.8611C17.3319 10.7989 17.327 11.2743 17.3147 11.6848L17.3094 11.8466C17.3028 12.0335 17.2945 12.2178 17.2841 12.44C17.2431 13.3268 17.1021 13.9317 16.8966 14.4629C16.6847 15.0123 16.3979 15.4762 15.9354 15.9393C15.4722 16.4018 15.0062 16.6879 14.4591 16.9004C13.9278 17.106 13.3229 17.2463 12.4362 17.2879C12.2139 17.2978 12.0296 17.3059 11.8427 17.3124L11.681 17.3177C11.2703 17.3299 10.7951 17.3354 9.85724 17.3373L9.23582 17.3379C9.1599 17.3379 9.08157 17.3379 9.00074 17.3379H8.76565L8.14424 17.3373C7.2064 17.3358 6.73109 17.3309 6.32046 17.3186L6.15873 17.3134C5.97185 17.3067 5.78752 17.2983 5.5653 17.2879C4.67849 17.247 4.07433 17.106 3.54239 16.9004C2.99377 16.6887 2.52919 16.4018 2.06599 15.9393C1.6028 15.4762 1.31739 15.0102 1.10489 14.4629C0.898636 13.9317 0.759052 13.3268 0.717386 12.44C0.707486 12.2178 0.69941 12.0335 0.692869 11.8466L0.687627 11.6848C0.675435 11.2743 0.669877 10.7989 0.668077 9.8611L0.667969 8.14818C0.669519 7.21032 0.674477 6.73499 0.686702 6.32437L0.691994 6.16263C0.698635 5.97577 0.706969 5.79143 0.717386 5.56921C0.758352 4.68171 0.898636 4.07754 1.10489 3.54629C1.31669 2.99768 1.6028 2.5331 2.06599 2.06991C2.52919 1.60671 2.99447 1.32129 3.54239 1.10879C4.07364 0.902542 4.6778 0.762958 5.5653 0.721292C5.78752 0.7114 5.97185 0.703325 6.15873 0.696783L6.32046 0.691542C6.73109 0.679342 7.2064 0.673783 8.14424 0.671983L9.85724 0.671875ZM9.00074 4.83796C6.6983 4.83796 4.83405 6.70423 4.83405 9.0046C4.83405 11.307 6.70033 13.1713 9.00074 13.1713C11.3032 13.1713 13.1674 11.305 13.1674 9.0046C13.1674 6.70221 11.3011 4.83796 9.00074 4.83796ZM9.00074 6.50462C10.3815 6.50462 11.5007 7.62352 11.5007 9.0046C11.5007 10.3853 10.3818 11.5046 9.00074 11.5046C7.61999 11.5046 6.50072 10.3858 6.50072 9.0046C6.50072 7.62385 7.61957 6.50462 9.00074 6.50462ZM13.3757 3.58796C12.8013 3.58796 12.3341 4.05455 12.3341 4.62892C12.3341 5.20329 12.8007 5.6706 13.3757 5.6706C13.9501 5.6706 14.4174 5.20402 14.4174 4.62892C14.4174 4.05455 13.9493 3.58724 13.3757 3.58796Z"
+              fill="currentColor" />
+          </svg>
+          <span class="visually-hidden">Instagram</span>
+        </a></li>
+      <li>
+        <a class="social-link text text-white"
+          href="https://www.linkedin.com/in/ikaisoft-consultancy-services-5a995a407/?isSelfProfile=true" target="_blank"
+          rel="noopener noreferrer">
+          <svg width="24" height="24" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M3.78357 2.16742C3.78326 2.84601 3.37157 3.45666 2.74262 3.71142C2.11367 3.96619 1.39306 3.81419 0.920587 3.32711C0.448112 2.84001 0.318129 2.11511 0.59192 1.49421C0.86572 0.873305 1.48862 0.480397 2.1669 0.500755C3.0678 0.527797 3.78398 1.26612 3.78357 2.16742ZM3.83357 5.06742H0.500237V15.5007H3.83357V5.06742ZM9.10025 5.06742H5.78357V15.5007H9.06692V10.0257C9.06692 6.97573 13.0419 6.6924 13.0419 10.0257V15.5007H16.3336V8.8924C16.3336 3.75075 10.4503 3.94242 9.06692 6.4674L9.10025 5.06742Z"
+              fill="currentColor" />
+          </svg>
+          <span class="visually-hidden">Linkedin</span>
+        </a>
+      </li>
+      <li>
+        <a class="social-link text text-white" href="https://x.com/IkaiSoft" target="_blank" rel="noopener noreferrer">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path
+              d="M18.901 2H22.582L14.542 11.188L24 22H16.594L10.794 15.42L4.983 22H1.299L9.897 12.256L0.824 2H8.418L13.661 7.985L18.901 2ZM17.609 19.804H19.649L7.309 4.081H5.12L17.609 19.804Z"
+              fill="currentColor" />
+          </svg>
+          <span class="visually-hidden">X</span>
+        </a>
+      </li>
+    </ul>
+  </div>
   <!-- Scroll to Top Button -->
   <scroll-top>
     <div class="scroll-to-top">
@@ -1709,6 +1936,76 @@
   <script src="api/contactApi.js"></script>
   <script src="assets/js/contact.js"></script>
   <script src="assets/js/admin-modal.js" defer></script>
+
+  <!-- Course Filtering and Pagination Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let currentFilter = "all";
+      let visibleLimit = 6;
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const courseCards = document.querySelectorAll(".course-card-container");
+      const discoverMoreBtn = document.getElementById("discover-more-btn");
+      const discoverMoreContainer = document.getElementById("discover-more-container");
+
+      function updateCoursesDisplay() {
+        let matchedCount = 0;
+
+        courseCards.forEach(card => {
+          const category = card.getAttribute("data-category");
+          const matchesFilter = (currentFilter === "all" || category === currentFilter);
+
+          if (matchesFilter) {
+            matchedCount++;
+            if (matchedCount <= visibleLimit) {
+              card.classList.remove("hidden-filter", "hidden-pagination");
+            } else {
+              card.classList.add("hidden-pagination");
+              card.classList.remove("hidden-filter");
+            }
+          } else {
+            card.classList.add("hidden-filter");
+            card.classList.remove("hidden-pagination");
+          }
+        });
+
+        // Toggle Discover More button
+        if (matchedCount > visibleLimit) {
+          discoverMoreContainer.style.display = "flex";
+        } else {
+          discoverMoreContainer.style.display = "none";
+        }
+      }
+
+      // Tab selection logic
+      filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterButtons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          currentFilter = btn.getAttribute("data-filter");
+          visibleLimit = 6; // Reset page limit
+          updateCoursesDisplay();
+        });
+      });
+
+      // Discover More logic
+      if (discoverMoreBtn) {
+        discoverMoreBtn.addEventListener("click", () => {
+          if (visibleLimit === 6) {
+            visibleLimit = 9;
+          } else if (visibleLimit === 9) {
+            visibleLimit = 999; // Show all remaining
+          }
+          updateCoursesDisplay();
+        });
+      }
+
+      // Initial execution
+      updateCoursesDisplay();
+    });
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.port !== ""

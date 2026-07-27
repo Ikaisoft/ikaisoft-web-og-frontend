@@ -1112,11 +1112,11 @@
 
         <!-- Navigation Tabs -->
         <div class="tabs">
-            <button class="tab active" -tab="overview">Overview</button>
-            <button class="tab" -tab="course-content">Course Content</button>
-            <button class="tab" -tab="projects">Projects</button>
-            <button class="tab" -tab="career">Career Benefits</button>
-            <button class="tab" -tab="faqs">FAQs</button>
+            <button class="tab active" data-tab="overview">Overview</button>
+            <button class="tab" data-tab="course-content">Course Content</button>
+            <button class="tab" data-tab="projects">Projects</button>
+            <button class="tab" data-tab="career">Career Benefits</button>
+            <button class="tab" data-tab="faqs">FAQs</button>
         </div>
 
         <!-- Main Content -->
@@ -1195,15 +1195,16 @@
                                     <span class="toggle-icon">+</span>
                                 </div>
                                 <div class="module-content">
-                                    <p>Introduction to MCP
+                                    <ul>
+                                        <li>>Introduction to MCP</li>
                                         <li>AI Tool Calling</li>
                                         <li>Connecting External APIs</li>
                                         <li>Context Management</li>
                                         <li>Building AI Tool Integrations</li>
                                         <li>Hands-on Practical Exercises</li>
                                         <li>Mini Project using MCP</li>
-                                        </ul>
-                                    </p>
+                                    </ul>
+
                                 </div>
                             </div>
 
@@ -2217,22 +2218,41 @@
     <script src="../assets/js/contact.js"></script>
     <script src="../assets/js/admin-modal.js" defer></script>
     <script src="../assets/js/modal-script.js" defer></script>
-<script>
-function toggleModule(element) {
-    const content = element.nextElementSibling;
-    const icon = element.querySelector(".toggle-icon");
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll(".tab");
+        const contents = document.querySelectorAll(".tab-content");
 
-    // Toggle active class
-    content.classList.toggle("active");
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
 
-    // Change + to -
-    if (content.classList.contains("active")) {
-        icon.textContent = "−";
-    } else {
-        icon.textContent = "+";
-    }
-}
-</script>
+                tabs.forEach(btn => btn.classList.remove("active"));
+                contents.forEach(content => content.classList.remove("active"));
+
+                tab.classList.add("active");
+
+                const target = tab.dataset.tab;
+                document.getElementById(target).classList.add("active");
+            });
+        });
+
+        // Accordion functionality
+        function toggleModule(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector(".toggle-icon");
+
+            // Toggle active class
+            content.classList.toggle("active");
+
+            // Change + to -
+            if (content.classList.contains("active")) {
+                icon.textContent = "−";
+            } else {
+                icon.textContent = "+";
+            }
+        }
+
+    </script>
 </body>
 
 </html>
