@@ -84,6 +84,8 @@
     padding: 5px 12px;
     border-radius: 20px;
     font-weight: 600;
+    margin-left: auto;
+    float: right;
 }
 
 /* Description */
