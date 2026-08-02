@@ -290,7 +290,6 @@ enrollForm.reset();
     enrollSubmitBtn.setAttribute('aria-label', 'Submit enrollment form');
     closeEnrollModalBtn.setAttribute('aria-label', 'Close enrollment modal');
 
-    console.log('✅ Enrollment Modal initialized successfully!');
 });
 
 /* ============================================
