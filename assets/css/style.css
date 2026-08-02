@@ -9589,3 +9589,193 @@ footer .logo-with-newsletter .social-link:hover {
     padding-block-start: 60px;
   }
 }
+
+.mega-parent{
+    position:relative;
+}
+
+.mega-menu{
+
+    position:absolute;
+    top:100%;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:1200px;
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+
+    gap:35px;
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.12);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+}
+
+.mega-parent:hover .mega-menu{
+
+    opacity:1;
+    visibility:visible;
+}
+
+.mega-column h4{
+
+    color:#0b7c3e;
+
+    margin-bottom:15px;
+
+    font-size:18px;
+
+}
+
+.mega-column a{
+
+    display:block;
+
+    color:#333;
+
+    padding:8px 0;
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.mega-column a:hover{
+
+    color:#0b7c3e;
+
+    padding-left:8px;
+}
+
+.learning-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+.menu-arrow{
+
+    transition:.3s ease;
+
+}
+
+.mega-parent:hover .menu-arrow{
+
+    transform:rotate(180deg);
+
+}
+.mega-parent{
+
+    position:relative;
+
+}
+
+.mega-menu{
+
+    position:absolute;
+
+    top:100%;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:1180px;
+
+    background:#fff;
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:30px;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.12);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+.mega-parent:hover>.mega-menu{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+@media (max-width:991px){
+
+.mega-menu{
+
+    position:static;
+
+    width:100%;
+
+    display:none;
+
+    grid-template-columns:1fr;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    box-shadow:none;
+
+    border-radius:12px;
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:none;
+
+    background:#f8f8f8;
+
+}
+
+.mega-column{
+
+    margin-bottom:20px;
+
+}
+
+.mega-column h4{
+
+    font-size:17px;
+
+    margin-bottom:10px;
+
+}
+
+.mega-column a{
+
+    padding:8px 0;
+
+}
+
+}
