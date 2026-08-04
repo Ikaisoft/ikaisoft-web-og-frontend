@@ -211,8 +211,8 @@
     }
 
     function renderCertificate(data) {
-      const qrUrl = data.qrCodeUrl || `${API_BASE}/certificate/${encodeURIComponent(data.certificateNumber)}/qr`;
-      const downloadUrl = data.pdfUrl || `${API_BASE}/certificates/public/${encodeURIComponent(data.certificateNumber)}/download`;
+      const qrUrl = data.qrCodeUrl || `${API_BASE}/api/certificate/${encodeURIComponent(data.certificateNumber)}/qr`;
+      const downloadUrl = data.pdfUrl || `${API_BASE}/api/certificates/public/${encodeURIComponent(data.certificateNumber)}/download`;
       root.innerHTML = `
         <div class="certificate-card">
           <div class="certificate-inner">
@@ -276,10 +276,10 @@
 
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
     const API_BASE = window.location.protocol === 'file:' || isLocalhost
-      ? 'http://localhost:5000/api'
+      ? 'http://localhost:5000'
       : (window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com')
-        ? 'https://ikaisoft-website-backend.onrender.com/api'
-        : `${window.location.origin}/api`;
+        ? 'https://ikaisoft-website-backend.onrender.com'
+        : window.location.origin;
 
     async function fetchCertificate() {
       if (!certificateNumber) {
