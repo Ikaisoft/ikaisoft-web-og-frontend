@@ -255,3 +255,10 @@ export async function downloadCertificatePdf(id) {
   const blob = await res.blob();
   return blob;
 }
+
+export async function regenerateCertificate(id) {
+  const res = await authFetch(`${BASE_URL}/certificates/${id}/regenerate`, {
+    method: "POST",
+  });
+  return await res.json();
+}

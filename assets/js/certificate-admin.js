@@ -146,8 +146,9 @@ function renderCertificates() {
       <td>
         <div class="actions-cell">
           <button class="btn btn-secondary btn-sm preview-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-eye"></i> Preview</button>
-          <button class="btn btn-secondary btn-sm edit-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-edit"></i> Edit</button>
+              <button class="btn btn-secondary btn-sm edit-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-edit"></i> Edit</button>
           <button class="btn btn-secondary btn-sm download-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-download"></i> PDF</button>
+              <button class="btn btn-warning btn-sm regenerate-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-sync"></i> Regenerate</button>
           <button class="btn btn-danger btn-sm delete-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-trash"></i> Delete</button>
         </div>
       </td>`;
@@ -169,16 +170,37 @@ function renderCertificates() {
       const id = btn.getAttribute("data-id");
       try {
         const blob = await adminApi.downloadCertificatePdf(id);
+        const cert = certificates.find((c) => c._id === id) || {};
+        const filename = `${cert.certificateNumber || id}.pdf`;
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `${certificate.certificateNumber || id}.pdf`;
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
       } catch (err) {
         showAlert(err.message || "Failed to download PDF.", "error");
+      }
+    });
+  });
+
+  // Regenerate PDF + QR handler
+  document.querySelectorAll(".regenerate-certificate-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const id = btn.getAttribute("data-id");
+      if (!confirm("Regenerate certificate PDF and QR for this student?")) return;
+      try {
+        const res = await adminApi.regenerateCertificate(id);
+        if (res && res.success) {
+          showAlert("Certificate regenerated successfully.", "success");
+          await loadCertificates();
+        } else {
+          showAlert((res && res.message) || "Failed to regenerate.", "error");
+        }
+      } catch (err) {
+        showAlert(err.message || "Failed to regenerate.", "error");
       }
     });
   });
