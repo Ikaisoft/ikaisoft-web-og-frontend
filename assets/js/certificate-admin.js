@@ -169,10 +169,12 @@ function renderCertificates() {
       const id = btn.getAttribute("data-id");
       try {
         const blob = await adminApi.downloadCertificatePdf(id);
+        const cert = certificates.find((c) => c._id === id) || {};
+        const filename = `${cert.certificateNumber || id}.pdf`;
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `${certificate.certificateNumber || id}.pdf`;
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         a.remove();
@@ -319,7 +321,10 @@ function renderCertificatePreviewHtml(certificate) {
   const certificateNumber = escapeHTML(certificate.certificateNumber || "CERT-0000");
   const issuedDate = formatCertificateDate(certificate.issuedDate || certificate.completionDate || certificate.createdAt);
   const verifyUrl = escapeHTML(`${window.location.origin}/verify/${certificate.certificateNumber}`);
-  const qrImage = certificate.qrCodeUrl ? `<img src="${certificate.qrCodeUrl}" alt="QR Code" style="width:140px;height:140px;object-fit:contain;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,0.12);"/>` : "";
+  const qrSrc = certificate.qrCodeUrl
+    ? certificate.qrCodeUrl
+    : `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(verifyUrl)}`;
+  const qrImage = `<img src="${qrSrc}" alt="QR Code" style="width:140px;height:140px;object-fit:contain;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,0.12);"/>`;
 
   return `
     <div style="width:100%;min-height:560px;background:#f6fbf7;padding:28px;display:flex;justify-content:center;align-items:center;">
