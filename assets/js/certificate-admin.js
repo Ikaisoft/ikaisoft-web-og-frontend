@@ -169,12 +169,10 @@ function renderCertificates() {
       const id = btn.getAttribute("data-id");
       try {
         const blob = await adminApi.downloadCertificatePdf(id);
-        const cert = certificates.find((c) => c._id === id) || {};
-        const filename = `${cert.certificateNumber || id}.pdf`;
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = filename;
+        a.download = `${certificate.certificateNumber || id}.pdf`;
         document.body.appendChild(a);
         a.click();
         a.remove();
