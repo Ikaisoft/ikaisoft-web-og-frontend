@@ -5,11 +5,14 @@ const BASE_URL = window.location.hostname === "localhost" || window.location.hos
 // Helper for authenticated fetch requests
 async function authFetch(url, options = {}) {
   const token = localStorage.getItem("adminToken");
-  
+
   const headers = {
-    "Content-Type": "application/json",
-    ...options.headers,
+    ...(options.headers || {}),
   };
+
+  if (!(options.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
@@ -165,4 +168,80 @@ export async function deleteCourse(id) {
     method: "DELETE",
   });
   return await res.json();
+}
+
+// Certificate & College APIs
+export async function getColleges() {
+  const res = await authFetch(`${BASE_URL}/colleges`);
+  return await res.json();
+}
+
+export async function createCollege(formData) {
+  const res = await authFetch(`${BASE_URL}/colleges`, {
+    method: "POST",
+    body: formData,
+  });
+  return await res.json();
+}
+
+export async function updateCollege(id, formData) {
+  const res = await authFetch(`${BASE_URL}/colleges/${id}`, {
+    method: "PUT",
+    body: formData,
+  });
+  return await res.json();
+}
+
+export async function deleteCollege(id) {
+  const res = await authFetch(`${BASE_URL}/colleges/${id}`, {
+    method: "DELETE",
+  });
+  return await res.json();
+}
+
+export async function getCertificates(params = {}) {
+  const query = new URLSearchParams(params).toString();
+  const res = await authFetch(`${BASE_URL}/certificates${query ? `?${query}` : ""}`);
+  return await res.json();
+}
+
+export async function createCertificate(payload) {
+  const res = await authFetch(`${BASE_URL}/certificates`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  return await res.json();
+}
+
+export async function updateCertificate(id, payload) {
+  const res = await authFetch(`${BASE_URL}/certificates/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+  return await res.json();
+}
+
+export async function deleteCertificate(id) {
+  const res = await authFetch(`${BASE_URL}/certificates/${id}`, {
+    method: "DELETE",
+  });
+  return await res.json();
+}
+
+export async function importCertificates(formData) {
+  const res = await authFetch(`${BASE_URL}/certificates/import`, {
+    method: "POST",
+    body: formData,
+  });
+  return await res.json();
+}
+
+export async function exportCertificates() {
+  window.location.href = `${BASE_URL}/certificates/export`;
+  return { success: true };
+}
+
+export async function downloadAllCertificatesZip() {
+  window.location.href = `${BASE_URL}/certificates/download-all`;
+  return { success: true };
 }
