@@ -245,3 +245,13 @@ export async function downloadAllCertificatesZip() {
   window.location.href = `${BASE_URL}/certificates/download-all`;
   return { success: true };
 }
+
+export async function downloadCertificatePdf(id) {
+  const res = await authFetch(`${BASE_URL}/certificates/${id}/download`);
+  if (!res.ok) {
+    const json = await res.json().catch(() => ({}));
+    throw new Error(json.message || 'Failed to download PDF');
+  }
+  const blob = await res.blob();
+  return blob;
+}

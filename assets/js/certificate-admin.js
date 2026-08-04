@@ -147,7 +147,7 @@ function renderCertificates() {
         <div class="actions-cell">
           <button class="btn btn-secondary btn-sm preview-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-eye"></i> Preview</button>
           <button class="btn btn-secondary btn-sm edit-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-edit"></i> Edit</button>
-          <a class="btn btn-secondary btn-sm" href="${certificate.pdfUrl || "#"}" target="_blank" rel="noreferrer"><i class="fa-solid fa-download"></i> PDF</a>
+          <button class="btn btn-secondary btn-sm download-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-download"></i> PDF</button>
           <button class="btn btn-danger btn-sm delete-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-trash"></i> Delete</button>
         </div>
       </td>`;
@@ -162,6 +162,25 @@ function renderCertificates() {
   });
   document.querySelectorAll(".delete-certificate-btn").forEach((btn) => {
     btn.addEventListener("click", () => deleteCertificate(btn.getAttribute("data-id")));
+  });
+  // Download PDF (authenticated) handler
+  document.querySelectorAll(".download-certificate-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const id = btn.getAttribute("data-id");
+      try {
+        const blob = await adminApi.downloadCertificatePdf(id);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${certificate.certificateNumber || id}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        showAlert(err.message || "Failed to download PDF.", "error");
+      }
+    });
   });
 }
 
@@ -368,9 +387,14 @@ async function previewCertificate(id) {
   holder.innerHTML = renderCertificatePreviewHtml(certificate);
   document.getElementById("certificate-preview-title").textContent = `Certificate Preview - ${certificate.certificateNumber || "Preview"}`;
   document.getElementById("certificate-preview-modal").style.display = "flex";
-  document.getElementById("certificate-print-btn").onclick = () => {
-    if (certificate.pdfUrl) {
-      window.open(certificate.pdfUrl, "_blank");
+  document.getElementById("certificate-print-btn").onclick = async () => {
+    try {
+      const blob = await adminApi.downloadCertificatePdf(certificate._id);
+      const url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    } catch (err) {
+      showAlert(err.message || "Failed to open PDF.", "error");
     }
   };
 }
