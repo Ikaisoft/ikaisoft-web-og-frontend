@@ -158,11 +158,15 @@ function renderCertificates() {
   document.querySelectorAll(".edit-certificate-btn").forEach((btn) => {
     btn.addEventListener("click", () => openEditCertificateModal(btn.getAttribute("data-id")));
   });
+  const previewBaseUrl = window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com'
+    ? 'https://ikaisoft.com'
+    : window.location.origin;
+
   document.querySelectorAll(".preview-certificate-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const certificate = certificates.find((item) => item._id === btn.getAttribute("data-id"));
       if (!certificate) return;
-      window.open(`/certificate.html?id=${encodeURIComponent(certificate.certificateNumber)}`, "_blank");
+      window.open(`${previewBaseUrl}/certificate.html?id=${encodeURIComponent(certificate.certificateNumber)}`, "_blank");
     });
   });
   document.querySelectorAll(".delete-certificate-btn").forEach((btn) => {
@@ -344,7 +348,7 @@ function renderCertificatePreviewHtml(certificate) {
   const collegeName = escapeHTML(certificate.college || "College Name");
   const certificateNumber = escapeHTML(certificate.certificateNumber || "CERT-0000");
   const issuedDate = formatCertificateDate(certificate.issuedDate || certificate.completionDate || certificate.createdAt);
-  const verifyUrl = escapeHTML(`${window.location.origin}/verify/${certificate.certificateNumber}`);
+  const verifyUrl = escapeHTML(`${window.location.origin}/certificate.html?id=${certificate.certificateNumber}`);
   const qrSrc = certificate.qrCodeUrl
     ? certificate.qrCodeUrl
     : `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(verifyUrl)}`;

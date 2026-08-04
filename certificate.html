@@ -211,7 +211,7 @@
     }
 
     function renderCertificate(data) {
-      const qrUrl = data.qrCodeUrl || '';
+      const qrUrl = data.qrCodeUrl || `${API_BASE}/api/certificate/${encodeURIComponent(data.certificateNumber)}/qr`;
       const downloadUrl = data.pdfUrl || '';
       root.innerHTML = `
         <div class="certificate-card">
