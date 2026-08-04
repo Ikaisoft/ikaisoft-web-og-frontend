@@ -288,16 +288,90 @@ async function deleteCertificate(id) {
   }
 }
 
+function formatCertificateDate(value) {
+  const date = value ? new Date(value) : new Date();
+  return date.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
+
+function renderCertificatePreviewHtml(certificate) {
+  const studentName = escapeHTML(certificate.studentName || "Student Name");
+  const courseName = escapeHTML(certificate.courseName || "Course Name");
+  const collegeName = escapeHTML(certificate.college || "College Name");
+  const certificateNumber = escapeHTML(certificate.certificateNumber || "CERT-0000");
+  const issuedDate = formatCertificateDate(certificate.issuedDate || certificate.completionDate || certificate.createdAt);
+  const verifyUrl = escapeHTML(`${window.location.origin}/verify/${certificate.certificateNumber}`);
+  const qrImage = certificate.qrCodeUrl ? `<img src="${certificate.qrCodeUrl}" alt="QR Code" style="width:140px;height:140px;object-fit:contain;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,0.12);"/>` : "";
+
+  return `
+    <div style="width:100%;min-height:560px;background:#f6fbf7;padding:28px;display:flex;justify-content:center;align-items:center;">
+      <div style="width:100%;max-width:900px;background:white;border:12px solid #144a21;border-radius:24px;box-shadow:0 30px 70px rgba(0,0,0,0.12);overflow:hidden;font-family:'Poppins',sans-serif;color:#0f2a18;">
+        <div style="padding:32px 40px 24px;border-bottom:8px solid #144a21;background:linear-gradient(180deg,rgba(13,60,29,0.95),rgba(20,74,33,0.96));color:white;position:relative;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;">
+            <div>
+              <div style="font-size:20px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:0.85;">IKAISOFT</div>
+              <div style="font-size:12px;letter-spacing:0.35em;opacity:0.75;margin-top:6px;">CONSULTANCY SERVICES</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:32px;font-weight:800;letter-spacing:0.18em;">CERTIFICATE</div>
+              <div style="font-size:16px;opacity:0.9;margin-top:8px;">OF COMPLETION</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:40px 44px 32px;">
+          <p style="margin:0;font-size:16px;opacity:0.75;">This is to certify that</p>
+          <h1 style="margin:18px 0 14px;font-size:46px;font-weight:700;line-height:1.05;color:#144a21;letter-spacing:0.02em;">${studentName}</h1>
+          <p style="margin:0;font-size:18px;opacity:0.8;">has successfully completed the</p>
+          <div style="margin:22px 0 30px;padding:28px;background:#eef7ea;border-left:6px solid #1b4f23;border-radius:18px;">
+            <p style="margin:0;font-size:18px;opacity:0.85;">${courseName}</p>
+            <p style="margin:8px 0 0;font-size:14px;opacity:0.65;">conducted by <strong>${collegeName}</strong></p>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:220px;">
+              <p style="margin:0;font-size:14px;opacity:0.75;text-transform:uppercase;letter-spacing:0.12em;">Date of Completion</p>
+              <p style="margin:8px 0 0;font-size:18px;font-weight:600;color:#144a21;">${issuedDate}</p>
+            </div>
+            <div style="flex:1;min-width:220px;">
+              <p style="margin:0;font-size:14px;opacity:0.75;text-transform:uppercase;letter-spacing:0.12em;">Certificate ID</p>
+              <p style="margin:8px 0 0;font-size:18px;font-weight:600;color:#144a21;">${certificateNumber}</p>
+            </div>
+            <div style="min-width:170px;text-align:center;">${qrImage}</div>
+          </div>
+        </div>
+
+        <div style="padding:0 40px 42px;border-top:1px solid rgba(20,74,33,0.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;">
+          <div style="flex:1;min-width:240px;">
+            <div style="margin-bottom:16px;font-size:14px;opacity:0.75;text-transform:uppercase;letter-spacing:0.12em;">Verified Student</div>
+            <div style="font-size:16px;line-height:1.5;opacity:0.85;">${studentName} successfully completed the ${courseName} course under ${collegeName} and is eligible for certification.</div>
+          </div>
+          <div style="flex:1;min-width:240px;text-align:right;">
+            <div style="font-size:14px;opacity:0.75;text-transform:uppercase;letter-spacing:0.12em;">Authorized Signature</div>
+            <div style="margin-top:20px;font-size:22px;font-family:'Dancing Script',cursive;color:#0f2a18;">Ikaisoft</div>
+          </div>
+        </div>
+
+        <div style="background:#ecf7ee;border-top:1px solid #d7ecd2;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+          <div style="font-size:13px;opacity:0.75;line-height:1.5;">Scan the QR code to verify this certificate or visit <strong>${verifyUrl}</strong></div>
+          <div style="font-size:12px;opacity:0.65;">Powered by Ikaisoft Consultancy Services</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 async function previewCertificate(id) {
   const certificate = certificates.find((item) => item._id === id);
   if (!certificate) return;
   const holder = document.getElementById("certificate-preview-frame-holder");
   if (!holder) return;
-  holder.innerHTML = `<iframe src="${certificate.pdfUrl || "#"}" title="Certificate Preview" style="width:100%;height:560px;border:none;background:#fff"></iframe>`;
+  holder.innerHTML = renderCertificatePreviewHtml(certificate);
   document.getElementById("certificate-preview-title").textContent = `Certificate Preview - ${certificate.certificateNumber || "Preview"}`;
   document.getElementById("certificate-preview-modal").style.display = "flex";
   document.getElementById("certificate-print-btn").onclick = () => {
-    window.open(certificate.pdfUrl, "_blank");
+    if (certificate.pdfUrl) {
+      window.open(certificate.pdfUrl, "_blank");
+    }
   };
 }
 
