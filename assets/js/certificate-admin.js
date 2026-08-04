@@ -159,7 +159,11 @@ function renderCertificates() {
     btn.addEventListener("click", () => openEditCertificateModal(btn.getAttribute("data-id")));
   });
   document.querySelectorAll(".preview-certificate-btn").forEach((btn) => {
-    btn.addEventListener("click", () => previewCertificate(btn.getAttribute("data-id")));
+    btn.addEventListener("click", () => {
+      const certificate = certificates.find((item) => item._id === btn.getAttribute("data-id"));
+      if (!certificate) return;
+      window.open(`/certificate.html?id=${encodeURIComponent(certificate.certificateNumber)}`, "_blank");
+    });
   });
   document.querySelectorAll(".delete-certificate-btn").forEach((btn) => {
     btn.addEventListener("click", () => deleteCertificate(btn.getAttribute("data-id")));
