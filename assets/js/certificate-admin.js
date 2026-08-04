@@ -160,7 +160,9 @@ function renderCertificates() {
   });
   const previewBaseUrl = window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com'
     ? 'https://ikaisoft.com'
-    : window.location.origin;
+    : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:5000'
+      : window.location.origin;
 
   document.querySelectorAll(".preview-certificate-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -348,7 +350,12 @@ function renderCertificatePreviewHtml(certificate) {
   const collegeName = escapeHTML(certificate.college || "College Name");
   const certificateNumber = escapeHTML(certificate.certificateNumber || "CERT-0000");
   const issuedDate = formatCertificateDate(certificate.issuedDate || certificate.completionDate || certificate.createdAt);
-  const verifyUrl = escapeHTML(`${window.location.origin}/certificate.html?id=${certificate.certificateNumber}`);
+  const previewBaseUrl = window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com'
+    ? 'https://ikaisoft.com'
+    : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:5000'
+      : window.location.origin;
+  const verifyUrl = escapeHTML(`${previewBaseUrl}/certificate.html?id=${certificate.certificateNumber}`);
   const qrSrc = certificate.qrCodeUrl
     ? certificate.qrCodeUrl
     : `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(verifyUrl)}`;

@@ -211,7 +211,7 @@
     }
 
     function renderCertificate(data) {
-      const qrUrl = data.qrCodeUrl || `${API_BASE}/api/certificate/${encodeURIComponent(data.certificateNumber)}/qr`;
+      const qrUrl = `${API_BASE}/api/certificate/${encodeURIComponent(data.certificateNumber)}/qr`;
       const downloadUrl = data.pdfUrl || '';
       root.innerHTML = `
         <div class="certificate-card">
@@ -274,9 +274,13 @@
       });
     }
 
-    const API_BASE = window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com'
-      ? 'https://api.ikaisoft.com'
-      : window.location.origin;
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
+    const isStaticRoot = window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com';
+    const API_BASE = window.location.protocol === 'file:' || isLocalhost
+      ? 'http://localhost:5000'
+      : isStaticRoot
+        ? 'https://api.ikaisoft.com'
+        : window.location.origin;
 
     async function fetchCertificate() {
       if (!certificateNumber) {
