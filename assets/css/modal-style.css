@@ -72,6 +72,7 @@
 .enroll-box::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.05);
     border-radius: 10px;
+    margin: 20px 0;
 }
 
 .enroll-box::-webkit-scrollbar-thumb {
