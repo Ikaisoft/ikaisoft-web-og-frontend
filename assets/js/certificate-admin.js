@@ -424,23 +424,25 @@ async function previewCertificate(id) {
 
 async function exportCertificatesExcel() {
   try {
-    const res = await adminApi.exportCertificates();
-    if (res.success === false) {
-      showAlert(res.message || "Export failed.", "error");
-    }
+    await adminApi.exportCertificates();
   } catch (error) {
-    showAlert("Unable to export certificates.", "error");
+    showAlert(error.message || "Unable to export certificates.", "error");
+  }
+}
+
+async function exportCertificatesPdf() {
+  try {
+    await adminApi.exportCertificatesPdf();
+  } catch (error) {
+    showAlert(error.message || "Unable to export certificates PDF.", "error");
   }
 }
 
 async function downloadAllCertificatesZip() {
   try {
-    const res = await adminApi.downloadAllCertificatesZip();
-    if (res.success === false) {
-      showAlert(res.message || "ZIP download failed.", "error");
-    }
+    await adminApi.downloadAllCertificatesZip();
   } catch (error) {
-    showAlert("Unable to download ZIP.", "error");
+    showAlert(error.message || "Unable to download ZIP.", "error");
   }
 }
 
@@ -471,6 +473,7 @@ window.closeCertificatePreviewModal = function () {
 };
 
 window.exportCertificatesExcel = exportCertificatesExcel;
+window.exportCertificatesPdf = exportCertificatesPdf;
 window.downloadAllCertificatesZip = downloadAllCertificatesZip;
 
 function openEditCollegeModal(id) {
