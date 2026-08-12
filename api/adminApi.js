@@ -236,14 +236,35 @@ export async function importCertificates(formData) {
   return await res.json();
 }
 
-export async function exportCertificates() {
-  window.location.href = `${BASE_URL}/certificates/export`;
+async function downloadFile(url, filename) {
+  const res = await authFetch(url);
+  if (!res.ok) {
+    const json = await res.json().catch(() => ({}));
+    throw new Error(json.message || `Failed to download ${filename}`);
+  }
+
+  const blob = await res.blob();
+  const objectUrl = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = objectUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(objectUrl);
   return { success: true };
 }
 
+export async function exportCertificates() {
+  return await downloadFile(`${BASE_URL}/certificates/export`, "certificates.xlsx");
+}
+
+export async function exportCertificatesPdf() {
+  return await downloadFile(`${BASE_URL}/certificates/export/pdf`, "certificates-export.pdf");
+}
+
 export async function downloadAllCertificatesZip() {
-  window.location.href = `${BASE_URL}/certificates/download-all`;
-  return { success: true };
+  return await downloadFile(`${BASE_URL}/certificates/download-all`, "all-certificates.zip");
 }
 
 export async function downloadCertificatePdf(id) {
