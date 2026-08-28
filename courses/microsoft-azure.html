@@ -442,6 +442,432 @@
                 }
             }
         }
+
+        /* =========================================
+   RELATED COURSES
+========================================= */
+
+        .related-courses-section {
+            position: relative;
+            width: 100%;
+        }
+
+
+        /* Title */
+
+        .related-courses-title {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================================
+   MAIN WRAPPER
+========================================= */
+
+        .related-course-wrapper {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            position: relative;
+
+        }
+
+
+        /* =========================================
+   SLIDER
+========================================= */
+
+        .related-course-slider {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 500px;
+
+            min-height: 360px;
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================================
+   COURSE SLIDES
+========================================= */
+
+        .related-course-slide {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateX(40px);
+
+            transition:
+                opacity 0.35s ease,
+                transform 0.35s ease,
+                visibility 0.35s ease;
+
+        }
+
+
+        /* Active card */
+
+        .related-course-slide.active {
+
+            position: relative;
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateX(0);
+
+            z-index: 2;
+
+        }
+
+
+        /* =========================================
+   NAVIGATION BUTTONS
+========================================= */
+
+        .related-nav-btn {
+
+            flex: 0 0 auto;
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 50%;
+
+            border: 1px solid #229920;
+
+            background: #ffffff;
+
+            color: #229920;
+
+            font-size: 22px;
+
+            font-weight: 600;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+            z-index: 10;
+
+        }
+
+
+        /* Hover */
+
+        .related-nav-btn:hover {
+
+            background: #229920;
+
+            color: #ffffff;
+
+            transform: scale(1.08);
+
+            box-shadow:
+                0 5px 15px rgba(34, 153, 32, 0.25);
+
+        }
+
+
+        /* Disabled */
+
+        .related-nav-btn:disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+
+            background: #f5f5f5;
+
+            color: #999999;
+
+            border-color: #dddddd;
+
+            transform: none;
+
+            box-shadow: none;
+
+        }
+
+
+        /* =========================================
+   COURSE CARD
+========================================= */
+
+        .related-course-slide .course-card {
+
+            width: 100%;
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.07);
+
+        }
+
+
+        /* =========================================
+   COURSE IMAGE
+========================================= */
+
+        .related-course-slide .course-image {
+
+            height: 140px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eaf7ea;
+
+        }
+
+
+        .related-course-slide .course-image img {
+
+            width: 120px;
+
+            height: 120px;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+   COURSE BODY
+========================================= */
+
+        .related-course-slide .course-body {
+
+            padding: 22px;
+
+        }
+
+
+        .related-course-slide .course-body h3 {
+
+            margin: 0 0 10px;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+        }
+
+
+        /* =========================================
+   META
+========================================= */
+
+        .related-course-slide .course-meta {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .related-course-slide .course-meta span {
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #f3f4f6;
+
+            color: #666666;
+
+            font-size: 12px;
+
+        }
+
+
+        .related-course-slide .course-meta .level {
+
+            background: #e8f5e9;
+
+            color: #229920;
+
+        }
+
+
+        /* =========================================
+   DESCRIPTION
+========================================= */
+
+        .related-course-slide .course-body p {
+
+            color: #666666;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        /* =========================================
+   VIEW BUTTON
+========================================= */
+
+        .related-course-slide .view-btn {
+
+            display: inline-block;
+
+            padding: 9px 16px;
+
+            border-radius: 7px;
+
+            background: #229920;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .related-course-slide .view-btn:hover {
+
+            background: #197817;
+
+            transform: translateX(3px);
+
+        }
+
+
+        /* =========================================
+   COUNTER
+========================================= */
+
+        .related-course-counter {
+
+            width: 100%;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+
+            color: #777777;
+
+        }
+
+
+        .related-course-counter #relatedCurrent {
+
+            color: #229920;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================
+   MOBILE
+========================================= */
+
+        @media (max-width: 768px) {
+
+            .related-course-wrapper {
+
+                gap: 8px;
+
+            }
+
+
+            .related-nav-btn {
+
+                width: 38px;
+
+                height: 38px;
+
+                font-size: 18px;
+
+            }
+
+
+            .related-course-slider {
+
+                min-height: 380px;
+
+            }
+
+
+            .related-course-slide .course-body {
+
+                padding: 17px;
+
+            }
+
+
+            .related-course-slide .course-body h3 {
+
+                font-size: 18px;
+
+            }
+
+        }
     </style>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/learning.css">
@@ -1400,33 +1826,238 @@
                         </section>
 
                         <!--Related Courses -->
-                        <section class="section">
-                            <h3 class="section-title" style="margin-bottom: 20px;">Related Courses</h3>
-<div class="courses-scroll" id="courses-grid">
-                            <div class="row gy-4" id="courses-grid" style="margin-top: 10px;">
-                                <!-- Card 1 (Ai) -->
-                                <div class="col-lg-12 col-md-12 course-card-container" data-category="ai">
-                                    <div class="course-card">
-                                        <div class="course-image">
-                                            <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-devops-t.png"
-                                                height="120px" width="100px" alt="Big Data & Data Engineering">
-                                        </div>
-                                        <div class="course-body">
-                                            <h3>DevOps</h3>
-                                            <div class="course-meta">
-                                                <span>⏱ 8 Weeks</span>
-                                                <span class="level">Intermediate</span>
+                        <section class="section related-courses-section">
+
+                            <h3 class="section-title related-courses-title">
+                                Related Courses
+                            </h3>
+
+                            <div class="related-course-wrapper">
+
+                                <!-- Previous Button -->
+                                <button type="button" class="related-nav-btn related-prev" id="relatedPrev"
+                                    aria-label="Previous course">
+
+                                    <span>←</span>
+
+                                </button>
+
+
+                                <!-- Cards -->
+                                <div class="related-course-slider" id="relatedCourseSlider">
+
+
+                                    <!-- COURSE 1 -->
+                                    <div class="related-course-slide active">
+
+                                        <div class="course-card">
+
+                                            <div class="course-image">
+                                                <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-NLP-t.png"
+                                                    alt="Natural Language Processing">
+
                                             </div>
 
-                                            <div class="course-skills">
-                                                <span>Docker</span>
-                                                <span>Jenkins</span>
+                                            <div class="course-body">
+
+                                                <h3>
+                                                    Natural Language Processing (NLP)
+                                                </h3>
+
+                                                <div class="course-meta">
+
+                                                    <span>
+                                                        ⏱ 8 Weeks
+                                                    </span>
+
+                                                    <span class="level">
+                                                        Intermediate
+                                                    </span>
+
+                                                </div>
+
+                                                <p>
+                                                    Learn Natural Language Processing,
+                                                    text analysis and modern NLP techniques.
+                                                </p>
+
+                                                <a href="nlp.html" class="view-btn">
+
+                                                    View Details →
+
+                                                </a>
+
                                             </div>
-                                            <a href="devops.html" class="view-btn">View Details →</a>
+
                                         </div>
+
                                     </div>
-                                </div>                                
+
+
+                                    <!-- COURSE 2 -->
+                                    <div class="related-course-slide">
+
+                                        <div class="course-card">
+
+                                            <div class="course-image">
+
+                                                <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-data-science-t.png"
+                                                    alt="Data Science">
+
+                                            </div>
+
+                                            <div class="course-body">
+
+                                                <h3>
+                                                    Data Science
+                                                </h3>
+
+                                                <div class="course-meta">
+
+                                                    <span>
+                                                        ⏱ 6 Months
+                                                    </span>
+
+                                                    <span class="level">
+                                                        Beginner
+                                                    </span>
+
+                                                </div>
+
+                                                <p>
+                                                    Learn Python, statistics,
+                                                    machine learning and data science.
+                                                </p>
+
+                                                <a href="data-science.html" class="view-btn">
+
+                                                    View Details →
+
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- COURSE 3 -->
+                                    <div class="related-course-slide">
+
+                                        <div class="course-card">
+
+                                            <div class="course-image">
+
+                                                <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-data-analytics-t.png"
+                                                    alt="Data Analytics">
+
+                                            </div>
+
+                                            <div class="course-body">
+
+                                                <h3>
+                                                    Data Analytics
+                                                </h3>
+
+                                                <div class="course-meta">
+
+                                                    <span>
+                                                        ⏱ 3 Months
+                                                    </span>
+
+                                                    <span class="level">
+                                                        Beginner
+                                                    </span>
+
+                                                </div>
+
+                                                <p>
+                                                    Master Excel, SQL, Power BI
+                                                    and business analytics.
+                                                </p>
+
+                                                <a href="data-analytics.html" class="view-btn">
+
+                                                    View Details →
+
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- COURSE 4 -->
+                                    <div class="related-course-slide">
+
+                                        <div class="course-card">
+
+                                            <div class="course-image">
+
+                                                <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-ml-t.png"
+                                                    alt="Machine Learning">
+
+                                            </div>
+
+                                            <div class="course-body">
+
+                                                <h3>
+                                                    Machine Learning
+                                                </h3>
+
+                                                <div class="course-meta">
+
+                                                    <span>
+                                                        ⏱ 4 Months
+                                                    </span>
+
+                                                    <span class="level">
+                                                        Advanced
+                                                    </span>
+
+                                                </div>
+
+                                                <p>
+                                                    Build machine learning models
+                                                    using real-world datasets.
+                                                </p>
+
+                                                <a href="machine-learning.html" class="view-btn">
+
+                                                    View Details →
+
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
+
+
+                                <!-- Next Button -->
+                                <button type="button" class="related-nav-btn related-next" id="relatedNext"
+                                    aria-label="Next course">
+
+                                    <span>→</span>
+
+                                </button>
+
+                            </div>
+
+
+                            <!-- Counter -->
+                            <div class="related-course-counter">
+
+                                <span id="relatedCurrent">1</span>
+                                <span>/</span>
+                                <span id="relatedTotal">4</span>
+
                             </div>
 
                         </section>
@@ -2214,6 +2845,173 @@
             }
         }
 
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const slider =
+                document.getElementById("relatedCourseSlider");
+
+            const prevButton =
+                document.getElementById("relatedPrev");
+
+            const nextButton =
+                document.getElementById("relatedNext");
+
+            const currentNumber =
+                document.getElementById("relatedCurrent");
+
+            const totalNumber =
+                document.getElementById("relatedTotal");
+
+
+            /* Make sure everything exists */
+
+            if (
+                !slider ||
+                !prevButton ||
+                !nextButton ||
+                !currentNumber ||
+                !totalNumber
+            ) {
+
+                console.error(
+                    "Related Courses: required elements not found."
+                );
+
+                return;
+            }
+
+
+            const slides =
+                slider.querySelectorAll(
+                    ".related-course-slide"
+                );
+
+
+            if (!slides.length) {
+
+                console.error(
+                    "Related Courses: no course slides found."
+                );
+
+                return;
+            }
+
+
+            let currentIndex = 0;
+
+
+            /* Total */
+
+            totalNumber.textContent =
+                slides.length;
+
+
+            /* =========================================
+               UPDATE SLIDE
+            ========================================= */
+
+            function updateCourse() {
+
+                slides.forEach(
+                    function (slide, index) {
+
+                        if (index === currentIndex) {
+
+                            slide.classList.add("active");
+
+                        } else {
+
+                            slide.classList.remove("active");
+
+                        }
+
+                    }
+                );
+
+
+                /* Update number */
+
+                currentNumber.textContent =
+                    currentIndex + 1;
+
+
+                /* Disable Previous */
+
+                prevButton.disabled =
+                    currentIndex === 0;
+
+
+                /* Disable Next */
+
+                nextButton.disabled =
+                    currentIndex === slides.length - 1;
+
+            }
+
+
+            /* =========================================
+               NEXT
+            ========================================= */
+
+            nextButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (
+                        currentIndex <
+                        slides.length - 1
+                    ) {
+
+                        currentIndex++;
+
+                        updateCourse();
+
+                    }
+
+                }
+            );
+
+
+            /* =========================================
+               PREVIOUS
+            ========================================= */
+
+            prevButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (currentIndex > 0) {
+
+                        currentIndex--;
+
+                        updateCourse();
+
+                    }
+
+                }
+            );
+
+
+            /* =========================================
+               INITIALIZE
+            ========================================= */
+
+            updateCourse();
+
+        });
     </script>
 </body>
 
