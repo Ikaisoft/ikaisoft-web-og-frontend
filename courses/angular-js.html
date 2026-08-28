@@ -447,427 +447,519 @@
    RELATED COURSES
 ========================================= */
 
-        .related-courses-section {
-            position: relative;
-            width: 100%;
-        }
+.related-courses-section {
+    position: relative;
+    width: 100%;
+}
 
 
-        /* Title */
+/* =========================================
+   TITLE
+========================================= */
 
-        .related-courses-title {
-            text-align: left;
-            margin-bottom: 25px;
-        }
+.related-courses-title {
+    text-align: left;
+    margin-bottom: 25px;
+}
 
 
-        /* =========================================
+/* =========================================
    MAIN WRAPPER
 ========================================= */
 
-        .related-course-wrapper {
+.related-course-wrapper {
+    width: 100%;
 
-            width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 15px;
-
-            position: relative;
-
-        }
+    position: relative;
+}
 
 
-        /* =========================================
-   SLIDER
+/* =========================================
+   COURSE SLIDER
 ========================================= */
 
-        .related-course-slider {
+.related-course-slider {
+    position: relative;
 
-            position: relative;
+    width: 100%;
+    max-width: 500px;
 
-            width: 100%;
+    height: 470px;
 
-            max-width: 500px;
-
-            min-height: 360px;
-
-            overflow: hidden;
-
-        }
+    overflow: hidden;
+}
 
 
-        /* =========================================
+/* =========================================
    COURSE SLIDES
 ========================================= */
 
-        .related-course-slide {
+.related-course-slide {
+    position: absolute;
 
-            position: absolute;
+    inset: 0;
 
-            top: 0;
-            left: 0;
+    width: 100%;
+    height: 100%;
 
-            width: 100%;
+    opacity: 0;
+    visibility: hidden;
 
-            opacity: 0;
+    transform: translateX(40px);
 
-            visibility: hidden;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        visibility 0.35s ease;
 
-            transform: translateX(40px);
-
-            transition:
-                opacity 0.35s ease,
-                transform 0.35s ease,
-                visibility 0.35s ease;
-
-        }
-
-
-        /* Active card */
-
-        .related-course-slide.active {
-
-            position: relative;
-
-            opacity: 1;
-
-            visibility: visible;
-
-            transform: translateX(0);
-
-            z-index: 2;
-
-        }
+    pointer-events: none;
+}
 
 
-        /* =========================================
-   NAVIGATION BUTTONS
+/* =========================================
+   ACTIVE SLIDE
 ========================================= */
 
-        .related-nav-btn {
+.related-course-slide.active {
+    opacity: 1;
+    visibility: visible;
 
-            flex: 0 0 auto;
+    transform: translateX(0);
 
-            width: 44px;
+    z-index: 2;
 
-            height: 44px;
-
-            border-radius: 50%;
-
-            border: 1px solid #229920;
-
-            background: #ffffff;
-
-            color: #229920;
-
-            font-size: 22px;
-
-            font-weight: 600;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            cursor: pointer;
-
-            transition:
-                background 0.25s ease,
-                color 0.25s ease,
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-
-            z-index: 10;
-
-        }
+    pointer-events: auto;
+}
 
 
-        /* Hover */
-
-        .related-nav-btn:hover {
-
-            background: #229920;
-
-            color: #ffffff;
-
-            transform: scale(1.08);
-
-            box-shadow:
-                0 5px 15px rgba(34, 153, 32, 0.25);
-
-        }
-
-
-        /* Disabled */
-
-        .related-nav-btn:disabled {
-
-            opacity: 0.35;
-
-            cursor: not-allowed;
-
-            background: #f5f5f5;
-
-            color: #999999;
-
-            border-color: #dddddd;
-
-            transform: none;
-
-            box-shadow: none;
-
-        }
-
-
-        /* =========================================
+/* =========================================
    COURSE CARD
 ========================================= */
 
-        .related-course-slide .course-card {
+.related-course-slide .course-card {
+    width: 100%;
+    height: 100%;
 
-            width: 100%;
+    display: flex;
+    flex-direction: column;
 
-            background: #ffffff;
+    box-sizing: border-box;
 
-            border: 1px solid #e5e7eb;
+    background: #ffffff;
 
-            border-radius: 16px;
+    border: 1px solid #e5e7eb;
 
-            overflow: hidden;
+    border-radius: 16px;
 
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
 
-        }
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.07);
+}
 
 
-        /* =========================================
+/* =========================================
    COURSE IMAGE
 ========================================= */
 
-        .related-course-slide .course-image {
+.related-course-slide .course-image {
+    width: 100%;
 
-            height: 140px;
+    height: 175px;
+    flex: 0 0 175px;
 
-            display: flex;
+    display: flex;
 
-            align-items: center;
+    align-items: center;
+    justify-content: center;
 
-            justify-content: center;
+    background: #eaf7ea;
 
-            background: #eaf7ea;
-
-        }
-
-
-        .related-course-slide .course-image img {
-
-            width: 120px;
-
-            height: 120px;
-
-            object-fit: contain;
-
-        }
+    overflow: hidden;
+}
 
 
-        /* =========================================
+.related-course-slide .course-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
    COURSE BODY
 ========================================= */
 
-        .related-course-slide .course-body {
+.related-course-slide .course-body {
+    flex: 1;
 
-            padding: 22px;
+    display: flex;
+    flex-direction: column;
 
-        }
+    padding: 22px;
 
-
-        .related-course-slide .course-body h3 {
-
-            margin: 0 0 10px;
-
-            font-size: 20px;
-
-            font-weight: 700;
-
-            color: #222222;
-
-        }
+    box-sizing: border-box;
+}
 
 
-        /* =========================================
+/* =========================================
+   COURSE TITLE
+========================================= */
+
+.related-course-slide .course-body h3 {
+    margin: 0 0 12px;
+
+    font-size: 20px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    color: #222222;
+}
+
+
+/* =========================================
    META
 ========================================= */
 
-        .related-course-slide .course-meta {
+.related-course-slide .course-meta {
+    display: flex;
 
-            display: flex;
+    align-items: center;
 
-            flex-wrap: wrap;
+    flex-wrap: wrap;
 
-            gap: 8px;
+    gap: 8px;
 
-            margin-bottom: 12px;
-
-        }
-
-
-        .related-course-slide .course-meta span {
-
-            padding: 5px 10px;
-
-            border-radius: 20px;
-
-            background: #f3f4f6;
-
-            color: #666666;
-
-            font-size: 12px;
-
-        }
+    margin-bottom: 12px;
+}
 
 
-        .related-course-slide .course-meta .level {
+.related-course-slide .course-meta span {
+    display: inline-flex;
 
-            background: #e8f5e9;
+    align-items: center;
 
-            color: #229920;
+    padding: 5px 10px;
 
-        }
+    border-radius: 20px;
+
+    background: #f3f4f6;
+
+    color: #666666;
+
+    font-size: 12px;
+
+    line-height: 1.2;
+}
 
 
-        /* =========================================
+.related-course-slide .course-meta .level {
+    background: #e8f5e9;
+
+    color: #229920;
+}
+
+
+/* =========================================
    DESCRIPTION
 ========================================= */
 
-        .related-course-slide .course-body p {
+.related-course-slide .course-body p {
+    margin: 0 0 18px;
 
-            color: #666666;
+    color: #666666;
 
-            font-size: 14px;
+    font-size: 14px;
 
-            line-height: 1.6;
-
-            margin-bottom: 18px;
-
-        }
+    line-height: 1.6;
+}
 
 
-        /* =========================================
-   VIEW BUTTON
+/* =========================================
+   VIEW DETAILS
 ========================================= */
 
-        .related-course-slide .view-btn {
+.related-course-slide .view-btn {
+    display: flex;
 
-            display: inline-block;
+    align-items: center;
+    justify-content: center;
 
-            padding: 9px 16px;
+    width: 100%;
 
-            border-radius: 7px;
+    margin-top: auto;
 
-            background: #229920;
+    padding: 11px 16px;
 
-            color: #ffffff;
+    box-sizing: border-box;
 
-            text-decoration: none;
+    border-radius: 7px;
 
-            font-size: 13px;
+    background: #229920;
 
-            font-weight: 600;
+    color: #ffffff;
 
-            transition: 0.3s ease;
+    text-align: center;
 
-        }
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
 
 
-        .related-course-slide .view-btn:hover {
+.related-course-slide .view-btn:hover {
+    background: #197817;
 
-            background: #197817;
-
-            transform: translateX(3px);
-
-        }
+    transform: translateY(-2px);
+}
 
 
-        /* =========================================
+/* =========================================
+   NAV + COUNTER CONTAINER
+========================================= */
+
+.the-nav-counter {
+
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 15px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   NAVIGATION BUTTONS
+========================================= */
+
+.related-nav-btn {
+
+    width: 44px;
+    height: 44px;
+
+    min-width: 44px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid #229920;
+
+    background: #ffffff;
+
+    color: #229920;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.related-nav-btn:hover {
+    background: #229920;
+
+    color: #ffffff;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 5px 15px rgba(34, 153, 32, 0.25);
+}
+
+
+/* =========================================
+   DISABLED BUTTON
+========================================= */
+
+.related-nav-btn:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    background: #f5f5f5;
+
+    color: #999999;
+
+    border-color: #dddddd;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================
    COUNTER
 ========================================= */
 
-        .related-course-counter {
+.related-course-counter {
 
-            width: 100%;
+    display: flex;
 
-            text-align: center;
+    align-items: center;
+    justify-content: center;
 
-            margin-top: 15px;
+    gap: 4px;
 
-            font-size: 14px;
+    margin: 0;
 
-            color: #777777;
+    font-size: 14px;
 
-        }
-
-
-        .related-course-counter #relatedCurrent {
-
-            color: #229920;
-
-            font-weight: 700;
-
-        }
+    color: #777777;
+}
 
 
-        /* =========================================
+.related-course-counter #relatedCurrent {
+    color: #229920;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
    MOBILE
 ========================================= */
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
 
-            .related-course-wrapper {
+    .related-course-slider {
+        max-width: 100%;
 
-                gap: 8px;
-
-            }
-
-
-            .related-nav-btn {
-
-                width: 38px;
-
-                height: 38px;
-
-                font-size: 18px;
-
-            }
+        height: 460px;
+    }
 
 
-            .related-course-slider {
+    .the-nav-counter {
+        max-width: 100%;
 
-                min-height: 380px;
-
-            }
-
-
-            .related-course-slide .course-body {
-
-                padding: 17px;
-
-            }
+        margin-top: 12px;
+    }
 
 
-            .related-course-slide .course-body h3 {
+    .related-nav-btn {
+        width: 38px;
+        height: 38px;
 
-                font-size: 18px;
+        min-width: 38px;
 
-            }
+        font-size: 18px;
+    }
 
-        }
+
+    .related-course-slide .course-image {
+        height: 155px;
+
+        flex-basis: 155px;
+    }
+
+
+    .related-course-slide .course-body {
+        padding: 17px;
+    }
+
+
+    .related-course-slide .course-body h3 {
+        font-size: 18px;
+    }
+
+
+    .related-course-slide .course-body p {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+    .related-course-slider {
+        height: 445px;
+    }
+
+
+    .related-course-slide .course-image {
+        height: 140px;
+
+        flex-basis: 140px;
+    }
+
+
+    .related-course-slide .course-body {
+        padding: 15px;
+    }
+
+
+    .related-course-slide .course-body h3 {
+        font-size: 17px;
+    }
+
+
+    .related-course-slide .course-meta span {
+        padding: 5px 8px;
+
+        font-size: 11px;
+    }
+
+
+    .related-course-slide .course-body p {
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .related-course-counter {
+        font-size: 13px;
+    }
+
+}
     </style>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/learning.css">
@@ -1866,15 +1958,7 @@
 
                             <div class="related-course-wrapper">
 
-                                <!-- Previous Button -->
-                                <button type="button" class="related-nav-btn related-prev" id="relatedPrev"
-                                    aria-label="Previous course">
-
-                                    <span>←</span>
-
-                                </button>
-
-
+                            
                                 <!-- Cards -->
                                 <div class="related-course-slider" id="relatedCourseSlider">
 
@@ -2071,6 +2155,26 @@
 
                                 </div>
 
+                                <div class="the-nav-counter">
+
+                                <!-- Previous Button -->
+                                <button type="button" class="related-nav-btn related-prev" id="relatedPrev"
+                                    aria-label="Previous course">
+
+                                    <span>←</span>
+
+                                </button>
+
+
+                                <!-- Counter -->
+                            <div class="related-course-counter">
+
+                                <span id="relatedCurrent">1</span>
+                                <span>/</span>
+                                <span id="relatedTotal">4</span>
+
+                            </div>
+
 
                                 <!-- Next Button -->
                                 <button type="button" class="related-nav-btn related-next" id="relatedNext"
@@ -2080,18 +2184,11 @@
 
                                 </button>
 
-                            </div>
-
-
-                            <!-- Counter -->
-                            <div class="related-course-counter">
-
-                                <span id="relatedCurrent">1</span>
-                                <span>/</span>
-                                <span id="relatedTotal">4</span>
+                                </div>
 
                             </div>
 
+                            
                         </section>
 
                     </div>
