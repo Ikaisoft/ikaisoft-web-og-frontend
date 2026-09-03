@@ -449,427 +449,427 @@
    RELATED COURSES
 ========================================= */
 
-.related-courses-section {
-    position: relative;
-    width: 100%;
-}
+        .related-courses-section {
+            position: relative;
+            width: 100%;
+        }
 
 
-/* Title */
+        /* Title */
 
-.related-courses-title {
-    text-align: left;
-    margin-bottom: 25px;
-}
+        .related-courses-title {
+            text-align: left;
+            margin-bottom: 25px;
+        }
 
 
-/* =========================================
+        /* =========================================
    MAIN WRAPPER
 ========================================= */
 
-.related-course-wrapper {
+        .related-course-wrapper {
 
-    width: 100%;
+            width: 100%;
 
-    display: flex;
+            display: flex;
 
-    align-items: center;
+            align-items: center;
 
-    justify-content: center;
+            justify-content: center;
 
-    gap: 15px;
+            gap: 15px;
 
-    position: relative;
+            position: relative;
 
-}
+        }
 
 
-/* =========================================
+        /* =========================================
    SLIDER
 ========================================= */
 
-.related-course-slider {
+        .related-course-slider {
 
-    position: relative;
+            position: relative;
 
-    width: 100%;
+            width: 100%;
 
-    max-width: 500px;
+            max-width: 500px;
 
-    min-height: 360px;
+            min-height: 360px;
 
-    overflow: hidden;
+            overflow: hidden;
 
-}
+        }
 
 
-/* =========================================
+        /* =========================================
    COURSE SLIDES
 ========================================= */
 
-.related-course-slide {
+        .related-course-slide {
 
-    position: absolute;
+            position: absolute;
 
-    top: 0;
-    left: 0;
+            top: 0;
+            left: 0;
 
-    width: 100%;
+            width: 100%;
 
-    opacity: 0;
+            opacity: 0;
 
-    visibility: hidden;
+            visibility: hidden;
 
-    transform: translateX(40px);
+            transform: translateX(40px);
 
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease,
-        visibility 0.35s ease;
+            transition:
+                opacity 0.35s ease,
+                transform 0.35s ease,
+                visibility 0.35s ease;
 
-}
-
-
-/* Active card */
-
-.related-course-slide.active {
-
-    position: relative;
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateX(0);
-
-    z-index: 2;
-
-}
+        }
 
 
-/* =========================================
+        /* Active card */
+
+        .related-course-slide.active {
+
+            position: relative;
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateX(0);
+
+            z-index: 2;
+
+        }
+
+
+        /* =========================================
    NAVIGATION BUTTONS
 ========================================= */
 
-.related-nav-btn {
+        .related-nav-btn {
 
-    flex: 0 0 auto;
+            flex: 0 0 auto;
 
-    width: 44px;
+            width: 44px;
 
-    height: 44px;
+            height: 44px;
 
-    border-radius: 50%;
+            border-radius: 50%;
 
-    border: 1px solid #229920;
+            border: 1px solid #229920;
 
-    background: #ffffff;
+            background: #ffffff;
 
-    color: #229920;
+            color: #229920;
 
-    font-size: 22px;
+            font-size: 22px;
 
-    font-weight: 600;
+            font-weight: 600;
 
-    display: flex;
+            display: flex;
 
-    align-items: center;
+            align-items: center;
 
-    justify-content: center;
+            justify-content: center;
 
-    cursor: pointer;
+            cursor: pointer;
 
-    transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
 
-    z-index: 10;
+            z-index: 10;
 
-}
-
-
-/* Hover */
-
-.related-nav-btn:hover {
-
-    background: #229920;
-
-    color: #ffffff;
-
-    transform: scale(1.08);
-
-    box-shadow:
-        0 5px 15px rgba(34, 153, 32, 0.25);
-
-}
+        }
 
 
-/* Disabled */
+        /* Hover */
 
-.related-nav-btn:disabled {
+        .related-nav-btn:hover {
 
-    opacity: 0.35;
+            background: #229920;
 
-    cursor: not-allowed;
+            color: #ffffff;
 
-    background: #f5f5f5;
+            transform: scale(1.08);
 
-    color: #999999;
+            box-shadow:
+                0 5px 15px rgba(34, 153, 32, 0.25);
 
-    border-color: #dddddd;
-
-    transform: none;
-
-    box-shadow: none;
-
-}
+        }
 
 
-/* =========================================
+        /* Disabled */
+
+        .related-nav-btn:disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+
+            background: #f5f5f5;
+
+            color: #999999;
+
+            border-color: #dddddd;
+
+            transform: none;
+
+            box-shadow: none;
+
+        }
+
+
+        /* =========================================
    COURSE CARD
 ========================================= */
 
-.related-course-slide .course-card {
+        .related-course-slide .course-card {
 
-    width: 100%;
+            width: 100%;
 
-    background: #ffffff;
+            background: #ffffff;
 
-    border: 1px solid #e5e7eb;
+            border: 1px solid #e5e7eb;
 
-    border-radius: 16px;
+            border-radius: 16px;
 
-    overflow: hidden;
+            overflow: hidden;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.07);
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.07);
 
-}
+        }
 
 
-/* =========================================
+        /* =========================================
    COURSE IMAGE
 ========================================= */
 
-.related-course-slide .course-image {
+        .related-course-slide .course-image {
 
-    height: 140px;
+            height: 140px;
 
-    display: flex;
+            display: flex;
 
-    align-items: center;
+            align-items: center;
 
-    justify-content: center;
+            justify-content: center;
 
-    background: #eaf7ea;
+            background: #eaf7ea;
 
-}
-
-
-.related-course-slide .course-image img {
-
-    width: 120px;
-
-    height: 120px;
-
-    object-fit: contain;
-
-}
+        }
 
 
-/* =========================================
+        .related-course-slide .course-image img {
+
+            width: 120px;
+
+            height: 120px;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
    COURSE BODY
 ========================================= */
 
-.related-course-slide .course-body {
+        .related-course-slide .course-body {
 
-    padding: 22px;
+            padding: 22px;
 
-}
-
-
-.related-course-slide .course-body h3 {
-
-    margin: 0 0 10px;
-
-    font-size: 20px;
-
-    font-weight: 700;
-
-    color: #222222;
-
-}
+        }
 
 
-/* =========================================
+        .related-course-slide .course-body h3 {
+
+            margin: 0 0 10px;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: #222222;
+
+        }
+
+
+        /* =========================================
    META
 ========================================= */
 
-.related-course-slide .course-meta {
+        .related-course-slide .course-meta {
 
-    display: flex;
+            display: flex;
 
-    flex-wrap: wrap;
+            flex-wrap: wrap;
 
-    gap: 8px;
+            gap: 8px;
 
-    margin-bottom: 12px;
+            margin-bottom: 12px;
 
-}
-
-
-.related-course-slide .course-meta span {
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    background: #f3f4f6;
-
-    color: #666666;
-
-    font-size: 12px;
-
-}
+        }
 
 
-.related-course-slide .course-meta .level {
+        .related-course-slide .course-meta span {
 
-    background: #e8f5e9;
+            padding: 5px 10px;
 
-    color: #229920;
+            border-radius: 20px;
 
-}
+            background: #f3f4f6;
+
+            color: #666666;
+
+            font-size: 12px;
+
+        }
 
 
-/* =========================================
+        .related-course-slide .course-meta .level {
+
+            background: #e8f5e9;
+
+            color: #229920;
+
+        }
+
+
+        /* =========================================
    DESCRIPTION
 ========================================= */
 
-.related-course-slide .course-body p {
+        .related-course-slide .course-body p {
 
-    color: #666666;
+            color: #666666;
 
-    font-size: 14px;
+            font-size: 14px;
 
-    line-height: 1.6;
+            line-height: 1.6;
 
-    margin-bottom: 18px;
+            margin-bottom: 18px;
 
-}
+        }
 
 
-/* =========================================
+        /* =========================================
    VIEW BUTTON
 ========================================= */
 
-.related-course-slide .view-btn {
+        .related-course-slide .view-btn {
 
-    display: inline-block;
+            display: inline-block;
 
-    padding: 9px 16px;
+            padding: 9px 16px;
 
-    border-radius: 7px;
+            border-radius: 7px;
 
-    background: #229920;
+            background: #229920;
 
-    color: #ffffff;
+            color: #ffffff;
 
-    text-decoration: none;
+            text-decoration: none;
 
-    font-size: 13px;
+            font-size: 13px;
 
-    font-weight: 600;
+            font-weight: 600;
 
-    transition: 0.3s ease;
+            transition: 0.3s ease;
 
-}
-
-
-.related-course-slide .view-btn:hover {
-
-    background: #197817;
-
-    transform: translateX(3px);
-
-}
+        }
 
 
-/* =========================================
+        .related-course-slide .view-btn:hover {
+
+            background: #197817;
+
+            transform: translateX(3px);
+
+        }
+
+
+        /* =========================================
    COUNTER
 ========================================= */
 
-.related-course-counter {
+        .related-course-counter {
 
-    width: 100%;
+            width: 100%;
 
-    text-align: center;
+            text-align: center;
 
-    margin-top: 15px;
+            margin-top: 15px;
 
-    font-size: 14px;
+            font-size: 14px;
 
-    color: #777777;
+            color: #777777;
 
-}
-
-
-.related-course-counter #relatedCurrent {
-
-    color: #229920;
-
-    font-weight: 700;
-
-}
+        }
 
 
-/* =========================================
+        .related-course-counter #relatedCurrent {
+
+            color: #229920;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================
    MOBILE
 ========================================= */
 
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
 
-    .related-course-wrapper {
+            .related-course-wrapper {
 
-        gap: 8px;
+                gap: 8px;
 
-    }
-
-
-    .related-nav-btn {
-
-        width: 38px;
-
-        height: 38px;
-
-        font-size: 18px;
-
-    }
+            }
 
 
-    .related-course-slider {
+            .related-nav-btn {
 
-        min-height: 380px;
+                width: 38px;
 
-    }
+                height: 38px;
 
+                font-size: 18px;
 
-    .related-course-slide .course-body {
-
-        padding: 17px;
-
-    }
+            }
 
 
-    .related-course-slide .course-body h3 {
+            .related-course-slider {
 
-        font-size: 18px;
+                min-height: 380px;
 
-    }
+            }
 
-}
+
+            .related-course-slide .course-body {
+
+                padding: 17px;
+
+            }
+
+
+            .related-course-slide .course-body h3 {
+
+                font-size: 18px;
+
+            }
+
+        }
     </style>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/learning.css">
@@ -1564,7 +1564,7 @@
 
     <main>
         <!-- banner Section -->
-        <div class="page-banner overlay" style="height: 426px;">
+        <div class="page-banner overlay" style="height: clamp(426px, 1225px - 58.5vw, 626px);">
             <picture class="media media-bg">
                 <source media="(max-width: 575px)"
                     srcset="../assets/img/courses-img/Course Logo/Banner Images/Ikaisoft-NLP-b.png" />
@@ -2040,7 +2040,7 @@
 
                                             <div class="course-image">
 
-                                                <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-machine-learning-t.png"
+                                                <img src="../assets/img/courses-img/Course Logo/Thumbnail Images/ikaisoft-ml-t.png"
                                                     alt="Machine Learning">
 
                                             </div>
@@ -2857,7 +2857,7 @@
                     <div class="row footer-bottom-row">
                         <div class="col-12 col-md-6 col-lg-6">
                             <div class="footer-copyright text text-16">
-                                Copyright ©<span class="current-year"></span> Ikaisoft. All
+                                © <span class="current-year"></span> Ikaisoft. All
                                 rights reserved.
                             </div>
                         </div>
@@ -2963,171 +2963,171 @@
 
     <!-- card scroller -->
     <script>
-document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-    const slider =
-        document.getElementById("relatedCourseSlider");
+            const slider =
+                document.getElementById("relatedCourseSlider");
 
-    const prevButton =
-        document.getElementById("relatedPrev");
+            const prevButton =
+                document.getElementById("relatedPrev");
 
-    const nextButton =
-        document.getElementById("relatedNext");
+            const nextButton =
+                document.getElementById("relatedNext");
 
-    const currentNumber =
-        document.getElementById("relatedCurrent");
+            const currentNumber =
+                document.getElementById("relatedCurrent");
 
-    const totalNumber =
-        document.getElementById("relatedTotal");
-
-
-    /* Make sure everything exists */
-
-    if (
-        !slider ||
-        !prevButton ||
-        !nextButton ||
-        !currentNumber ||
-        !totalNumber
-    ) {
-
-        console.error(
-            "Related Courses: required elements not found."
-        );
-
-        return;
-    }
+            const totalNumber =
+                document.getElementById("relatedTotal");
 
 
-    const slides =
-        slider.querySelectorAll(
-            ".related-course-slide"
-        );
-
-
-    if (!slides.length) {
-
-        console.error(
-            "Related Courses: no course slides found."
-        );
-
-        return;
-    }
-
-
-    let currentIndex = 0;
-
-
-    /* Total */
-
-    totalNumber.textContent =
-        slides.length;
-
-
-    /* =========================================
-       UPDATE SLIDE
-    ========================================= */
-
-    function updateCourse() {
-
-        slides.forEach(
-            function (slide, index) {
-
-                if (index === currentIndex) {
-
-                    slide.classList.add("active");
-
-                } else {
-
-                    slide.classList.remove("active");
-
-                }
-
-            }
-        );
-
-
-        /* Update number */
-
-        currentNumber.textContent =
-            currentIndex + 1;
-
-
-        /* Disable Previous */
-
-        prevButton.disabled =
-            currentIndex === 0;
-
-
-        /* Disable Next */
-
-        nextButton.disabled =
-            currentIndex === slides.length - 1;
-
-    }
-
-
-    /* =========================================
-       NEXT
-    ========================================= */
-
-    nextButton.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
+            /* Make sure everything exists */
 
             if (
-                currentIndex <
-                slides.length - 1
+                !slider ||
+                !prevButton ||
+                !nextButton ||
+                !currentNumber ||
+                !totalNumber
             ) {
 
-                currentIndex++;
+                console.error(
+                    "Related Courses: required elements not found."
+                );
 
-                updateCourse();
+                return;
+            }
+
+
+            const slides =
+                slider.querySelectorAll(
+                    ".related-course-slide"
+                );
+
+
+            if (!slides.length) {
+
+                console.error(
+                    "Related Courses: no course slides found."
+                );
+
+                return;
+            }
+
+
+            let currentIndex = 0;
+
+
+            /* Total */
+
+            totalNumber.textContent =
+                slides.length;
+
+
+            /* =========================================
+               UPDATE SLIDE
+            ========================================= */
+
+            function updateCourse() {
+
+                slides.forEach(
+                    function (slide, index) {
+
+                        if (index === currentIndex) {
+
+                            slide.classList.add("active");
+
+                        } else {
+
+                            slide.classList.remove("active");
+
+                        }
+
+                    }
+                );
+
+
+                /* Update number */
+
+                currentNumber.textContent =
+                    currentIndex + 1;
+
+
+                /* Disable Previous */
+
+                prevButton.disabled =
+                    currentIndex === 0;
+
+
+                /* Disable Next */
+
+                nextButton.disabled =
+                    currentIndex === slides.length - 1;
 
             }
 
-        }
-    );
+
+            /* =========================================
+               NEXT
+            ========================================= */
+
+            nextButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
 
 
-    /* =========================================
-       PREVIOUS
-    ========================================= */
+                    if (
+                        currentIndex <
+                        slides.length - 1
+                    ) {
 
-    prevButton.addEventListener(
-        "click",
-        function (event) {
+                        currentIndex++;
 
-            event.preventDefault();
+                        updateCourse();
 
-            event.stopPropagation();
+                    }
 
-
-            if (currentIndex > 0) {
-
-                currentIndex--;
-
-                updateCourse();
-
-            }
-
-        }
-    );
+                }
+            );
 
 
-    /* =========================================
-       INITIALIZE
-    ========================================= */
+            /* =========================================
+               PREVIOUS
+            ========================================= */
 
-    updateCourse();
+            prevButton.addEventListener(
+                "click",
+                function (event) {
 
-});
-</script>
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (currentIndex > 0) {
+
+                        currentIndex--;
+
+                        updateCourse();
+
+                    }
+
+                }
+            );
+
+
+            /* =========================================
+               INITIALIZE
+            ========================================= */
+
+            updateCourse();
+
+        });
+    </script>
 </body>
 
 </html>
