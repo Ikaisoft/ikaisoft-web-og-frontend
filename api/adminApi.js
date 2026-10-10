@@ -283,3 +283,12 @@ export async function regenerateCertificate(id) {
   });
   return await res.json();
 }
+
+export async function verifyCertificateAccess(certificateNumber, email) {
+  const res = await fetch(`${BASE_URL}/certificate/verify`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ certificateNumber, email }),
+  });
+  return await res.json();
+}
