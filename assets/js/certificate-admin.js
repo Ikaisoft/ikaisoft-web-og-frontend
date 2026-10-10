@@ -145,14 +145,23 @@ function renderCertificates() {
       <td>${new Date(certificate.issuedDate || certificate.createdAt).toLocaleDateString()}</td>
       <td>
         <div class="actions-cell">
+          <button class="btn btn-secondary btn-sm show-qr-certificate-btn" data-id="${certificate._id}" title="Show QR Code"><i class="fa-solid fa-qrcode"></i> QR</button>
           <button class="btn btn-secondary btn-sm preview-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-eye"></i> Preview</button>
-              <button class="btn btn-secondary btn-sm edit-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-edit"></i> Edit</button>
+          <button class="btn btn-secondary btn-sm edit-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-edit"></i> Edit</button>
           <button class="btn btn-secondary btn-sm download-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-download"></i> PDF</button>
               
           <button class="btn btn-danger btn-sm delete-certificate-btn" data-id="${certificate._id}"><i class="fa-solid fa-trash"></i> Delete</button>
         </div>
       </td>`;
     tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll(".show-qr-certificate-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const certificate = certificates.find((item) => item._id === btn.getAttribute("data-id"));
+      if (!certificate) return;
+      openCertificateQrModal(certificate);
+    });
   });
 
   document.querySelectorAll(".edit-certificate-btn").forEach((btn) => {
@@ -472,6 +481,350 @@ window.closeCertificatePreviewModal = function () {
   document.getElementById("certificate-preview-modal").style.display = "none";
 };
 
+// ==========================================
+// QR CODE DISPLAY & SCANNING / VERIFICATION
+// ==========================================
+
+function extractCertificateId(input) {
+  if (!input) return "";
+  const str = String(input).trim();
+  try {
+    const url = new URL(str, window.location.origin);
+    const idParam = url.searchParams.get("id") || url.searchParams.get("certificateNumber");
+    if (idParam) return idParam.trim();
+  } catch (e) {}
+  const match = str.match(/(?:id=|\/verify\/|\/certificate\/)([A-Za-z0-9\-_]+)/i);
+  if (match) return match[1];
+  return str;
+}
+
+window.openCertificateQrModal = function (cert) {
+  const modal = document.getElementById("certificate-qr-display-modal");
+  if (!modal) return;
+  document.getElementById("qr-display-student-name").textContent = cert.studentName || "Student Certificate";
+  document.getElementById("qr-display-cert-number").textContent = `Certificate No: ${cert.certificateNumber || "N/A"}`;
+
+  const previewBaseUrl = window.location.hostname === "ikaisoft.com" || window.location.hostname === "www.ikaisoft.com"
+    ? "https://ikaisoft.com"
+    : (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+      ? "http://localhost:5000"
+      : window.location.origin;
+
+  const verifyUrl = `${previewBaseUrl}/certificate.html?id=${encodeURIComponent(cert.certificateNumber)}`;
+  const qrImg = cert.qrCodeUrl || `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(verifyUrl)}`;
+
+  document.getElementById("qr-display-image").src = qrImg;
+  document.getElementById("qr-display-open-link-btn").onclick = () => {
+    window.open(verifyUrl, "_blank");
+  };
+
+  modal.style.display = "flex";
+};
+
+window.closeCertificateQrModal = function () {
+  const modal = document.getElementById("certificate-qr-display-modal");
+  if (modal) modal.style.display = "none";
+};
+
+let qrCameraStream = null;
+let qrScanAnimId = null;
+let detectedCertId = "";
+
+window.openScanQrModal = function () {
+  const modal = document.getElementById("scan-qr-modal");
+  if (!modal) return;
+  resetScanModalState();
+  modal.style.display = "flex";
+  switchScanTab("camera");
+};
+
+window.closeScanQrModal = function () {
+  stopQrCamera();
+  const modal = document.getElementById("scan-qr-modal");
+  if (modal) modal.style.display = "none";
+};
+
+function resetScanModalState() {
+  stopQrCamera();
+  detectedCertId = "";
+  const card = document.getElementById("qr-verified-card");
+  const badge = document.getElementById("qr-detected-cert-badge");
+  const errBox = document.getElementById("qr-verify-error");
+  const emailInput = document.getElementById("qr-verify-email-input");
+  const manualInput = document.getElementById("qr-manual-input");
+
+  if (card) card.style.display = "none";
+  if (badge) badge.textContent = "";
+  if (errBox) errBox.style.display = "none";
+  if (emailInput) emailInput.value = "";
+  if (manualInput) manualInput.value = "";
+}
+
+function switchScanTab(tabName) {
+  document.querySelectorAll(".qr-scan-tab-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.getAttribute("data-tab") === tabName);
+  });
+
+  const camTab = document.getElementById("qr-camera-tab-content");
+  const uploadTab = document.getElementById("qr-upload-tab-content");
+  const manualTab = document.getElementById("qr-manual-tab-content");
+
+  if (camTab) camTab.style.display = tabName === "camera" ? "block" : "none";
+  if (uploadTab) uploadTab.style.display = tabName === "upload" ? "block" : "none";
+  if (manualTab) manualTab.style.display = tabName === "manual" ? "block" : "none";
+
+  if (tabName === "camera") {
+    startQrCamera();
+  } else {
+    stopQrCamera();
+  }
+}
+
+async function startQrCamera() {
+  const video = document.getElementById("qr-video");
+  const overlay = document.getElementById("qr-scanning-overlay");
+  const placeholder = document.getElementById("qr-camera-placeholder");
+  const status = document.getElementById("qr-camera-status");
+  const stopBtn = document.getElementById("qr-stop-camera-btn");
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    if (status) status.textContent = "Camera not supported on this browser. Try uploading an image.";
+    return;
+  }
+
+  try {
+    if (status) status.textContent = "Starting camera...";
+    qrCameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" },
+    });
+    if (video) {
+      video.srcObject = qrCameraStream;
+      video.setAttribute("playsinline", "true");
+      await video.play();
+      video.style.display = "block";
+    }
+    if (overlay) overlay.style.display = "block";
+    if (placeholder) placeholder.style.display = "none";
+    if (stopBtn) stopBtn.style.display = "inline-flex";
+    if (status) status.textContent = "Scanning for certificate QR code...";
+
+    scanQrVideoLoop();
+  } catch (err) {
+    if (status) status.textContent = "Camera error: " + (err.message || "Permission denied");
+    if (placeholder) placeholder.style.display = "block";
+    if (video) video.style.display = "none";
+    if (overlay) overlay.style.display = "none";
+    if (stopBtn) stopBtn.style.display = "none";
+  }
+}
+
+function stopQrCamera() {
+  if (qrScanAnimId) {
+    cancelAnimationFrame(qrScanAnimId);
+    qrScanAnimId = null;
+  }
+  if (qrCameraStream) {
+    qrCameraStream.getTracks().forEach((t) => t.stop());
+    qrCameraStream = null;
+  }
+  const video = document.getElementById("qr-video");
+  const overlay = document.getElementById("qr-scanning-overlay");
+  const placeholder = document.getElementById("qr-camera-placeholder");
+  const status = document.getElementById("qr-camera-status");
+  const stopBtn = document.getElementById("qr-stop-camera-btn");
+
+  if (video) video.style.display = "none";
+  if (overlay) overlay.style.display = "none";
+  if (placeholder) placeholder.style.display = "block";
+  if (stopBtn) stopBtn.style.display = "none";
+  if (status) status.textContent = "Camera stopped";
+}
+
+function scanQrVideoLoop() {
+  const video = document.getElementById("qr-video");
+  const canvas = document.getElementById("qr-canvas");
+  if (!video || !canvas || video.readyState !== video.HAVE_ENOUGH_DATA) {
+    qrScanAnimId = requestAnimationFrame(scanQrVideoLoop);
+    return;
+  }
+
+  const ctx = canvas.getContext("2d");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  if (window.jsQR) {
+    const code = window.jsQR(imageData.data, imageData.width, imageData.height, {
+      inversionAttempts: "dontInvert",
+    });
+    if (code && code.data) {
+      handleQrDetected(code.data);
+      return;
+    }
+  }
+
+  qrScanAnimId = requestAnimationFrame(scanQrVideoLoop);
+}
+
+function handleQrDetected(rawData) {
+  stopQrCamera();
+  const certId = extractCertificateId(rawData);
+  if (!certId) {
+    showAlert("Could not recognize Certificate ID from QR.", "error");
+    return;
+  }
+
+  detectedCertId = certId;
+  const card = document.getElementById("qr-verified-card");
+  const badge = document.getElementById("qr-detected-cert-badge");
+  const errBox = document.getElementById("qr-verify-error");
+  const emailInput = document.getElementById("qr-verify-email-input");
+
+  if (badge) badge.textContent = certId;
+  if (errBox) errBox.style.display = "none";
+  if (card) card.style.display = "block";
+  if (emailInput) {
+    emailInput.value = "";
+    emailInput.focus();
+  }
+}
+
+function scanQrFromImageFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      if (window.jsQR) {
+        const code = window.jsQR(imageData.data, imageData.width, imageData.height);
+        if (code && code.data) {
+          handleQrDetected(code.data);
+          return;
+        }
+      }
+      showAlert("No readable QR code found in this image. Try another image or manual input.", "error");
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function verifyDetectedCertificateWithEmail() {
+  const emailInput = document.getElementById("qr-verify-email-input");
+  const email = emailInput?.value.trim();
+  const errorBox = document.getElementById("qr-verify-error");
+  const errorText = document.getElementById("qr-verify-error-text");
+  const btn = document.getElementById("qr-verify-email-btn");
+
+  if (!detectedCertId) {
+    showAlert("No certificate ID detected.", "error");
+    return;
+  }
+  if (!email) {
+    if (errorBox && errorText) {
+      errorText.textContent = "Please enter student registered email.";
+      errorBox.style.display = "block";
+    }
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Verifying...`;
+  }
+
+  try {
+    const res = await adminApi.verifyCertificateAccess(detectedCertId, email);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="fa-solid fa-key"></i> Verify Email & View Certificate`;
+    }
+
+    if (!res.success) {
+      if (errorBox && errorText) {
+        errorText.textContent = res.message || "Email address does not match this certificate record.";
+        errorBox.style.display = "block";
+      }
+      return;
+    }
+
+    closeScanQrModal();
+    showAlert(`Verified successfully! Showing certificate for ${res.data.studentName}.`, "success");
+    previewVerifiedCertificates(res.data, res.certificates);
+  } catch (err) {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="fa-solid fa-key"></i> Verify Email & View Certificate`;
+    }
+    if (errorBox && errorText) {
+      errorText.textContent = "Network error verifying certificate.";
+      errorBox.style.display = "block";
+    }
+  }
+}
+
+function previewVerifiedCertificates(currentCert, allCertificates = []) {
+  const holder = document.getElementById("certificate-preview-frame-holder");
+  if (!holder) return;
+
+  const certList = allCertificates && allCertificates.length > 0 ? allCertificates : [currentCert];
+  let activeIndex = certList.findIndex(
+    (c) => String(c.certificateNumber).toLowerCase() === String(currentCert.certificateNumber).toLowerCase()
+  );
+  if (activeIndex < 0) activeIndex = 0;
+
+  function render(index) {
+    const cert = certList[index];
+    let tabsHtml = "";
+    if (certList.length > 1) {
+      tabsHtml = `
+        <div style="background:#eaf5ec; border:1px solid #c8e6cb; border-radius:12px; padding:12px 18px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+          <div style="font-size:13px; font-weight:700; color:#144a21;">
+            <i class="fa-solid fa-user-graduate"></i> Verified Certificates for ${escapeHTML(cert.studentName)} (${certList.length}):
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            ${certList.map((c, i) => `
+              <button type="button" class="btn btn-sm ${i === index ? "btn-primary" : "btn-secondary"} switch-cert-tab" data-idx="${i}" style="font-size:12px;">
+                ${escapeHTML(c.courseName || "Course")} (${escapeHTML(c.certificateNumber)})
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    holder.innerHTML = tabsHtml + renderCertificatePreviewHtml(cert);
+    document.getElementById("certificate-preview-title").textContent = `Verified Certificate - ${cert.certificateNumber} (${cert.studentName})`;
+
+    holder.querySelectorAll(".switch-cert-tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        render(Number(btn.getAttribute("data-idx")));
+      });
+    });
+
+    document.getElementById("certificate-print-btn").onclick = async () => {
+      try {
+        const blob = await adminApi.downloadCertificatePdf(cert._id);
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
+      } catch (err) {
+        showAlert(err.message || "Failed to open PDF.", "error");
+      }
+    };
+  }
+
+  render(activeIndex);
+  document.getElementById("certificate-preview-modal").style.display = "flex";
+}
+
 window.exportCertificatesExcel = exportCertificatesExcel;
 window.exportCertificatesPdf = exportCertificatesPdf;
 window.downloadAllCertificatesZip = downloadAllCertificatesZip;
@@ -635,7 +988,85 @@ document.getElementById("certificate-import-file")?.addEventListener("change", a
   }
 });
 
+// Attach QR scanning modal listeners
+document.getElementById("scan-qr-verify-admin-btn")?.addEventListener("click", () => {
+  window.openScanQrModal?.();
+});
+
+document.querySelectorAll(".qr-scan-tab-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    switchScanTab(btn.getAttribute("data-tab"));
+  });
+});
+
+document.getElementById("qr-start-camera-btn")?.addEventListener("click", () => {
+  startQrCamera();
+});
+
+document.getElementById("qr-stop-camera-btn")?.addEventListener("click", () => {
+  stopQrCamera();
+});
+
+const qrDropzone = document.getElementById("qr-dropzone");
+const qrFileInput = document.getElementById("qr-file-input");
+
+qrDropzone?.addEventListener("click", () => {
+  qrFileInput?.click();
+});
+
+qrDropzone?.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  qrDropzone.style.borderColor = "var(--color-primary)";
+  qrDropzone.style.background = "rgba(34, 153, 32, 0.1)";
+});
+
+qrDropzone?.addEventListener("dragleave", () => {
+  qrDropzone.style.borderColor = "var(--border-color)";
+  qrDropzone.style.background = "rgba(15, 23, 42, 0.4)";
+});
+
+qrDropzone?.addEventListener("drop", (e) => {
+  e.preventDefault();
+  qrDropzone.style.borderColor = "var(--border-color)";
+  qrDropzone.style.background = "rgba(15, 23, 42, 0.4)";
+  const file = e.dataTransfer?.files?.[0];
+  if (file) scanQrFromImageFile(file);
+});
+
+qrFileInput?.addEventListener("change", (e) => {
+  const file = e.target.files?.[0];
+  if (file) scanQrFromImageFile(file);
+});
+
+document.getElementById("qr-apply-manual-btn")?.addEventListener("click", () => {
+  const input = document.getElementById("qr-manual-input")?.value;
+  if (!input) {
+    showAlert("Please enter a Certificate ID or link.", "error");
+    return;
+  }
+  handleQrDetected(input);
+});
+
+document.getElementById("qr-manual-input")?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("qr-apply-manual-btn")?.click();
+  }
+});
+
+document.getElementById("qr-verify-email-btn")?.addEventListener("click", () => {
+  verifyDetectedCertificateWithEmail();
+});
+
+document.getElementById("qr-verify-email-input")?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    verifyDetectedCertificateWithEmail();
+  }
+});
+
 window.addEventListener("DOMContentLoaded", () => {
   loadCollegeManagementTab();
   loadCertificateManagementTab();
 });
+
