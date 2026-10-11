@@ -612,30 +612,37 @@
           </div>
           <h2 class="verify-title">Certificate Verification</h2>
           <p class="verify-subtitle">
-            To view and verify this certificate, please enter the registered student email address associated with this ID.
+            Enter your Certificate Number and registered student email address below to verify authenticity and access your certificate.
           </p>
 
-          ${certificateNumberParam ? `
-            <div class="cert-id-badge">
-              <i class="fa-solid fa-qrcode"></i>
-              <span>Certificate ID: <strong>${escapeHTML(certificateNumberParam)}</strong></span>
-            </div>
-          ` : `
+          <form id="verifyForm">
             <div class="form-group">
               <label for="inputCertId"><i class="fa-solid fa-id-card"></i> Certificate Number *</label>
               <div class="input-with-icon">
                 <i class="fa-solid fa-certificate"></i>
-                <input type="text" id="inputCertId" placeholder="e.g. ICS-2026-000001" required value="${escapeHTML(certificateNumberParam)}">
+                <input 
+                  type="text" 
+                  id="inputCertId" 
+                  placeholder="e.g. ICS-2026-000001" 
+                  required 
+                  autocomplete="off"
+                  value="${escapeHTML(certificateNumberParam)}"
+                >
               </div>
             </div>
-          `}
 
-          <form id="verifyForm">
             <div class="form-group">
               <label for="inputEmail"><i class="fa-solid fa-envelope"></i> Registered Email Address *</label>
               <div class="input-with-icon">
                 <i class="fa-solid fa-at"></i>
-                <input type="email" id="inputEmail" placeholder="Enter student email (e.g. name@gmail.com)" required autocomplete="email" value="${escapeHTML(verifiedEmail)}">
+                <input 
+                  type="email" 
+                  id="inputEmail" 
+                  placeholder="e.g. name@gmail.com" 
+                  required 
+                  autocomplete="email" 
+                  value="${escapeHTML(verifiedEmail)}"
+                >
               </div>
             </div>
 
@@ -660,15 +667,15 @@
       const form = document.getElementById('verifyForm');
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const certId = certificateNumberParam || document.getElementById('inputCertId')?.value.trim();
-        const email = document.getElementById('inputEmail').value.trim();
+        const certId = (document.getElementById('inputCertId')?.value || certificateNumberParam || '').trim();
+        const email = (document.getElementById('inputEmail')?.value || '').trim();
 
         if (!certId) {
-          showAlert('Please provide a certificate number.');
+          showAlert('Please enter your certificate number (e.g. ICS-2026-000001).');
           return;
         }
         if (!email) {
-          showAlert('Please enter the registered email address.');
+          showAlert('Please enter the registered student email address.');
           return;
         }
 
@@ -739,8 +746,14 @@
         return;
       }
 
-      const qrUrl = current.qrCodeUrl || `${API_BASE}/api/certificate/${encodeURIComponent(current.certificateNumber)}/qr`;
-      const downloadUrl = current.pdfUrl || `${API_BASE}/api/certificates/public/${encodeURIComponent(current.certificateNumber)}/download?email=${encodeURIComponent(verifiedEmail)}`;
+      const qrUrl = `${API_BASE}/api/certificate/qr`;
+      let downloadUrl = current.pdfUrl;
+      if (downloadUrl && downloadUrl.startsWith('/')) {
+        downloadUrl = `${API_BASE}${downloadUrl}`;
+      }
+      if (!downloadUrl) {
+        downloadUrl = `${API_BASE}/api/certificates/public/${encodeURIComponent(current.certificateNumber)}/download?email=${encodeURIComponent(verifiedEmail)}`;
+      }
 
       let multiCertBarHtml = '';
       if (verifiedCertificates.length > 1) {
@@ -815,7 +828,7 @@
                     <img src="${escapeHTML(qrUrl)}" alt="Certificate QR Code">
                     <div class="qr-info">
                       <p>Official QR Verification</p>
-                      <span>Scan anytime to re-verify this credential</span>
+                      <span>Scan anytime to verify at /certificate</span>
                     </div>
                   </div>
                 </div>
