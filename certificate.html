@@ -825,7 +825,11 @@
                     <p class="value">${formatDate(current.completionDate || current.issuedDate || current.createdAt)}</p>
                   </div>
                   <div class="certificate-qr-card">
-                    <img src="${escapeHTML(qrUrl)}" alt="Certificate QR Code">
+                    <img 
+                      src="${escapeHTML(qrUrl)}" 
+                      alt="Certificate QR Code"
+                      onerror="this.onerror=null;this.src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fikaisoft.com%2Fcertificate';"
+                    >
                     <div class="qr-info">
                       <p>Official QR Verification</p>
                       <span>Scan anytime to verify at /certificate</span>

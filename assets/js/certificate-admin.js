@@ -342,14 +342,23 @@ function renderCertificatePreviewHtml(certificate) {
   const collegeName = escapeHTML(certificate.college || "College Name");
   const certificateNumber = escapeHTML(certificate.certificateNumber || "CERT-0000");
   const issuedDate = formatCertificateDate(certificate.issuedDate || certificate.completionDate || certificate.createdAt);
-  const previewBaseUrl = window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com'
-    ? 'https://ikaisoft.com'
-    : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  const backendBase = (window.location.hostname === 'ikaisoft.com' || window.location.hostname === 'www.ikaisoft.com')
+    ? 'https://ikaisoft-website-backend.onrender.com'
+    : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.port !== '')
       ? 'http://localhost:5000'
       : window.location.origin;
-  const verifyUrl = escapeHTML(`${previewBaseUrl}/certificate`);
-  const qrSrc = `${previewBaseUrl}/api/certificate/qr`;
-  const qrImage = `<div style="text-align:center;"><img src="${qrSrc}" alt="QR Code" style="width:130px;height:130px;object-fit:contain;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,0.1);"/><div style="font-size:11px;color:#144a21;font-weight:600;margin-top:6px;">Scan to verify at /certificate</div></div>`;
+  const verifyUrl = 'https://ikaisoft.com/certificate';
+  const qrSrc = `${backendBase}/api/certificate/qr`;
+  const fallbackQr = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(verifyUrl)}`;
+  const qrImage = `<div style="text-align:center;">
+    <img 
+      src="${qrSrc}" 
+      onerror="this.onerror=null;this.src='${fallbackQr}';" 
+      alt="QR Code" 
+      style="width:130px;height:130px;object-fit:contain;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,0.1);background:white;padding:4px;"
+    />
+    <div style="font-size:11px;color:#144a21;font-weight:600;margin-top:6px;">Scan to verify at /certificate</div>
+  </div>`;
 
   return `
     <div style="width:100%;min-height:560px;background:#f6fbf7;padding:28px;display:flex;justify-content:center;align-items:center;">
@@ -505,16 +514,21 @@ window.openCertificateQrModal = function (cert) {
   document.getElementById("qr-display-student-name").textContent = cert.studentName || "Student Certificate";
   document.getElementById("qr-display-cert-number").textContent = `Certificate No: ${cert.certificateNumber || "N/A"}`;
 
-  const previewBaseUrl = window.location.hostname === "ikaisoft.com" || window.location.hostname === "www.ikaisoft.com"
-    ? "https://ikaisoft.com"
-    : (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+  const backendBase = (window.location.hostname === "ikaisoft.com" || window.location.hostname === "www.ikaisoft.com")
+    ? "https://ikaisoft-website-backend.onrender.com"
+    : (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.port !== "")
       ? "http://localhost:5000"
       : window.location.origin;
 
-  const verifyUrl = `${previewBaseUrl}/certificate`;
-  const qrImg = `${previewBaseUrl}/api/certificate/qr`;
+  const verifyUrl = "https://ikaisoft.com/certificate";
+  const qrImg = `${backendBase}/api/certificate/qr`;
+  const fallbackQr = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(verifyUrl)}`;
 
-  document.getElementById("qr-display-image").src = qrImg;
+  const imgEl = document.getElementById("qr-display-image");
+  if (imgEl) {
+    imgEl.onerror = () => { imgEl.src = fallbackQr; };
+    imgEl.src = qrImg;
+  }
   document.getElementById("qr-display-open-link-btn").onclick = () => {
     window.open(verifyUrl, "_blank");
   };
@@ -982,16 +996,19 @@ document.getElementById("certificate-import-file")?.addEventListener("change", a
   if (!file) return;
   const formData = new FormData();
   formData.append("file", file);
+  showAlert("Reading Excel sheet & generating certificates, please wait...", "info");
   try {
     const res = await adminApi.importCertificates(formData);
     if (res.success) {
-      showAlert(res.message || "Import completed.", "success");
+      showAlert(res.message || "Import completed successfully.", "success");
       await loadCertificates();
     } else {
-      showAlert(res.message || "Import failed.", "error");
+      showAlert(res.message || "Import failed. Please check the Excel format.", "error");
     }
   } catch (error) {
-    showAlert("Import failed.", "error");
+    showAlert(error.message || "Import failed. Please ensure the file contains Name and Email.", "error");
+  } finally {
+    event.target.value = "";
   }
 });
 
