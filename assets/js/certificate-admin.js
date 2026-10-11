@@ -347,11 +347,9 @@ function renderCertificatePreviewHtml(certificate) {
     : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
       ? 'http://localhost:5000'
       : window.location.origin;
-  const verifyUrl = escapeHTML(`${previewBaseUrl}/certificate.html?id=${certificate.certificateNumber}`);
-  const qrSrc = certificate.qrCodeUrl
-    ? certificate.qrCodeUrl
-    : `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(verifyUrl)}`;
-  const qrImage = `<img src="${qrSrc}" alt="QR Code" style="width:140px;height:140px;object-fit:contain;border-radius:16px;box-shadow:0 10px 20px rgba(0,0,0,0.12);"/>`;
+  const verifyUrl = escapeHTML(`${previewBaseUrl}/certificate`);
+  const qrSrc = `${previewBaseUrl}/api/certificate/qr`;
+  const qrImage = `<div style="text-align:center;"><img src="${qrSrc}" alt="QR Code" style="width:130px;height:130px;object-fit:contain;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,0.1);"/><div style="font-size:11px;color:#144a21;font-weight:600;margin-top:6px;">Scan to verify at /certificate</div></div>`;
 
   return `
     <div style="width:100%;min-height:560px;background:#f6fbf7;padding:28px;display:flex;justify-content:center;align-items:center;">
@@ -492,6 +490,9 @@ function extractCertificateId(input) {
     const url = new URL(str, window.location.origin);
     const idParam = url.searchParams.get("id") || url.searchParams.get("certificateNumber");
     if (idParam) return idParam.trim();
+    if (url.pathname.endsWith("/certificate") || url.pathname.endsWith("/certificate.html")) {
+      return "GENERIC_QR";
+    }
   } catch (e) {}
   const match = str.match(/(?:id=|\/verify\/|\/certificate\/)([A-Za-z0-9\-_]+)/i);
   if (match) return match[1];
@@ -510,8 +511,8 @@ window.openCertificateQrModal = function (cert) {
       ? "http://localhost:5000"
       : window.location.origin;
 
-  const verifyUrl = `${previewBaseUrl}/certificate.html?id=${encodeURIComponent(cert.certificateNumber)}`;
-  const qrImg = cert.qrCodeUrl || `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(verifyUrl)}`;
+  const verifyUrl = `${previewBaseUrl}/certificate`;
+  const qrImg = `${previewBaseUrl}/api/certificate/qr`;
 
   document.getElementById("qr-display-image").src = qrImg;
   document.getElementById("qr-display-open-link-btn").onclick = () => {
@@ -672,6 +673,12 @@ function handleQrDetected(rawData) {
   const certId = extractCertificateId(rawData);
   if (!certId) {
     showAlert("Could not recognize Certificate ID from QR.", "error");
+    return;
+  }
+
+  if (certId === "GENERIC_QR") {
+    switchScanTab("manual");
+    showAlert("Scanned generic certificate QR code. Enter the student Certificate ID and email to verify.", "success");
     return;
   }
 
